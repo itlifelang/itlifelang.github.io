@@ -18,19 +18,21 @@
   
   
   <title>Implement design pattern trong Android với Kotlin phần I | IT and life</title>
-  <meta name="description" content="I, Lời mở đầu Điều gì quyết định đến chất lượng code của bạn ? Chất lượng code được quyết định từ nhiều yếu tố như coding convention, comments, code structure… Coding convention: giúp các developer vi">
+  <meta name="description" content="I, Lời mở đầu Điều gì quyết định đến chất lượng code của bạn ? Chất lượng code được quyết định từ nhiều yếu tố như coding convention, comments, code structure… Coding convention: giúp các developer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Implement design pattern trong Android với Kotlin phần I">
 <meta property="og:url" content="https://fs-sournary.github.io/2020/06/28/android-design-pattern-part-I/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, Lời mở đầu Điều gì quyết định đến chất lượng code của bạn ? Chất lượng code được quyết định từ nhiều yếu tố như coding convention, comments, code structure… Coding convention: giúp các developer vi">
+<meta property="og:description" content="I, Lời mở đầu Điều gì quyết định đến chất lượng code của bạn ? Chất lượng code được quyết định từ nhiều yếu tố như coding convention, comments, code structure… Coding convention: giúp các developer">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://fs-sournary.github.io/2020/06/28/android-design-pattern-part-I/pattern.jpeg">
 <meta property="article:published_time" content="2020-06-28T02:43:12.000Z">
-<meta property="article:modified_time" content="2020-06-28T09:28:36.863Z">
+<meta property="article:modified_time" content="2020-06-28T10:51:31.431Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="Design pattern">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fs-sournary.github.io/2020/06/28/android-design-pattern-part-I/pattern.jpeg">
   <!-- Canonical links -->
   <link rel="canonical" href="https://fs-sournary.github.io/2020/06/28/android-design-pattern-part-I/index.html">
   
@@ -199,31 +201,6 @@
           <li>
             
             <div class="item-thumb">
-              <a href="/2020/06/28/android-design-pattern-part-II/" class="thumb">
-    
-    
-        <span class="thumb-image thumb-none"></span>
-    
-</a>
-
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                
-              </p>
-              <p class="item-title">
-                <a href="/2020/06/28/android-design-pattern-part-II/" class="title">android-design-pattern-part-II</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2020-06-28T09:44:39.921Z" itemprop="datePublished">2020-06-28</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-thumb">
               <a href="/2020/06/28/android-design-pattern-part-I/" class="thumb">
     
     
@@ -301,7 +278,9 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="I-Loi-mo-dau"><a href="#I-Loi-mo-dau" class="headerlink" title="I, Lời mở đầu"></a>I, Lời mở đầu</h1><ul>
+        <img src="/2020/06/28/android-design-pattern-part-I/pattern.jpeg" class="" title="This is an example image">
+
+<h1 id="I-Loi-mo-dau"><a href="#I-Loi-mo-dau" class="headerlink" title="I, Lời mở đầu"></a>I, Lời mở đầu</h1><ul>
 <li>Điều gì quyết định đến chất lượng code của bạn ?</li>
 <li>Chất lượng code được quyết định từ nhiều yếu tố như coding convention, comments, code structure…<ul>
 <li><strong><a href="https://kotlinlang.org/docs/reference/coding-conventions.html" target="_blank" rel="noopener">Coding convention</a></strong>: giúp các developer viết code theo đúng quy chuẩn của một ngôn ngữ. </li>
@@ -399,7 +378,7 @@
       
     </div>
     <div class="article-footer">
-      <blockquote class="mt-2x">
+      <!-- <blockquote class="mt-2x">
   <ul class="post-copyright list-unstyled">
     
     <li class="post-copyright-link hidden-xs">
@@ -411,8 +390,8 @@
       <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
     </li>
   </ul>
-</blockquote>
-
+</blockquote> -->
+<!-- 
 
 <div class="panel panel-default panel-badger">
   <div class="panel-body">
@@ -429,7 +408,7 @@
     </figure>
   </div>
 </div>
-
+ -->
 
     </div>
   </article>
@@ -447,16 +426,6 @@
 
   <nav class="bar bar-footer clearfix" data-stick-bottom>
   <div class="bar-inner">
-  
-  <ul class="pager pull-left">
-    
-    <li class="prev">
-      <a href="/2020/06/28/android-design-pattern-part-II/" title="android-design-pattern-part-II"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
-    
-    
-  </ul>
   
   
   
@@ -538,6 +507,7 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
   });
   new Valine({
     el: '#vcomments',
+    lang: 'en',
     verify: false,
     notify: false,
     appId: '',
