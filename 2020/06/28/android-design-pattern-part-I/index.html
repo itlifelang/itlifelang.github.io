@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Implement design pattern trong Android với Kotlin phần I | IT and life</title>
+  <meta name="description" content="I, Lời mở đầu Điều gì quyết định đến chất lượng code của bạn ? Chất lượng code được quyết định từ nhiều yếu tố như coding convention, comments, code structure… Coding convention: giúp các developer vi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Implement design pattern trong Android với Kotlin phần I">
+<meta property="og:url" content="http://yoursite.com/2020/06/28/android-design-pattern-part-I/index.html">
+<meta property="og:site_name" content="IT and life">
+<meta property="og:description" content="I, Lời mở đầu Điều gì quyết định đến chất lượng code của bạn ? Chất lượng code được quyết định từ nhiều yếu tố như coding convention, comments, code structure… Coding convention: giúp các developer vi">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-28T02:43:12.000Z">
+<meta property="article:modified_time" content="2020-06-28T05:17:49.087Z">
+<meta property="article:author" content="Sang">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Design pattern">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2020/06/28/android-design-pattern-part-I/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/fs-sournary" target="_blank">
+          <img class="img-circle img-rotate" src="/images/asta-2.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Vũ Đức Sang</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hà Nội, Việt Nam</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/fs-sournary" target="_blank" title="Github" ><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Website chia sẻ các kiến thức về lập trình và cuộc sống</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Android/" style="font-size: 13px;">Android</a> <a href="/tags/Design-pattern/" style="font-size: 13px;">Design pattern</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/06/28/android-design-pattern-part-I/" class="title">Implement design pattern trong Android với Kotlin phần I</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-06-28T02:43:12.000Z" itemprop="datePublished">2020-06-28</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/06/28/hello-world/" class="title">Hello World</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-06-27T23:43:52.405Z" itemprop="datePublished">2020-06-28</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-android-design-pattern-part-I" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Implement design pattern trong Android với Kotlin phần I
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/06/28/android-design-pattern-part-I/" class="article-date">
+	  <time datetime="2020-06-28T02:43:12.000Z" itemprop="datePublished">2020-06-28</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Android/" rel="tag">Android</a>, <a class="article-tag-link" href="/tags/Design-pattern/" rel="tag">Design pattern</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/28/android-design-pattern-part-I/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="I-Loi-mo-dau"><a href="#I-Loi-mo-dau" class="headerlink" title="I, Lời mở đầu"></a>I, Lời mở đầu</h1><ul>
+<li>Điều gì quyết định đến chất lượng code của bạn ?</li>
+<li>Chất lượng code được quyết định từ nhiều yếu tố như coding convention, comments, code structure…<ul>
+<li><strong><a href="https://kotlinlang.org/docs/reference/coding-conventions.html" target="_blank" rel="noopener">Coding convention</a></strong>: giúp các developer viết code theo đúng quy chuẩn của một ngôn ngữ. </li>
+<li><strong>Comment</strong>: giúp bạn và những developer khác hiểu rõ hơn đoạn code của bạn đang thực hiện tác vụ gì.</li>
+</ul>
+</li>
+<li>Bài viết này mình đến đó chính là <strong>design pattern</strong>.</li>
+<li>Android cũng đã cung cấp các công cụ (Jetpack, di, coroutine…) giúp các developer thực hiện Architecture component. Awesome !!!</li>
+<li>Để code của bạn trở nên chuyên nghiệp, dễ hiểu và ngắn gọn, mình khuyên mọi người nên áp dụng cả design pattern vào trong code của mình.</li>
+</ul>
+<h1 id="II-Design-pattern-la-gi"><a href="#II-Design-pattern-la-gi" class="headerlink" title="II, Design pattern là gì"></a>II, Design pattern là gì</h1><ul>
+<li><a href="https://en.wikipedia.org/wiki/Software_design_pattern" target="_blank" rel="noopener">Design pattern</a> là một giải pháp chung để giải quyết những vấn đề thông thường trong một số trường hợp nhất định.</li>
+<li>Những lợi ích của việc sử dụng design pattern:<ul>
+<li><strong>Code dễ hiểu</strong>: bởi vì bạn theo những guildline, quy tắc chuẩn nên các developer khác khi đọc code sẽ dễ dàng hiểu được bạn đang làm gì. <em>Ví dụ</em>: khi bạn sử dụng singleton pattern, mọi người sẽ hiểu bạn muốn tạo ra 1 instance duy nhất trong ứng dụng của mình.</li>
+<li><strong>Code dễ dàng tái sử dụng</strong>: Bạn có thể thực hiện 1 task vụ nhiều lần, áp dụng design pattern bạn sẽ giảm được việc lặp đi lặp lại đoạn code của minh.</li>
+<li><strong>Code sạch hơn</strong>: design pattern làm cho code của bạn trở nên ngắn gọn và module hoá hơn.</li>
+</ul>
+</li>
+<li>Trong software design, chúng ta có thể chia design pattern ra làm 3 nhóm:<ul>
+<li>Creational pattern.</li>
+<li>Structural pattern.</li>
+<li>Behavior pattern.</li>
+</ul>
+</li>
+<li>Phần đầu tiên, mình sẽ giới thiệu nhóm đầu tiên và cũng phổ biến nhất: <strong>creational pattern</strong>.</li>
+</ul>
+<h1 id="III-Creational-pattern"><a href="#III-Creational-pattern" class="headerlink" title="III, Creational pattern"></a>III, Creational pattern</h1><ul>
+<li><a href="https://en.wikipedia.org/wiki/Software_design_pattern#Creational_patterns" target="_blank" rel="noopener">Creational pattern</a> được sử dụng để tạo những object mà không đòi hỏi bạn phải show ra logic hay các step để tạo ra object đó.</li>
+<li>Do đó, mỗi lần bạn tạo ra 1 đối tượng, bạn không cần phải khởi tạo đối tượng thông qua việc sử dụng new operator nữa.</li>
+<li>Mỗi ngôn ngữ hay system áp dụng design pattern một cách khác nhau. </li>
+<li>Nhóm creational có rất nhiều cách implement tuỳ thuộc vào tình huống. </li>
+<li>Mình sẽ đưa ra 3 pattern phổ biến nhát implement creational pattern: singleton pattern, dependency injection pattern và builder pattern.</li>
+</ul>
+<h2 id="1-Singleton-pattern"><a href="#1-Singleton-pattern" class="headerlink" title="1, Singleton pattern"></a>1, Singleton pattern</h2><ul>
+<li><strong>Singleton pattern</strong> được sử dụng khi bạn muốn thực hiện 1 nhóm các tác vụ một lần.</li>
+<li>Do đó trong ứng dụng chỉ có một instance được tạo ra và nó gắn với vòng đời của ứng dụng.</li>
+<li>Singleton pattern thường được sử dụng trong các trường hợp: logging, database creation, thread pool…</li>
+<li><strong>Ví dụ</strong>: Với mỗi database, bạn chỉ cần tạo ra 1 Room instance duy nhất trong toàn bộ ứng dụng.</li>
+<li>Singleton pattern rất được ưu ái, được Kotlin hỗ trợ việc implement thông qua việc sử dụng <a href="https://kotlinlang.org/docs/reference/object-declarations.html#object-declarations" target="_blank" rel="noopener">object class</a> và <a href="https://kotlinlang.org/docs/reference/object-declarations.html#companion-objects" target="_blank" rel="noopener">companion object class</a>.</li>
+<li>Trong kotlin, object class và companion object có một số đặc điểm đáng chú ý sau:<ul>
+<li>Không có contructor method.</li>
+<li>Có thể có init{}, variables và functions.</li>
+<li>Có thể extend 1 class khác nhưng không thể để class khác kế thừa.</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>: </li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> Singleton &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span> &#123;</span><br><span class="line">        println(<span class="string">"Singleton class invoked."</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> variableName = <span class="string">"I am Var"</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">printVarName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        println(variableName)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123; </span><br><span class="line">    Singleton.printVarName()</span><br><span class="line">    Singleton.variableName = <span class="string">"New Name"</span></span><br><span class="line">    <span class="keyword">var</span> a = A()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">init</span> &#123;</span><br><span class="line">        println(<span class="string">"Class init method. Singleton variableName property : <span class="subst">$&#123;Singleton.variableName&#125;</span>"</span>)</span><br><span class="line">        Singleton.printVarName()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Do companion object và object class không cho phép tạo constructor, do đó chúng ta không thể truyền tham số vào trong chúng. </li>
+<li>Trong trường hợp, bạn muốn tạo 1 class implement singletion pattern và có constructor. Bạn hãy làm theo ví dụ sau:</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MovieRepository</span></span>(<span class="keyword">private</span> <span class="keyword">val</span> movieDbApi: MovieDbApi, <span class="keyword">private</span> <span class="keyword">val</span> genreDao: GenreDao) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Do functions </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Singletion prevents multiple ínstances.</span></span><br><span class="line">        <span class="meta">@Volatile</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">var</span> INSTANCE: Movieepository? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">getInstance</span><span class="params">(movieDbApi: <span class="type">MovieDbApi</span>, genreDao: <span class="type">GenreDao</span>)</span></span>: MovieRepository &#123;</span><br><span class="line">            <span class="keyword">var</span> temp = INSTANCE</span><br><span class="line">            <span class="keyword">if</span>(temp != <span class="literal">null</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> temp</span><br><span class="line">            &#125;</span><br><span class="line">            synchronized(<span class="keyword">this</span>)&#123;</span><br><span class="line">                <span class="keyword">val</span> instance = MovieRepository(movieDbApi, genreDao)</span><br><span class="line">                INSTANCE = instance</span><br><span class="line">                <span class="keyword">return</span> instance</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Trong ví dụ, mình đã tạo ra 1 single instance <strong>MovieRepository</strong> tồn tại trong suốt ứng dụng.</li>
+<li>Để có đảm bảo <strong>INSTANCE</strong> là duy nhất (ngay cả khi multiple thread), bạn phải sử dụng <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-volatile/" target="_blank" rel="noopener">@Volatile</a>.</li>
+<li>Để không có bất kì ảnh hưởng nào trong quá trình tạo instance, bạn phải sử dụng <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/synchronized.html" target="_blank" rel="noopener">synchronized()</a>.</li>
+</ul>
+<h2 id="2-Dependency-injection-pattern"><a href="#2-Dependency-injection-pattern" class="headerlink" title="2, Dependency injection pattern"></a>2, Dependency injection pattern</h2><ul>
+<li>Chúng ta đều biết rằng hầu hết các class đều cần đến các dependency.</li>
+<li>Nếu không thực hiện denpendecy injection pattern, thông thường chúng ta sẽ hard-code và khởi tạo dependency trong chính class đó:</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Repository</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> database = DatabaseManager() <span class="comment">// dependent on DatabaseManager.</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> api = NetworkManager() <span class="comment">// dependent on NetworkManager.</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Vấn đề:</strong> bạn thực hiện hard-code như trên ở nhiều nơi sau đó lại muốn thay đổi dependecy đó bằng dependency khác, bạn sẽ phải thay thế ở tất cả mọi nơi có khai báo đó.</li>
+<li>Do đó chúng ta không nên khởi tạo trực tiếp dependency ở trong 1 class mà hãy cung cấp nó từ bên ngoài.</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Repository</span> </span>(<span class="keyword">private</span> <span class="keyword">val</span> database: DatabaseManager, <span class="keyword">private</span> <span class="keyword">val</span> api: NetworkManager) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Do functions</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Google hỗ trợ chúng ta thực hiện dependecy injection pattern cách sử dụng <a href="https://developer.android.com/training/dependency-injection/dagger-basics" target="_blank" rel="noopener">dagger</a>, <a href="https://developer.android.com/training/dependency-injection/hilt-android" target="_blank" rel="noopener">hilt</a>…</li>
+</ul>
+<h2 id="3-Builder-pattern"><a href="#3-Builder-pattern" class="headerlink" title="3, Builder pattern"></a>3, Builder pattern</h2><ul>
+<li>Trong một tác vụ, đôi khi bạn chỉ quan tâm đến một số dữ liệu đầu vào và không quan tâm phần còn lại (có thì càng tốt :grinning:). Trong trường hợp như vậy bạn nên cân nhắc tới việc sử dụng <strong>builder pattern</strong>.</li>
+<li><strong>Ví dụ</strong>: bạn cần mua 1 cái laptop, trong laptop có nhiều bộ phận nhưng bạn chỉ quan tâm tới: processor. Những bộ phận khác như ram, battery, screen bạn không quan tâm đến. Sau đó, người bán hàng sẽ đưa ra cho bạn mẫu laptop thoả mãn yêu cầu của bạn.</li>
+<li>Trong lập trình cũng thế, bạn tạo 1 class có nhiều variable, trong đó 1 số tham số là quan trọng và một số khác không quan trọng, hãy cân nhắc tới việc sử dụng builder pattern.</li>
+<li>Khi bạn thực hiện builder pattern, nó không yêu cầu bạn thực hiện tất cả các method và bạn cũng không cần quan tâm đến thứ tự của các method set.</li>
+<li><strong>Ví dụ</strong>: mình sẽ tạo ra 1 class Laptop theo yêu cầu ở ví dụ trước đưa ra:</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Laptop</span> <span class="keyword">private</span> <span class="keyword">constructor</span></span>(</span><br><span class="line">    <span class="keyword">val</span> processor: String,</span><br><span class="line">    <span class="keyword">val</span> ram: String,</span><br><span class="line">    <span class="keyword">val</span> battery: String,</span><br><span class="line">    <span class="keyword">val</span> screenSize: String</span><br><span class="line">) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Builder class</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Builder</span></span>(<span class="keyword">private</span> <span class="keyword">val</span> processor: String) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// optional features</span></span><br><span class="line">        <span class="keyword">var</span> ram: String = <span class="string">"2GB"</span></span><br><span class="line">        <span class="keyword">var</span> battery: String = <span class="string">"5000MAH"</span></span><br><span class="line">        <span class="keyword">var</span> screenSize: String = <span class="string">"15inch"</span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">setRam</span><span class="params">(ram: <span class="type">String</span>)</span></span>: Builder &#123;</span><br><span class="line">            <span class="keyword">this</span>.ram = ram</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">setBattery</span><span class="params">(battery: <span class="type">String</span>)</span></span>: Builder &#123;</span><br><span class="line">            <span class="keyword">this</span>.battery = battery</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">setScreenSize</span><span class="params">(screenSize: <span class="type">String</span>)</span></span>: Builder &#123;</span><br><span class="line">            <span class="keyword">this</span>.screenSize = screenSize</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">create</span><span class="params">()</span></span>: Laptop = Laptop(processor, ram, battery, screenSize)</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Khi bạn muốn tạo ra 1 instance của Laptop class:</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Laptop.Builder(<span class="string">"i5"</span>)</span><br><span class="line">    .setRam(<span class="string">"16GB"</span>)</span><br><span class="line">    .setBattery(<span class="string">"7000MAH"</span>)</span><br><span class="line">    .create()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Android cũng có rất nhiều class được implement theo builder pattern như AlertDialog…</li>
+</ul>
+<h1 id="IV-Tong-ket"><a href="#IV-Tong-ket" class="headerlink" title="IV, Tổng kết"></a>IV, Tổng kết</h1><ul>
+<li>Bạn không cần vội vã học các thứ kiến thức cao siêu đâu. Những thứ căn bản sẽ giúp bạn trở nên tốt hơn đó.</li>
+<li>Trong lập trình cũng thế, nó đòi hỏi sự tỉ mỉ, kiên trì và sáng tạo nên đi chậm mà chắc nhé sau đó tăng tốc nhé.</li>
+<li>Qua bài này, chúng ta lại có 1 công cụ mới để kết hợp đó là Architecture component + design pattern.</li>
+<li>Cảm ơn các bạn đã dành thời gian quý báu để đọc bài viết của mình.</li>
+<li>Hẹn mọi người vào bài chia sẻ sau nhé !!!</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2020/06/28/android-design-pattern-part-I/" title="Implement design pattern trong Android với Kotlin phần I" target="_blank" rel="external">http://yoursite.com/2020/06/28/android-design-pattern-part-I/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/fs-sournary" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/asta-2.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang</span><small class="ml-1x"></small></a></h3>
+        <div>Android and self-learning developer</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2020/06/28/hello-world/" title="Hello World"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/fs-sournary" target="_blank" title="Github" ><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Comment...',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
