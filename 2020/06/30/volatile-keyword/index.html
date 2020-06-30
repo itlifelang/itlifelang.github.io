@@ -17,16 +17,25 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>IT and life</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="IT and life">
-<meta property="og:url" content="https://fs-sournary.github.io/index.html">
+  <title>Tìm hiểu về volatile keyword | IT and life</title>
+  <meta name="description" content="I, Mở đầu   Trong Java&#x2F;kotlin, mọi người có thể để ý thấy từ khoá volatile. volatile keyword được sử dụng với Java&#x2F;kotlin variable và đánh dấu chúng được lưu trữ trong main memory: Read: volatile vari">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tìm hiểu về volatile keyword">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/06/30/volatile-keyword/index.html">
 <meta property="og:site_name" content="IT and life">
+<meta property="og:description" content="I, Mở đầu   Trong Java&#x2F;kotlin, mọi người có thể để ý thấy từ khoá volatile. volatile keyword được sử dụng với Java&#x2F;kotlin variable và đánh dấu chúng được lưu trữ trong main memory: Read: volatile vari">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://fs-sournary.github.io/2020/06/30/volatile-keyword/volatile-keyword-1.png">
+<meta property="og:image" content="https://fs-sournary.github.io/2020/06/30/volatile-keyword/volatile-keyword-2.png">
+<meta property="article:published_time" content="2020-06-30T03:14:24.000Z">
+<meta property="article:modified_time" content="2020-06-30T08:35:04.875Z">
 <meta property="article:author" content="Sang">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fs-sournary.github.io/2020/06/30/volatile-keyword/volatile-keyword-1.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/06/30/volatile-keyword/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -250,77 +259,160 @@
 </aside>
 
   
-  <main class="main" role="main">
   
-  <div class="content article-list">
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-volatile-keyword" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
+    <div class="article-header">
+      
+        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/30/volatile-keyword/">Tìm hiểu về volatile keyword</a>
+    <h1 class="article-title" itemprop="name">
+      Tìm hiểu về volatile keyword
     </h1>
   
 
-  </div>
-  
-  <p class="article-meta">
-    <span class="article-date">
+      
+      <div class="article-meta">
+        <span class="article-date">
     <i class="icon icon-calendar-check"></i>
 	<a href="/2020/06/30/volatile-keyword/" class="article-date">
-	  <time datetime="2020-06-30T03:14:24.000Z" itemprop="datePublished">Jun 30</time>
+	  <time datetime="2020-06-30T03:14:24.000Z" itemprop="datePublished">2020-06-30</time>
 	</a>
 </span>
-    
-    
+        
+        
   <span class="article-tag">
     <i class="icon icon-tags"></i>
 	<a class="article-tag-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
   </span>
 
 
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/30/volatile-keyword/#comments" class="article-comment-link">Comments</a></span>
-    
-  </p>
-</article>
+        
 
-    
-      <article class="article article-type-book" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/28/android-design-pattern-part-I/">Implement design pattern trong Android với Kotlin phần I</a>
-    </h1>
-  
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2020/06/30/volatile-keyword/" class="leancloud_visitors"  data-flag-title="Tìm hiểu về volatile keyword">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
 
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/30/volatile-keyword/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="I-Mo-dau"><a href="#I-Mo-dau" class="headerlink" title="I, Mở đầu"></a>I, Mở đầu</h1><img src="/2020/06/30/volatile-keyword/volatile-keyword-1.png" class="">
+
+<ul>
+<li>Trong Java/kotlin, mọi người có thể để ý thấy từ khoá <strong>volatile</strong>.</li>
+<li><strong>volatile</strong> keyword được sử dụng với Java/kotlin variable và đánh dấu chúng được lưu trữ trong <strong>main memory</strong>:<ul>
+<li><strong>Read:</strong> volatile variable đọc từ main memory sang 1 CPU cache.</li>
+<li><strong>Write:</strong> volatile variable viết từ CPU cache sang main memory.</li>
+</ul>
+</li>
+<li>Khi <strong>volatile variable</strong> thay đổi trên 1 Thread thì các Thread khác cũng sẽ biết sự thay đổi đó. Nói cách khác variable đã <strong>visible</strong> trên các Thread khác.</li>
+</ul>
+<h1 id="II-Variable-visibility-problem"><a href="#II-Variable-visibility-problem" class="headerlink" title="II, Variable visibility problem"></a>II, Variable visibility problem</h1><ul>
+<li><p>Các non-volatile variable không được read and write tới main memory.</p>
+</li>
+<li><p><strong>volatile</strong> giúp developer giải quyết được <strong>visibility problem</strong> trong multiple thread application: update trên 1 Thread nhưng các Thread khác không có được update đó.</p>
+</li>
+<li><p>Nghe có vẻ hơi trừu tượng, chúng ta sẽ tìm hiểu thông qua ví dụ dưới đây.</p>
+</li>
+<li><p><strong>Ví dụ 1</strong>: chúng ta có 2 Thread có quyền truy cập vào SharedObject:</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SharedObject</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Nếu ở Thread 1, <strong>counter</strong> gán bằng 7 nhưng Thread 2, <strong>counter</strong> vẫn bằng 0.</li>
+<li>Vấn đề ở đây là Thread 2 đã không nhìn thấy giá trị mới nhất của <strong>counter</strong> bởi vì nó không được write vào trong main momory. Đó cũng chính là <strong>visibility problem</strong>.</li>
+</ul>
+<img src="/2020/06/30/volatile-keyword/volatile-keyword-2.png" class="">
+
+<ul>
+<li><strong>Ví dụ 2</strong>: tương tự như ví dụ 1 nhưng chúng ta sẽ thêm <strong>volatile</strong> keyword cho <strong>counter</strong> variable:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SharedObject</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">volatile</span> <span class="keyword">int</span> counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Nếu ở Thread 1, <strong>counter</strong> gán bằng 7 sau đó Thread 2 đọc giá trị của <strong>counter</strong> cũng sẽ là 7.</li>
+<li>Trong Java/kotlin, người ta thường sử dụng <strong>volatile</strong> keyword để implement <a href="https://fs-sournary.github.io/#1-Singleton-pattern">singleton pattern</a>.</li>
+</ul>
+<h1 id="III-Ket-luan"><a href="#III-Ket-luan" class="headerlink" title="III, Kết luận"></a>III, Kết luận</h1><ul>
+<li>Hi vọng bài viết có thể giúp bạn hiểu rõ hơn <strong>volatile</strong> trong Java/kotlin.</li>
+<li>Hẹn mọi người vào bài chia sẻ sau nhé !!!</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://fs-sournary.github.io/2020/06/30/volatile-keyword/" title="Tìm hiểu về volatile keyword" target="_blank" rel="external">https://fs-sournary.github.io/2020/06/30/volatile-keyword/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote> -->
+<!-- 
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/fs-sournary" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/asta-2.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang</span><small class="ml-1x"></small></a></h3>
+        <div>Android and self-learning developer</div>
+      </div>
+    </figure>
   </div>
+</div>
+ -->
+
+    </div>
+  </article>
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2020/06/28/android-design-pattern-part-I/" class="article-date">
-	  <time datetime="2020-06-28T02:43:12.000Z" itemprop="datePublished">Jun 28</time>
-	</a>
-</span>
+    
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
     
     
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Android/" rel="tag">Android</a>, <a class="article-tag-link" href="/tags/Design-pattern/" rel="tag">Design pattern</a>
-  </span>
-
-
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/28/android-design-pattern-part-I/#comments" class="article-comment-link">Comments</a></span>
+    <li class="next">
+      <a href="/2020/06/28/android-design-pattern-part-I/" title="Implement design pattern trong Android với Kotlin phần I"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
     
-  </p>
-</article>
-
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
     
   </div>
+  </div>
+</nav>
+  
 
-   
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
