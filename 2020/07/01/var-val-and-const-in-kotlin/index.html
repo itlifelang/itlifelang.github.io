@@ -17,25 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Tìm hiểu về Serializable và Parcelable | IT and life</title>
-  <meta name="description" content="I, Serializable   Serialization là quá trình chuyển đổi 1 object thành các 1 luồng byte để lưu trữ vào trong bộ nhớ.  De-serialization là quá trình ngược của serialization, nó sử dụng các byte trong b">
+  <title>Tìm hiểu về var, val và const keyword trong Kotlin | IT and life</title>
+  <meta name="description" content="I, var và val Để khai báo property trong Kotlin, chúng ta có thể sử dụng: var: mutable property là thuộc tính có thể thay đổi gía trị. val: immutable property là thuộc tính không thể thay đổi giá trị.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tìm hiểu về Serializable và Parcelable">
-<meta property="og:url" content="https://fs-sournary.github.io/2020/07/01/serialization-and-deserialization/index.html">
+<meta property="og:title" content="Tìm hiểu về var, val và const keyword trong Kotlin">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/01/var-val-and-const-in-kotlin/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, Serializable   Serialization là quá trình chuyển đổi 1 object thành các 1 luồng byte để lưu trữ vào trong bộ nhớ.  De-serialization là quá trình ngược của serialization, nó sử dụng các byte trong b">
+<meta property="og:description" content="I, var và val Để khai báo property trong Kotlin, chúng ta có thể sử dụng: var: mutable property là thuộc tính có thể thay đổi gía trị. val: immutable property là thuộc tính không thể thay đổi giá trị.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://fs-sournary.github.io/2020/07/01/serialization-and-deserialization/serialization-1.png">
-<meta property="og:image" content="https://fs-sournary.github.io/2020/07/01/serialization-and-deserialization/serialization-2.jpg">
-<meta property="article:published_time" content="2020-07-01T01:22:11.000Z">
-<meta property="article:modified_time" content="2020-07-01T02:48:08.059Z">
+<meta property="article:published_time" content="2020-07-01T13:36:50.000Z">
+<meta property="article:modified_time" content="2020-07-01T14:09:13.862Z">
 <meta property="article:author" content="Sang">
-<meta property="article:tag" content="Java">
 <meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://fs-sournary.github.io/2020/07/01/serialization-and-deserialization/serialization-1.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/01/serialization-and-deserialization/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/01/var-val-and-const-in-kotlin/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -337,14 +333,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-serialization-and-deserialization" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-var-val-and-const-in-kotlin" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Tìm hiểu về Serializable và Parcelable
+      Tìm hiểu về var, val và const keyword trong Kotlin
     </h1>
   
 
@@ -352,15 +348,15 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/07/01/serialization-and-deserialization/" class="article-date">
-	  <time datetime="2020-07-01T01:22:11.000Z" itemprop="datePublished">2020-07-01</time>
+	<a href="/2020/07/01/var-val-and-const-in-kotlin/" class="article-date">
+	  <time datetime="2020-07-01T13:36:50.000Z" itemprop="datePublished">2020-07-01</time>
 	</a>
 </span>
         
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
+	<a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
   </span>
 
 
@@ -368,88 +364,34 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2020/07/01/serialization-and-deserialization/" class="leancloud_visitors"  data-flag-title="Tìm hiểu về Serializable và Parcelable">
+    	<span id="/2020/07/01/var-val-and-const-in-kotlin/" class="leancloud_visitors"  data-flag-title="Tìm hiểu về var, val và const keyword trong Kotlin">
 			<span class="leancloud-visitors-count">0</span>
 		</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/01/serialization-and-deserialization/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/01/var-val-and-const-in-kotlin/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="I-Serializable"><a href="#I-Serializable" class="headerlink" title="I, Serializable"></a>I, Serializable</h1><img src="/2020/07/01/serialization-and-deserialization/serialization-1.png" class="">
-
-<ul>
-<li><strong>Serialization</strong> là quá trình chuyển đổi 1 object thành các 1 luồng byte để lưu trữ vào trong bộ nhớ. </li>
-<li><strong>De-serialization</strong> là quá trình ngược của <strong>serialization</strong>, nó sử dụng các byte trong bộ nhớ để phục hồi lại object.</li>
-<li>Các byte được serialize không phụ thuộc vào nền tảng nào cả. Do đó, 1 object có thể serialize trên 1 nền tảng và de-serialize trên 1 nền tảng khác.</li>
-<li>Lợi ích của sử dụng quá trình <strong>serialization</strong>:<ul>
-<li>1, Lưu giữ state và data của object. Do đó, object có thể phục hồi sau này.</li>
-<li>2, Có thể truyền 1 object sử dụng quá trình <strong>serialization</strong> qua network.</li>
+        <h1 id="I-var-va-val"><a href="#I-var-va-val" class="headerlink" title="I, var và val"></a>I, var và val</h1><ul>
+<li>Để khai báo property trong Kotlin, chúng ta có thể sử dụng:<ul>
+<li><strong>var:</strong> mutable property là thuộc tính có thể thay đổi gía trị.</li>
+<li><strong>val</strong>: immutable property là thuộc tính không thể thay đổi giá trị.</li>
+</ul>
+</li>
+<li><strong>val</strong> có thể khai báo property ở cả <strong>compile time</strong> và <strong>runtime</strong>.</li>
+</ul>
+<h1 id="II-val-vs-const"><a href="#II-val-vs-const" class="headerlink" title="II, val vs const"></a>II, val vs const</h1><ul>
+<li><strong>const</strong> chỉ cho phép read-only property gán giá trị ở compile time. Do đó, các <strong>const property</strong> còn được biết đến như <strong>compile-time constant</strong>.</li>
+<li>Các <strong>const property</strong> phải tuân theo những quy định sau:<ul>
+<li>1, Là top-member hoặc là member variable của <strong>object class</strong> hoặc <strong>companion object class</strong>.</li>
+<li>2, Chỉ được sử dụng để khởi tạo <strong>String</strong> và primitive type.</li>
+<li>3, Không có custom getter. </li>
 </ul>
 </li>
 </ul>
-<img src="/2020/07/01/serialization-and-deserialization/serialization-2.jpg" class="">
-
-<ul>
-<li>Trong java, chúng ta có thể thực hiện quá trình serialization thông qua <strong>Serializable</strong> interface.</li>
-<li>Một số điểm lưu ý khi sử dụng <strong>Serializable</strong>:<ul>
-<li>1, Nếu parent class implement <strong>Serializable</strong> interface thì child class không cần phải implement nó.</li>
-<li>2, Chỉ có non-static và non-transient variable có thể thực hiện quá trình <strong>serialization</strong>.</li>
-<li>3, Do static variable và transient variable không thực hiện được quá trình <strong>serialization</strong> do đó nếu bạn không muốn lưu trữ dữ liệu của non-static variable thì đánh dấu nó là transient.</li>
-<li>4, Constructor của object không được gọi khi object được phục hồi bằng <strong>de-serialization</strong>.</li>
-<li>5, <strong>Serialization</strong> sử dụng quá trình reflection.</li>
-</ul>
-</li>
-</ul>
-<h1 id="II-Parcelable"><a href="#II-Parcelable" class="headerlink" title="II, Parcelable"></a>II, Parcelable</h1><ul>
-<li>Để tối ưu hoá, Android sử dụng <strong>Binder</strong> để tạo điều kiện giao tiếp giữa các component. <strong>Binder</strong> kết nối với <strong>Parcel</strong> là message container.</li>
-<li><strong>Parcelable</strong> là 1 interface dùng để truyền dữ liệu giữa các component trong Android. </li>
-<li>Khi thực hiện truyền dữ liệu, các state và data của object sẽ được lưu vào trong 1 <strong>Parcel</strong>.</li>
-<li><strong>Parcelable</strong> nhanh gấp nhiều lần so với <strong>Serializable</strong> nhưng việc triển khai trong Java khá dài dòng.<h2 id="1-Java"><a href="#1-Java" class="headerlink" title="1, Java"></a>1, Java</h2></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyParcelable</span> <span class="keyword">implements</span> <span class="title">Parcelable</span> </span>&#123;</span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mIndex;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">describeContents</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span><span class="params">(Parcel out, <span class="keyword">int</span> flags)</span> </span>&#123;</span><br><span class="line">         out.writeInt(mIndex);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Parcelable.Creator&lt;MyParcelable&gt; CREATOR</span><br><span class="line">             = <span class="keyword">new</span> Parcelable.Creator&lt;MyParcelable&gt;() &#123;</span><br><span class="line">         <span class="function"><span class="keyword">public</span> MyParcelable <span class="title">createFromParcel</span><span class="params">(Parcel in)</span> </span>&#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="keyword">new</span> MyParcelable(in);</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="keyword">public</span> MyParcelable[] newArray(<span class="keyword">int</span> size) &#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="keyword">new</span> MyParcelable[size];</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">private</span> <span class="title">MyParcelable</span><span class="params">(Parcel in)</span> </span>&#123;</span><br><span class="line">         mIndex = in.readInt();</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Bạn cần override và implement các method và class:<ul>
-<li><strong>writeToParcel():</strong> method ghi state và data của object vào trong 1 <strong>Parcel</strong>.</li>
-<li><strong>CREATOR</strong>: static variable dùng để phục hồi lại object từ <strong>Parcel</strong>.</li>
-</ul>
-</li>
-</ul>
-<h2 id="2-Kotlin"><a href="#2-Kotlin" class="headerlink" title="2, Kotlin"></a>2, Kotlin</h2><ul>
-<li>Kotlin giúp bạn override các method và class trên. Bạn chỉ cần làm như sau:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Add in build.gradle in the app level.</span></span><br><span class="line">androidExtensions &#123;</span><br><span class="line">    experimental = <span class="keyword">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Just add @Parcelize annotation and implement Parcelable interface.</span></span><br><span class="line"><span class="meta">@Parcelize</span></span><br><span class="line"><span class="function">data class <span class="title">MyParcelable</span><span class="params">(val index: Int)</span> : Parcelable</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="III-So-sanh-giua-Serializable-and-Parcelable"><a href="#III-So-sanh-giua-Serializable-and-Parcelable" class="headerlink" title="III, So sánh giữa Serializable and Parcelable"></a>III, So sánh giữa Serializable and Parcelable</h1><table>
-<thead>
-<tr>
-<th>Serializable</th>
-<th>Parcelable</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Dễ triển khai</td>
-<td>Trong java, tốn nhiều mã nguồn để triển khai.</td>
-</tr>
-<tr>
-<td>Có thể sử dụng ở nhiều nền tảng</td>
-<td>Chỉ dành riêng cho Android</td>
-</tr>
-<tr>
-<td>Chậm và sinh ra nhiều rác</td>
-<td>Nhanh hơn</td>
-</tr>
-<tr>
-<td>Có thể truyền qua network</td>
-<td>Không thể truyền qua network.</td>
-</tr>
-</tbody></table>
 
       
     </div>
@@ -459,7 +401,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://fs-sournary.github.io/2020/07/01/serialization-and-deserialization/" title="Tìm hiểu về Serializable và Parcelable" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/01/serialization-and-deserialization/</a>
+      <a href="https://fs-sournary.github.io/2020/07/01/var-val-and-const-in-kotlin/" title="Tìm hiểu về var, val và const keyword trong Kotlin" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/01/var-val-and-const-in-kotlin/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -499,13 +441,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2020/07/01/transient-keyword/" title="Tìm hiểu về transient"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2020/06/30/exception/" title="Tìm hiểu về Exception"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/07/01/string-stringbuilder-and-stringbuffer/" title="Tìm hiểu về String, StringBuilder và StringBuffer"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
