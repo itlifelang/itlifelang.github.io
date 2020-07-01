@@ -17,22 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Tìm hiểu về nested class | IT and life</title>
-  <meta name="description" content="I, Nested class Java&#x2F;Kotlin cho phép bạn định nghĩa 1 class nằm trong 1 class khác. Những class như thế gọi là nested class. Nested class chia làm 2 loại: static nested class và non-static nested clas">
+  <title>Tìm hiểu về null safety trong kotlin | IT and life</title>
+  <meta name="description" content="I, Nullable type Một trong những vấn đề hay gặp phải nhất với các programming language (bao gồm cả java) là sử dụng 1 null variable (reference) sẽ gây ra null reference exception. Trong java, bạn sẽ g">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tìm hiểu về nested class">
-<meta property="og:url" content="https://fs-sournary.github.io/2020/07/01/nested-class/index.html">
+<meta property="og:title" content="Tìm hiểu về null safety trong kotlin">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/01/null-safety-in-kotlin/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, Nested class Java&#x2F;Kotlin cho phép bạn định nghĩa 1 class nằm trong 1 class khác. Những class như thế gọi là nested class. Nested class chia làm 2 loại: static nested class và non-static nested clas">
+<meta property="og:description" content="I, Nullable type Một trong những vấn đề hay gặp phải nhất với các programming language (bao gồm cả java) là sử dụng 1 null variable (reference) sẽ gây ra null reference exception. Trong java, bạn sẽ g">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-01T11:07:06.000Z">
-<meta property="article:modified_time" content="2020-07-01T11:29:00.647Z">
+<meta property="article:published_time" content="2020-07-01T14:21:52.000Z">
+<meta property="article:modified_time" content="2020-07-01T23:24:05.069Z">
 <meta property="article:author" content="Sang">
-<meta property="article:tag" content="Java">
 <meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/01/nested-class/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/01/null-safety-in-kotlin/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -324,14 +323,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-nested-class" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-null-safety-in-kotlin" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Tìm hiểu về nested class
+      Tìm hiểu về null safety trong kotlin
     </h1>
   
 
@@ -339,15 +338,15 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/07/01/nested-class/" class="article-date">
-	  <time datetime="2020-07-01T11:07:06.000Z" itemprop="datePublished">2020-07-01</time>
+	<a href="/2020/07/01/null-safety-in-kotlin/" class="article-date">
+	  <time datetime="2020-07-01T14:21:52.000Z" itemprop="datePublished">2020-07-01</time>
 	</a>
 </span>
         
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
+	<a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
   </span>
 
 
@@ -355,41 +354,95 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2020/07/01/nested-class/" class="leancloud_visitors"  data-flag-title="Tìm hiểu về nested class">
+    	<span id="/2020/07/01/null-safety-in-kotlin/" class="leancloud_visitors"  data-flag-title="Tìm hiểu về null safety trong kotlin">
 			<span class="leancloud-visitors-count">0</span>
 		</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/01/nested-class/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/01/null-safety-in-kotlin/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="I-Nested-class"><a href="#I-Nested-class" class="headerlink" title="I, Nested class"></a>I, Nested class</h1><ul>
-<li>Java/Kotlin cho phép bạn định nghĩa 1 class nằm trong 1 class khác. Những class như thế gọi là <strong>nested class</strong>.</li>
-<li><strong>Nested class</strong> chia làm 2 loại: <strong>static nested class</strong> và <strong>non-static nested class/ inner class</strong>.</li>
+        <h1 id="I-Nullable-type"><a href="#I-Nullable-type" class="headerlink" title="I, Nullable type"></a>I, Nullable type</h1><ul>
+<li>Một trong những vấn đề hay gặp phải nhất với các programming language (bao gồm cả java) là sử dụng 1 null variable (reference) sẽ gây ra null reference exception.</li>
+<li>Trong java, bạn sẽ gặp phải <strong>NullPointerException (NPE)</strong>.</li>
+<li>Kotlin giúp bạn loại bỏ vấn đề trên trong code.</li>
+<li>Do đó kotlin sẽ gặp phải <strong>NPE</strong> ở 1 trong các trường hợp sau:<ul>
+<li>1, Bạn trực tiếp gọi <strong>throw NullPointerException()</strong>.</li>
+<li>2, Sử dụng toán tử <strong>!!</strong> trên 1 null reference (mình sẽ nói sau).</li>
+<li>3, Có thể do sử dụng code của Java. Ví dụ: 1 đoạn code java có thể add <strong>null</strong> vào trong Kotlin <strong>MutableList<String></strong>.</li>
+<li>4, Liên quan tới việc khởi tạo của 1 object.</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OuterClass</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticNestedClass</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="II-Inner-class"><a href="#II-Inner-class" class="headerlink" title="II, Inner class"></a>II, Inner class</h1><ul>
-<li>Bởi vì <strong>Inner class</strong> liên kết với 1 instance của <strong>outer class</strong> nên nó có thể truy cập các member (variable và method) khác của <strong>outer class</strong> ngay cả khi chúng khai báo với <strong>private</strong>. </li>
-<li>Vì nó liên kết với 1 instance của <strong>outer class</strong> nên nó không thể chứa bất kì static member nào.</li>
+</li>
+<li>Kotlin giúp chúng ta phân biệt <strong>nullable reference</strong> và <strong>non-nullable reference</strong>.</li>
+<li><strong>Ví dụ 1:</strong> reference có kiểu <strong>String</strong> không thể bị null.</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OuterClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Compiler error do inner class không được chứa bất cứ static member nào</span></span><br><span class="line">        <span class="comment">// static int i = 1; </span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">" "</span> + index);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a: String = <span class="string">"abc"</span> <span class="comment">// Regular initialization means non-null by default</span></span><br><span class="line">a = <span class="keyword">null</span> <span class="comment">// compilation error</span></span><br><span class="line">val l = a.length <span class="comment">// ok because it is safe because a isn't nullable</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>Một instance của <strong>inner class</strong> chỉ có thể tồn tại khi có 1 <strong>outer class</strong>.</li>
+<li><strong>Ví dụ 2:</strong>: refernce có kiểu <strong>String?</strong> thì có thể null</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OuterClass outerClass = <span class="keyword">new</span> OuterClass();</span><br><span class="line">OuterClass.InnerClass innerClass = outerClass.<span class="keyword">new</span> InnerClass();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b: String? = <span class="string">"abc"</span> <span class="comment">// can be set null</span></span><br><span class="line">b = <span class="keyword">null</span> <span class="comment">// ok</span></span><br><span class="line">val l = b.length <span class="comment">// compilation error because b is nullable</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="III-static-nested-class"><a href="#III-static-nested-class" class="headerlink" title="III, static nested class"></a>III, static nested class</h1><ul>
-<li>Giống như static member khác, <strong>static nested class</strong> liên kết với class chứa nó (không phải liên kết với instance).</li>
-<li>Do đó, nó không thể sử dụng các member của class chứa nó.</li>
-<li><strong>static nested class</strong> có behavior giống như <strong>top-level class</strong>.</li>
-<li>Bạn có thể khởi tạo nó mà không cần đến instance của class chứa nó:</li>
+<h1 id="II-Check-dieu-kien-null"><a href="#II-Check-dieu-kien-null" class="headerlink" title="II, Check điều kiện null"></a>II, Check điều kiện null</h1><ul>
+<li>Cách xử lý thông thường giống với java là chúng ta sẽ check xem b có null hay không.</li>
+<li><strong>Ví dụ 3:</strong> nếu <strong>b</strong> khác null thì gán <strong>l = b.length</strong> không thì <strong>l = -1</strong> </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OuterClass.StaticNestedClass nestedObject = <span class="keyword">new</span> OuterClass.StaticNestedClass();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val l: Int = <span class="keyword">if</span> (b != <span class="keyword">null</span>) b.length <span class="keyword">else</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="III-Safe-call"><a href="#III-Safe-call" class="headerlink" title="III, Safe call"></a>III, Safe call</h1><ul>
+<li><p>Kotlin cung cấp 1 công cụ khác <strong>safe call</strong>, nó thêm <strong>?.</strong> vào sau variable.</p>
+</li>
+<li><p><strong>Ví dụ 4:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val a = <span class="string">"Kotlin"</span></span><br><span class="line">val b: String? = <span class="keyword">null</span></span><br><span class="line">val l: Int? = b.length <span class="comment">// b is nullable so l is also nullable.</span></span><br><span class="line">println(b?.length) <span class="comment">// need safe call because b is nullable</span></span><br><span class="line">println(a?.length) <span class="comment">// Unnecessary safe call because a isn't nullable</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Safe call chain</strong> có dạng là <strong>v1?.v2?.v3[?.v4[?..]]</strong> rất hữu ích, nó sẽ return <strong>null</strong> nếu bất cứ variable nào bị <strong>null</strong>.</p>
+</li>
+<li><p><strong>Ví du 5:</strong> Nếu <strong>parent</strong>, <strong>parent.child1</strong> hay <strong>parent.child1.child2</strong> return <strong>null</strong>, <strong>safe call chain</strong> cũng sẽ return <strong>null</strong>.</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent?.child1?.child2?.child3</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Trong phép gán <strong>=</strong>, <strong>safe call</strong> có thể được đặt bên trái của <strong>=</strong>. Nếu 1 variable trong <strong>safe call chain</strong> return null, việc gán sẽ bị bỏ qua và biểu thức bên phải <strong>=</strong> sẽ không được gọi.</li>
+<li><strong>Ví dụ 6:</strong> Nếu <strong>person</strong> hay <strong>person.department</strong> trả về null, <strong>managersPool.getManager()</strong> sẽ không được gọi, do đó việc gán bị bỏ qua.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">person?.department?.head = managersPool.getManager()</span><br></pre></td></tr></table></figure>
+
+<h1 id="IV-Toan-tu-Elvis"><a href="#IV-Toan-tu-Elvis" class="headerlink" title="IV, Toán tử Elvis"></a>IV, Toán tử Elvis</h1><ul>
+<li>Kotlin cũng cung cấp 1 toán tử khác đó là <strong>evils</strong>, nó được viết là <strong>?:</strong>. </li>
+<li>Nếu expression bên trái của <strong>evils</strong> khác return, kết quả của <strong>evils</strong> là expression bên trái đó. Nếu không, kết quả của <strong>evils</strong> là expression bên phải.</li>
+<li><strong>Ví dụ 7:</strong> Viết lại ví dụ 3 bằng toán tử <strong>evils</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val l = b?.length ?: -<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Trong kotlin, <strong>return</strong> và <strong>thrown</strong> cũng là các expression, do đó chúng có thể được dùng trong expression bên phải của <strong>evils</strong>.</li>
+<li><strong>Ví dụ 8:</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val parent = node.getParent() ?: <span class="keyword">return</span> <span class="keyword">null</span></span><br><span class="line">val name = node.getName() ?: <span class="keyword">throw</span> IllegalArgumentException(<span class="string">"name expected"</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="V-Toan-tu"><a href="#V-Toan-tu" class="headerlink" title="V, Toán tử !!"></a>V, Toán tử !!</h1><ul>
+<li>Toán tử <strong>!!</strong> không được khuyến khích vì nó xác nhận rằng variable không thể null và sẽ throw <strong>NPE</strong> khi variable bị null.</li>
+<li><strong>Ví dụ 9:</strong> nếu <strong>b</strong> có giá trị null thì code sẽ throw <strong>NPE</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val l = b!!.length</span><br></pre></td></tr></table></figure>
+
+<h1 id="VI-Safe-cast"><a href="#VI-Safe-cast" class="headerlink" title="VI, Safe cast"></a>VI, Safe cast</h1><ul>
+<li>Toán tử cast có thể gây ra <strong>ClassCastException</strong> nếu kiểu dữ liệu của variable không thuộc kiểu của class được cast.</li>
+<li>Kotlin cung cấp <strong>safe cast</strong>, nó được viết là <strong>as?</strong>. <strong>Safe cast</strong> sẽ trả về null nếu việc cast không thành công.</li>
+<li><strong>Ví dụ 10:</strong> nêu cast không thành công thì <strong>i</strong> sẽ có giá trị null</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val i: Int? = a as? Int</span><br></pre></td></tr></table></figure>
+
+<h1 id="V-Null-type-trong-cac-collection"><a href="#V-Null-type-trong-cac-collection" class="headerlink" title="V, Null type trong các collection"></a>V, Null type trong các collection</h1><ul>
+<li>Nếu bạn sử dụng collection cho phép các nullable element, bạn có thể lọc để chọn ra những toán tử khác null bằng <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter-not-null.html" target="_blank" rel="noopener">filterNotNull()</a>.</li>
+<li><strong>Ví dụ 11:</strong> kết quả của <strong>nonNullNumbers</strong> là  <strong>[1, 2, 4]</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val numbers: List&lt;Int?&gt; = listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="keyword">null</span>, <span class="number">4</span>)</span><br><span class="line">val nonNullNumbers = numbers.filterNotNull()</span><br><span class="line">println(nonNullNumbers)</span><br></pre></td></tr></table></figure>
+
       
     </div>
     <div class="article-footer">
@@ -398,7 +451,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://fs-sournary.github.io/2020/07/01/nested-class/" title="Tìm hiểu về nested class" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/01/nested-class/</a>
+      <a href="https://fs-sournary.github.io/2020/07/01/null-safety-in-kotlin/" title="Tìm hiểu về null safety trong kotlin" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/01/null-safety-in-kotlin/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -438,13 +491,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2020/07/01/string-stringbuilder-and-stringbuffer/" title="Tìm hiểu về String, StringBuilder và StringBuffer"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2020/07/01/static-keyword/" title="Tìm hiểu về static trong Java"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/07/01/var-val-and-const-in-kotlin/" title="Tìm hiểu về var, val và const keyword trong Kotlin"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
