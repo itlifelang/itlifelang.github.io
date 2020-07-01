@@ -17,22 +17,22 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Tìm hiểu về transient | IT and life</title>
-  <meta name="description" content="I, Transient keyword Transient key trong Java hay @Transient trong kotlin dùng cho các member variable, chúng sẽ không được áp dụng quá trình serialization.  II, Ví dụ Ví dụ: Bạn có 1 class Student có">
+  <title>Tìm hiểu về String, StringBuilder và StringBuffer | IT and life</title>
+  <meta name="description" content="I, String String là 1 final class đại diện cho 1 array các character.  Điều này có nghĩa khi 1 String được khởi tạo, nó không thể thay đổi được nữa. Do đó String là immutable object. Chúng ta có thể k">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tìm hiểu về transient">
-<meta property="og:url" content="https://fs-sournary.github.io/2020/07/01/transient-keyword/index.html">
+<meta property="og:title" content="Tìm hiểu về String, StringBuilder và StringBuffer">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/01/string-stringbuilder-and-stringbuffer/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, Transient keyword Transient key trong Java hay @Transient trong kotlin dùng cho các member variable, chúng sẽ không được áp dụng quá trình serialization.  II, Ví dụ Ví dụ: Bạn có 1 class Student có">
+<meta property="og:description" content="I, String String là 1 final class đại diện cho 1 array các character.  Điều này có nghĩa khi 1 String được khởi tạo, nó không thể thay đổi được nữa. Do đó String là immutable object. Chúng ta có thể k">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-01T03:21:57.000Z">
-<meta property="article:modified_time" content="2020-07-01T03:41:49.840Z">
+<meta property="article:published_time" content="2020-07-01T12:06:58.000Z">
+<meta property="article:modified_time" content="2020-07-01T12:50:11.461Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/01/transient-keyword/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/01/string-stringbuilder-and-stringbuffer/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -334,14 +334,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-transient-keyword" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-string-stringbuilder-and-stringbuffer" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Tìm hiểu về transient
+      Tìm hiểu về String, StringBuilder và StringBuffer
     </h1>
   
 
@@ -349,8 +349,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/07/01/transient-keyword/" class="article-date">
-	  <time datetime="2020-07-01T03:21:57.000Z" itemprop="datePublished">2020-07-01</time>
+	<a href="/2020/07/01/string-stringbuilder-and-stringbuffer/" class="article-date">
+	  <time datetime="2020-07-01T12:06:58.000Z" itemprop="datePublished">2020-07-01</time>
 	</a>
 </span>
         
@@ -365,39 +365,65 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2020/07/01/transient-keyword/" class="leancloud_visitors"  data-flag-title="Tìm hiểu về transient">
+    	<span id="/2020/07/01/string-stringbuilder-and-stringbuffer/" class="leancloud_visitors"  data-flag-title="Tìm hiểu về String, StringBuilder và StringBuffer">
 			<span class="leancloud-visitors-count">0</span>
 		</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/01/transient-keyword/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/01/string-stringbuilder-and-stringbuffer/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="I-Transient-keyword"><a href="#I-Transient-keyword" class="headerlink" title="I, Transient keyword"></a>I, Transient keyword</h1><ul>
-<li><strong>Transient</strong> key trong Java hay <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-transient/" target="_blank" rel="noopener">@Transient</a> trong kotlin dùng cho các <strong>member variable</strong>, chúng sẽ không được áp dụng quá trình serialization.</li>
+        <h1 id="I-String"><a href="#I-String" class="headerlink" title="I, String"></a>I, String</h1><ul>
+<li><strong>String</strong> là 1 <strong>final</strong> class đại diện cho 1 array các character. </li>
+<li>Điều này có nghĩa khi 1 String được khởi tạo, nó không thể thay đổi được nữa. Do đó <strong>String</strong> là <strong>immutable object</strong>.</li>
+<li>Chúng ta có thể khởi tạo 1 String theo 2 cách:</li>
 </ul>
-<h1 id="II-Vi-du"><a href="#II-Vi-du" class="headerlink" title="II, Ví dụ"></a>II, Ví dụ</h1><ul>
-<li><strong>Ví dụ:</strong> Bạn có 1 class Student có 3 member variable: id, name và age. Khi Student tiến hành quá trình serialization, bạn muốn age bị bỏ qua trong quá trình đó.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;  </span><br><span class="line">    <span class="keyword">private</span> String name;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">int</span> age;<span class="comment">//Now it will not be serialized  </span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(<span class="keyword">int</span> id, String name,<span class="keyword">int</span> age)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.id = id;  </span><br><span class="line">        <span class="keyword">this</span>.name = name;  </span><br><span class="line">        <span class="keyword">this</span>.age=age;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">"ABC"</span>;</span><br><span class="line"><span class="comment">// or </span></span><br><span class="line">String str = <span class="keyword">new</span> String(<span class="string">"ABC"</span>);</span><br></pre></td></tr></table></figure>
 <ul>
-<li>Tiếp theo, chúng ta viết code thực hiện quá trình serialization để convert object thành 1 dòng byte và lưu vào file:</li>
+<li>Ở cách đầu tiên, JVM sẽ tìm hiếm 1 String trong <strong>String pool</strong>. Nếu tìm thấy, JVM sẽ sử dụng String trong String pool. Nếu không tìm thấy, JVM sẽ tạo ra String object trong String pool.</li>
+<li>Ở cách thứ hai, JVM tạo ra String object ở trong heap memory.</li>
+<li><strong>String</strong> class override 2 method <strong>equals()</strong> và <strong>hashCode()</strong>. Phương thức <strong>equals()</strong> return true nếu chúng có cùng mảng character.</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersistExample</span></span>&#123;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;  </span><br><span class="line">        Student s1 = <span class="keyword">new</span> Student(<span class="number">211</span>, <span class="string">"ravi"</span>, <span class="number">22</span>);</span><br><span class="line">        <span class="comment">//writing object into file  </span></span><br><span class="line">        FileOutputStream f = <span class="keyword">new</span> FileOutputStream(<span class="string">"f.txt"</span>);  </span><br><span class="line">        ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(f);  </span><br><span class="line">        out.writeObject(s1);  </span><br><span class="line">        out.flush();  </span><br><span class="line">        out.close();  </span><br><span class="line">        f.close();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h1 id="II-StringBuilder-va-StringBuffer"><a href="#II-StringBuilder-va-StringBuffer" class="headerlink" title="II, StringBuilder và StringBuffer"></a>II, StringBuilder và StringBuffer</h1><ul>
+<li>Vì <strong>String</strong> là <strong>immutable object</strong> do đó các method của String chỉ tạo và trả về 1 String mới.</li>
+<li>Các method này sinh ra nhiều rác trong heap memory. Do đó chúng ta nên sử dụng <strong>StringBuilder</strong> và <strong>StringBuffer</strong> để làm viẹc với String.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>StringBuffer</th>
+<th>StringBuilder</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Thread-safe</td>
+<td>Not thread-safe</td>
+</tr>
+<tr>
+<td>Synchronized</td>
+<td>Not synchronized</td>
+</tr>
+<tr>
+<td>Được thêm từ Java 1.0</td>
+<td>Được thêm từ Java 1.5</td>
+</tr>
+<tr>
+<td>Slower</td>
+<td>Faster</td>
+</tr>
+</tbody></table>
 <ul>
-<li>Cuối cùng, chúng ta thực hiện quá trình de-serialization để phục hồi object từ file và in ra dữ liệu của object đó:</li>
+<li><strong>Chú ý:</strong> <ul>
+<li>Toán tử <strong>+</strong> nội tại sử dụng <strong>StringBuilder</strong> và <strong>StringBuffer</strong>.</li>
+<li>Do <strong>StringBuffer</strong> thực hiện synchronized do đó nó chậm hơn <strong>StringBuilder</strong>.</li>
+<li><strong>StringBuilder</strong> và <strong>StringBuffer</strong> chỉ tạo ra 1 String khi bạn gọi <strong>toString()</strong>.</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DePersist</span></span>&#123;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;  </span><br><span class="line">        ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"f.txt"</span>));  </span><br><span class="line">        Student s = (Student)in.readObject();  </span><br><span class="line">        System.out.println(s.id + <span class="string">" "</span> + s.name + <span class="string">" "</span> + s.age);  </span><br><span class="line">        in.close();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
-<ul>
-<li>Chúng ta đánh dấu <strong>age</strong> là 1 <strong>transient</strong> variable nên nó sẽ không được serialize vào file. Do đó chúng ta có kết quả:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">211</span> ravi <span class="number">0</span></span><br></pre></td></tr></table></figure>
       
     </div>
     <div class="article-footer">
@@ -406,7 +432,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://fs-sournary.github.io/2020/07/01/transient-keyword/" title="Tìm hiểu về transient" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/01/transient-keyword/</a>
+      <a href="https://fs-sournary.github.io/2020/07/01/string-stringbuilder-and-stringbuffer/" title="Tìm hiểu về String, StringBuilder và StringBuffer" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/01/string-stringbuilder-and-stringbuffer/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -446,13 +472,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2020/07/01/equal-operator-and-equals-method/" title="Tìm hiểu về == và equals()"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2020/07/01/serialization-and-deserialization/" title="Tìm hiểu về Serializable và Parcelable"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/07/01/nested-class/" title="Tìm hiểu về nested class"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     

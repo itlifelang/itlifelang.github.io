@@ -17,22 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Tìm hiểu về transient | IT and life</title>
-  <meta name="description" content="I, Transient keyword Transient key trong Java hay @Transient trong kotlin dùng cho các member variable, chúng sẽ không được áp dụng quá trình serialization.  II, Ví dụ Ví dụ: Bạn có 1 class Student có">
+  <title>Tìm hiểu về static trong Java | IT and life</title>
+  <meta name="description" content="I, static keyword static keyword có thể được dùng với: block: static block. variable: static variable. method: static method. nested class: static nested class.   static member sẽ gắn với class của nó">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tìm hiểu về transient">
-<meta property="og:url" content="https://fs-sournary.github.io/2020/07/01/transient-keyword/index.html">
+<meta property="og:title" content="Tìm hiểu về static trong Java">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/01/static-keyword/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, Transient keyword Transient key trong Java hay @Transient trong kotlin dùng cho các member variable, chúng sẽ không được áp dụng quá trình serialization.  II, Ví dụ Ví dụ: Bạn có 1 class Student có">
+<meta property="og:description" content="I, static keyword static keyword có thể được dùng với: block: static block. variable: static variable. method: static method. nested class: static nested class.   static member sẽ gắn với class của nó">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-01T03:21:57.000Z">
-<meta property="article:modified_time" content="2020-07-01T03:41:49.840Z">
+<meta property="article:published_time" content="2020-07-01T10:33:13.000Z">
+<meta property="article:modified_time" content="2020-07-01T11:06:10.730Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/01/transient-keyword/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/01/static-keyword/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -334,14 +333,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-transient-keyword" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-static-keyword" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Tìm hiểu về transient
+      Tìm hiểu về static trong Java
     </h1>
   
 
@@ -349,15 +348,15 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/07/01/transient-keyword/" class="article-date">
-	  <time datetime="2020-07-01T03:21:57.000Z" itemprop="datePublished">2020-07-01</time>
+	<a href="/2020/07/01/static-keyword/" class="article-date">
+	  <time datetime="2020-07-01T10:33:13.000Z" itemprop="datePublished">2020-07-01</time>
 	</a>
 </span>
         
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
+	<a class="article-tag-link" href="/tags/Java/" rel="tag">Java</a>
   </span>
 
 
@@ -365,39 +364,59 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2020/07/01/transient-keyword/" class="leancloud_visitors"  data-flag-title="Tìm hiểu về transient">
+    	<span id="/2020/07/01/static-keyword/" class="leancloud_visitors"  data-flag-title="Tìm hiểu về static trong Java">
 			<span class="leancloud-visitors-count">0</span>
 		</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/01/transient-keyword/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/01/static-keyword/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="I-Transient-keyword"><a href="#I-Transient-keyword" class="headerlink" title="I, Transient keyword"></a>I, Transient keyword</h1><ul>
-<li><strong>Transient</strong> key trong Java hay <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-transient/" target="_blank" rel="noopener">@Transient</a> trong kotlin dùng cho các <strong>member variable</strong>, chúng sẽ không được áp dụng quá trình serialization.</li>
+        <h1 id="I-static-keyword"><a href="#I-static-keyword" class="headerlink" title="I, static keyword"></a>I, static keyword</h1><ul>
+<li><strong>static</strong> keyword có thể được dùng với:<ul>
+<li><strong>block:</strong> static block.</li>
+<li><strong>variable:</strong> static variable.</li>
+<li><strong>method:</strong> static method.</li>
+<li><strong>nested class:</strong> static nested class.</li>
 </ul>
-<h1 id="II-Vi-du"><a href="#II-Vi-du" class="headerlink" title="II, Ví dụ"></a>II, Ví dụ</h1><ul>
-<li><strong>Ví dụ:</strong> Bạn có 1 class Student có 3 member variable: id, name và age. Khi Student tiến hành quá trình serialization, bạn muốn age bị bỏ qua trong quá trình đó.</li>
+</li>
+<li>static member sẽ gắn với class của nó (không phải gắn với instance). Do đó, bạn có thể truy cập chúng mà không cần instance.</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;  </span><br><span class="line">    <span class="keyword">private</span> String name;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">int</span> age;<span class="comment">//Now it will not be serialized  </span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(<span class="keyword">int</span> id, String name,<span class="keyword">int</span> age)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.id = id;  </span><br><span class="line">        <span class="keyword">this</span>.name = name;  </span><br><span class="line">        <span class="keyword">this</span>.age=age;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="II-static-block"><a href="#II-static-block" class="headerlink" title="II, static block"></a>II, static block</h1><ul>
+<li>Khi <strong>static variable</strong> chưa được gán giá trị, bạn có thể gán giá trị của nó ở trong static block.</li>
+<li><strong>static block</strong> chỉ xử lý 1 lần khi class load lần đầu.</li>
+<li><strong>Ví dụ 1</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestBlock</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> a = <span class="number">10</span>; </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> b; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"Static block initialized."</span>); </span><br><span class="line">        b = a * <span class="number">4</span>; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </span><br><span class="line">       System.out.println(<span class="string">"from main"</span>); </span><br><span class="line">       System.out.println(<span class="string">"Value of a : "</span>+ a); </span><br><span class="line">       System.out.println(<span class="string">"Value of b : "</span>+ b); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>Tiếp theo, chúng ta viết code thực hiện quá trình serialization để convert object thành 1 dòng byte và lưu vào file:</li>
+<li>kết quả là:</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersistExample</span></span>&#123;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;  </span><br><span class="line">        Student s1 = <span class="keyword">new</span> Student(<span class="number">211</span>, <span class="string">"ravi"</span>, <span class="number">22</span>);</span><br><span class="line">        <span class="comment">//writing object into file  </span></span><br><span class="line">        FileOutputStream f = <span class="keyword">new</span> FileOutputStream(<span class="string">"f.txt"</span>);  </span><br><span class="line">        ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(f);  </span><br><span class="line">        out.writeObject(s1);  </span><br><span class="line">        out.flush();  </span><br><span class="line">        out.close();  </span><br><span class="line">        f.close();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Static block initialized.</span><br><span class="line">from main</span><br><span class="line">Value of a : <span class="number">10</span></span><br><span class="line">Value of b : <span class="number">40</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>Cuối cùng, chúng ta thực hiện quá trình de-serialization để phục hồi object từ file và in ra dữ liệu của object đó:</li>
+<h1 id="III-static-variable"><a href="#III-static-variable" class="headerlink" title="III, static variable"></a>III, static variable</h1><ul>
+<li><strong>static variable</strong> gắn với class của nó (không phải là instance).</li>
+<li>Điều này có nghĩa nếu bạn định nghĩa 1 static variable, tất cả các object dùng chung 1 static member (thay vì mỗi object có 1 static member).</li>
+<li>Khi bạn thay đổi giá trị của static variable thì những lời gọi sau này tới static member đó cũng sẽ nhận được gía trị mới nhất đó.</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DePersist</span></span>&#123;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;  </span><br><span class="line">        ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"f.txt"</span>));  </span><br><span class="line">        Student s = (Student)in.readObject();  </span><br><span class="line">        System.out.println(s.id + <span class="string">" "</span> + s.name + <span class="string">" "</span> + s.age);  </span><br><span class="line">        in.close();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="IV-static-method"><a href="#IV-static-method" class="headerlink" title="IV, static method"></a>IV, static method</h1><ul>
+<li><strong>static method</strong> được gọi mà không cần phải khỏi tạo object. </li>
+<li>Nó giúp tối ưu hoá performance thường được sử dụng cho các util method.</li>
+<li>Nếu method của bạn không liên quan tới member variable của class thì nên sử dụng <strong>static method</strong>.</li>
+<li>Tuy nhiên, <strong>static method</strong> cũng có một số nhược điểm sau:<ul>
+<li>1, Chỉ có thể gọi static method khác.</li>
+<li>2, Chỉ có gọi những static variable (class variable).</li>
+<li>3, Không cho phép <strong>this()</strong> hay <strong>super()</strong>. Đây cũng là lý do class con không thực sự override static method của class cha.</li>
+</ul>
+</li>
+<li><strong>Ví dụ 2:</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestMethod</span> </span>&#123; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">20</span>; <span class="comment">// instance variable </span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> a = <span class="number">10</span>; <span class="comment">// static variable </span></span><br><span class="line">      </span><br><span class="line">    <span class="comment">// static method </span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        a = <span class="number">20</span>; </span><br><span class="line">          </span><br><span class="line">         <span class="comment">// Cannot make a static reference to the non-static field b </span></span><br><span class="line">         b = <span class="number">10</span>; <span class="comment">// compilation error </span></span><br><span class="line">                  </span><br><span class="line">         <span class="comment">// Cannot make a static reference to the  </span></span><br><span class="line">                 <span class="comment">// non-static method m2() from the type Test </span></span><br><span class="line">         m2();  <span class="comment">// compilation error </span></span><br><span class="line">           </span><br><span class="line">         <span class="comment">//  Cannot use super in a static context </span></span><br><span class="line">         System.out.println(<span class="keyword">super</span>.a); <span class="comment">// compiler error  </span></span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>Chúng ta đánh dấu <strong>age</strong> là 1 <strong>transient</strong> variable nên nó sẽ không được serialize vào file. Do đó chúng ta có kết quả:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">211</span> ravi <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h1 id="V-static-nested-class"><a href="#V-static-nested-class" class="headerlink" title="V, static nested class"></a>V, static nested class</h1>
       
     </div>
     <div class="article-footer">
@@ -406,7 +425,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://fs-sournary.github.io/2020/07/01/transient-keyword/" title="Tìm hiểu về transient" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/01/transient-keyword/</a>
+      <a href="https://fs-sournary.github.io/2020/07/01/static-keyword/" title="Tìm hiểu về static trong Java" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/01/static-keyword/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -447,12 +466,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2020/07/01/equal-operator-and-equals-method/" title="Tìm hiểu về == và equals()"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+      <a href="/2020/07/01/nested-class/" title="Tìm hiểu về nested class"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/2020/07/01/serialization-and-deserialization/" title="Tìm hiểu về Serializable và Parcelable"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/07/01/equals-and-hashcode/" title="Tìm hiểu về equals() và hashCode()"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
