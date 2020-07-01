@@ -17,22 +17,22 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Tìm hiểu về synchronized | IT and life</title>
-  <meta name="description" content="I, Lời mở đầu Nếu bạn chưa đọc về volatile, mình khuyên bạn nên tìm hiểu trước về keyword này trước. Trong Java&#x2F;kotlin, chúng ta có thể đã sử dụng qua synchronized keyword.  Vâỵ thực sự nó có ý nghĩa">
+  <title>Tìm hiểu về transient | IT and life</title>
+  <meta name="description" content="I, Transient keyword Transient key trong Java hay @Transient trong kotlin dùng cho các member variable, chúng sẽ không được áp dụng quá trình serialization.  II, Ví dụ Ví dụ: Bạn có 1 class Student có">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tìm hiểu về synchronized">
-<meta property="og:url" content="https://fs-sournary.github.io/2020/06/30/synchronized-keyword/index.html">
+<meta property="og:title" content="Tìm hiểu về transient">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/01/transient-keyword/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, Lời mở đầu Nếu bạn chưa đọc về volatile, mình khuyên bạn nên tìm hiểu trước về keyword này trước. Trong Java&#x2F;kotlin, chúng ta có thể đã sử dụng qua synchronized keyword.  Vâỵ thực sự nó có ý nghĩa">
+<meta property="og:description" content="I, Transient keyword Transient key trong Java hay @Transient trong kotlin dùng cho các member variable, chúng sẽ không được áp dụng quá trình serialization.  II, Ví dụ Ví dụ: Bạn có 1 class Student có">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-06-30T08:43:23.000Z">
-<meta property="article:modified_time" content="2020-07-01T03:42:05.516Z">
+<meta property="article:published_time" content="2020-07-01T03:21:57.000Z">
+<meta property="article:modified_time" content="2020-07-01T03:41:49.840Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/2020/06/30/synchronized-keyword/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/01/transient-keyword/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -334,14 +334,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-synchronized-keyword" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-transient-keyword" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Tìm hiểu về synchronized
+      Tìm hiểu về transient
     </h1>
   
 
@@ -349,8 +349,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/06/30/synchronized-keyword/" class="article-date">
-	  <time datetime="2020-06-30T08:43:23.000Z" itemprop="datePublished">2020-06-30</time>
+	<a href="/2020/07/01/transient-keyword/" class="article-date">
+	  <time datetime="2020-07-01T03:21:57.000Z" itemprop="datePublished">2020-07-01</time>
 	</a>
 </span>
         
@@ -365,45 +365,39 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2020/06/30/synchronized-keyword/" class="leancloud_visitors"  data-flag-title="Tìm hiểu về synchronized">
+    	<span id="/2020/07/01/transient-keyword/" class="leancloud_visitors"  data-flag-title="Tìm hiểu về transient">
 			<span class="leancloud-visitors-count">0</span>
 		</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/30/synchronized-keyword/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/01/transient-keyword/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="I-Loi-mo-dau"><a href="#I-Loi-mo-dau" class="headerlink" title="I, Lời mở đầu"></a>I, Lời mở đầu</h1><ul>
-<li>Nếu bạn chưa đọc về <a href="https://fs-sournary.github.io/2020/06/30/volatile-keyword/">volatile</a>, mình khuyên bạn nên tìm hiểu trước về keyword này trước.</li>
-<li>Trong Java/kotlin, chúng ta có thể đã sử dụng qua <strong>synchronized</strong> keyword. </li>
-<li>Vâỵ thực sự nó có ý nghĩa gì và thường áp dụng vào trong trường hợp nào ? Hôm nay mình sẽ nói cụ thể hơn về keyword này.</li>
+        <h1 id="I-Transient-keyword"><a href="#I-Transient-keyword" class="headerlink" title="I, Transient keyword"></a>I, Transient keyword</h1><ul>
+<li><strong>Transient</strong> key trong Java hay <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-transient/" target="_blank" rel="noopener">@Transient</a> trong kotlin dùng cho các <strong>member variable</strong>, chúng sẽ không được áp dụng quá trình serialization.</li>
 </ul>
-<h1 id="II-Y-nghia-va-use-cases"><a href="#II-Y-nghia-va-use-cases" class="headerlink" title="II, Ý nghĩa và use cases"></a>II, Ý nghĩa và use cases</h1><ul>
-<li><strong>synchronized</strong> có thể là <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/synchronized.html" target="_blank" rel="noopener">synchronized()</a> function hay <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-synchronized/" target="_blank" rel="noopener">Synchronized</a> annotation.</li>
-<li>Trong multiple thread application, việc đọc và ghi có thể bị cản trở bởi 1 vài lý do như switching, file handler…</li>
-<li><strong>synchronized</strong> đâm bảo rằng việc đọc và viết các variable, object hay thực hiện các function không bị cản trở.</li>
-<li>Trong Sun document, họ cũng đã nói rõ về keyword này: <blockquote>
-<p>synchronized methods enable a simple strategy for preventing thread interference and memory consistency errors: if an object is visible to more than one thread, all reads or writes to that object’s variables are done through synchronized methods.</p>
-</blockquote>
-</li>
-<li><strong>Ví dụ:</strong></li>
+<h1 id="II-Vi-du"><a href="#II-Vi-du" class="headerlink" title="II, Ví dụ"></a>II, Ví dụ</h1><ul>
+<li><strong>Ví dụ:</strong> Bạn có 1 class Student có 3 member variable: id, name và age. Khi Student tiến hành quá trình serialization, bạn muốn age bị bỏ qua trong quá trình đó.</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SynchronizedDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Volatile</span></span><br><span class="line">    <span class="meta">@Synchronized</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> index: Int = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;  </span><br><span class="line">    <span class="keyword">private</span> String name;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">int</span> age;<span class="comment">//Now it will not be serialized  </span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(<span class="keyword">int</span> id, String name,<span class="keyword">int</span> age)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.id = id;  </span><br><span class="line">        <span class="keyword">this</span>.name = name;  </span><br><span class="line">        <span class="keyword">this</span>.age=age;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>Trong ví dụ trên, <strong>index</strong> được annotate bằng <strong>volatile</strong> keyword có nghĩa là <strong>index</strong> sẽ visible với các Thread dùng tới nó.</li>
-<li>Nhưng không có gì đảo rằng việc đọc và ghi <strong>index</strong> trên các Thread khác nhau không bị cản trở và có thể bị error.</li>
-<li>Khi bạn sử dụng <strong>@Synchronized</strong> annotation, nó sẽ đảm bảo các cản trở đó sẽ không bị diễn ra. Do đó nó sẽ an toàn khi sử dụng multiple thread.</li>
-<li>Mình hay kết hợp <strong>volatile</strong> và <strong>synchronized</strong> để implement <a href="https://fs-sournary.github.io/2020/06/28/android-design-pattern-part-I/#1-Singleton-pattern">Singleton pattern</a>.</li>
+<li>Tiếp theo, chúng ta viết code thực hiện quá trình serialization để convert object thành 1 dòng byte và lưu vào file:</li>
 </ul>
-<h1 id="III-Ket-luan"><a href="#III-Ket-luan" class="headerlink" title="III, Kết luận"></a>III, Kết luận</h1><ul>
-<li>Hi vọng bài viết sẽ giúp mọi người hiểu rõ về <strong>synchronized</strong>.</li>
-<li>Hẹn mọi người vào bài chia sẻ sau nhé !!!</li>
-</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersistExample</span></span>&#123;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;  </span><br><span class="line">        Student s1 = <span class="keyword">new</span> Student(<span class="number">211</span>, <span class="string">"ravi"</span>, <span class="number">22</span>);</span><br><span class="line">        <span class="comment">//writing object into file  </span></span><br><span class="line">        FileOutputStream f = <span class="keyword">new</span> FileOutputStream(<span class="string">"f.txt"</span>);  </span><br><span class="line">        ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(f);  </span><br><span class="line">        out.writeObject(s1);  </span><br><span class="line">        out.flush();  </span><br><span class="line">        out.close();  </span><br><span class="line">        f.close();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>Cuối cùng, chúng ta thực hiện quá trình de-serialization để phục hồi object từ file và in ra dữ liệu của object đó:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DePersist</span></span>&#123;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;  </span><br><span class="line">        ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"f.txt"</span>));  </span><br><span class="line">        Student s = (Student)in.readObject();  </span><br><span class="line">        System.out.println(s.id + <span class="string">" "</span> + s.name + <span class="string">" "</span> + s.age);  </span><br><span class="line">        in.close();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Chúng ta đánh dấu <strong>age</strong> là 1 <strong>transient</strong> variable nên nó sẽ không được serialize vào file. Do đó chúng ta có kết quả:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">211</span> ravi <span class="number">0</span></span><br></pre></td></tr></table></figure>
       
     </div>
     <div class="article-footer">
@@ -412,7 +406,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://fs-sournary.github.io/2020/06/30/synchronized-keyword/" title="Tìm hiểu về synchronized" target="_blank" rel="external">https://fs-sournary.github.io/2020/06/30/synchronized-keyword/</a>
+      <a href="https://fs-sournary.github.io/2020/07/01/transient-keyword/" title="Tìm hiểu về transient" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/01/transient-keyword/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -453,12 +447,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2020/06/30/exception/" title="Tìm hiểu về Exception"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+      <a href="/2020/07/01/equal-operator-and-equals-method/" title="Tìm hiểu về == và equals()"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/2020/06/30/volatile-keyword/" title="Tìm hiểu về volatile keyword"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/07/01/serialization-and-deserialization/" title="Tìm hiểu về Serializable và Parcelable"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
