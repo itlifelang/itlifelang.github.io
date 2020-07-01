@@ -17,21 +17,22 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Tìm hiểu về == và equals() | IT and life</title>
-  <meta name="description" content="I, So sánh &#x3D;&#x3D; vs equals() &#x3D;&#x3D; dùng để so sánh memory address: x và y có trỏ tới cùng 1 object trên heap memory hay không. Phương thức equals() có hai kiểu so sánh: Shallow comparison: mặc định equals()">
+  <title>Tìm hiểu về equals() và hashCode() | IT and life</title>
+  <meta name="description" content="I, Phương thức equals()1, Lý thuyết Như bài viết trước so sánh &#x3D;&#x3D; và equals(), mình cũng đã nói qua về phương thức equals(). Phương thức equals() được dùng để kiểm tra 1 object có equal to với object">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tìm hiểu về &#x3D;&#x3D; và equals()">
-<meta property="og:url" content="https://fs-sournary.github.io/2020/07/01/equal-operator-and-equals-method/index.html">
+<meta property="og:title" content="Tìm hiểu về equals() và hashCode()">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/01/equals-and-hashcode/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, So sánh &#x3D;&#x3D; vs equals() &#x3D;&#x3D; dùng để so sánh memory address: x và y có trỏ tới cùng 1 object trên heap memory hay không. Phương thức equals() có hai kiểu so sánh: Shallow comparison: mặc định equals()">
+<meta property="og:description" content="I, Phương thức equals()1, Lý thuyết Như bài viết trước so sánh &#x3D;&#x3D; và equals(), mình cũng đã nói qua về phương thức equals(). Phương thức equals() được dùng để kiểm tra 1 object có equal to với object">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-01T03:53:16.000Z">
-<meta property="article:modified_time" content="2020-07-01T09:06:53.516Z">
+<meta property="article:published_time" content="2020-07-01T07:54:12.000Z">
+<meta property="article:modified_time" content="2020-07-01T09:00:52.715Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Java">
+<meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/01/equal-operator-and-equals-method/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/01/equals-and-hashcode/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -333,14 +334,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="blog-equal-operator-and-equals-method" class="article article-type-blog" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-equals-and-hashcode" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Tìm hiểu về == và equals()
+      Tìm hiểu về equals() và hashCode()
     </h1>
   
 
@@ -348,15 +349,15 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/07/01/equal-operator-and-equals-method/" class="article-date">
-	  <time datetime="2020-07-01T03:53:16.000Z" itemprop="datePublished">2020-07-01</time>
+	<a href="/2020/07/01/equals-and-hashcode/" class="article-date">
+	  <time datetime="2020-07-01T07:54:12.000Z" itemprop="datePublished">2020-07-01</time>
 	</a>
 </span>
         
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Java/" rel="tag">Java</a>
+	<a class="article-tag-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
   </span>
 
 
@@ -364,58 +365,54 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2020/07/01/equal-operator-and-equals-method/" class="leancloud_visitors"  data-flag-title="Tìm hiểu về == và equals()">
+    	<span id="/2020/07/01/equals-and-hashcode/" class="leancloud_visitors"  data-flag-title="Tìm hiểu về equals() và hashCode()">
 			<span class="leancloud-visitors-count">0</span>
 		</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/01/equal-operator-and-equals-method/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/01/equals-and-hashcode/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="I-So-sanh-vs-equals"><a href="#I-So-sanh-vs-equals" class="headerlink" title="I, So sánh == vs equals()"></a>I, So sánh == vs equals()</h1><ul>
-<li><strong>==</strong> dùng để so sánh memory address: x và y có trỏ tới cùng 1 object trên heap memory hay không.</li>
-<li>Phương thức <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#equals(java.lang.Object)" target="_blank" rel="noopener">equals()</a> có hai kiểu so sánh:<ul>
-<li><strong>Shallow comparison:</strong> mặc định <strong>equals()</strong> có implement của <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html" target="_blank" rel="noopener">Object</a>, nó trả về true khi và chỉ khi x và y cùng trỏ tới 1 object (x == y return true). Điều này là bởi vì Object không có member variable để định nghĩa state.</li>
-<li><strong>Deep comparison:</strong> class có các member variable và tiến hành implement <strong>equals()</strong> dựa trên các member variable đó.</li>
+        <h1 id="I-Phuong-thuc-equals"><a href="#I-Phuong-thuc-equals" class="headerlink" title="I, Phương thức equals()"></a>I, Phương thức equals()</h1><h2 id="1-Ly-thuyet"><a href="#1-Ly-thuyet" class="headerlink" title="1, Lý thuyết"></a>1, Lý thuyết</h2><ul>
+<li>Như bài viết trước <a href="https://fs-sournary.github.io/2020/07/01/equal-operator-and-equals-method/">so sánh == và equals()</a>, mình cũng đã nói qua về phương thức <strong>equals()</strong>.</li>
+<li>Phương thức <strong>equals()</strong> được dùng để kiểm tra 1 object có <strong>equal to</strong> với object khác không. Nó được thực thi theo hai cách:<ul>
+<li><strong>Shallow comparison:</strong> mặc định, <strong>equals()</strong> được định nghĩa trong <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html" target="_blank" rel="noopener">Object</a> class, nó kiểm tra 2 variable có cùng trỏ tới 1 object hay không (tương đương với x == y). Điều này bởi vì Object member variable nào để định nghĩa state.</li>
+<li><strong>Deep comparison:</strong>: class có các member variable và tiến hành implement <strong>equals()</strong> method dựa trên các member variable đó. Ví dụ như Integer, String…</li>
 </ul>
 </li>
-<li>Với các class như Integer, String… <strong>equals()</strong> đã thực hiện <strong>deep comparison</strong> tức là các class đó đã tiến hành implement <strong>equals()</strong> dựa trên so sánh các member variable.</li>
-<li><strong>Chú ý</strong>: Nếu 1 class không implement <strong>equals()</strong> method, <strong>equals()</strong> của class đó sẽ thừa hưởng từ class cha gần nhất implement <strong>equals()</strong> method. </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Integer.java</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Integer) &#123;</span><br><span class="line">        <span class="keyword">return</span> value == ((Integer)obj).intValue();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Shallow comparison</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Object</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Not have any member variable to define its state.</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// String.java</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object anObject)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">                String anotherString = (String)anObject;</span><br><span class="line">        <span class="keyword">int</span> n = length();</span><br><span class="line">        <span class="keyword">if</span> (n == anotherString.length()) &#123;</span><br><span class="line">            <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (n-- != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (charAt(i) != anotherString.charAt(i))</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Deep comparison</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Integer</span> <span class="keyword">extends</span> <span class="title">Number</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> value;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Integer) &#123;</span><br><span class="line">            <span class="keyword">return</span> value == ((Integer)obj).intValue();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="II-Vi-du-object-co-san"><a href="#II-Vi-du-object-co-san" class="headerlink" title="II, Ví dụ object có sẵn"></a>II, Ví dụ object có sẵn</h1><ul>
-<li><strong>Ví dụ 1</strong>:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1000</span>;</span><br><span class="line">Integer b = <span class="number">1000</span>;</span><br><span class="line">Integer c = <span class="keyword">new</span> Integer(<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a == b <span class="comment">// true bởi vì java có cơ chế autoboxing và unboxing nên khi so sánh b sẽ bị unboxing về int.</span></span><br><span class="line">b == c ? <span class="comment">// false bởi vì b và c trỏ tới 2 object khác nhau trên heap.</span></span><br><span class="line">b.equals(a) ? <span class="comment">// true bởi vì b và a cùng giá trị 1000.</span></span><br><span class="line">c.equals(b) ? <span class="comment">// true vì b và c cùng giá trị 1000.</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>Ví dụ 2</strong>:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String a = <span class="string">"abc"</span>;</span><br><span class="line">String b = <span class="string">"abc"</span>;</span><br><span class="line">String c = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a == b <span class="comment">// true bời vì a và b được tạo từ String literals trong String pool trên heap nên chúng sẽ trỏ tới cùng 1 object.</span></span><br><span class="line">b == c <span class="comment">// false bởi vì toán tử new tạo ra 1 object khác không nằm trong String pool trên bộ nhớ heap.</span></span><br><span class="line">a.equals(b) <span class="comment">// true bởi vì a và b có cùng giá trị.</span></span><br><span class="line">c.equals(b) <span class="comment">// true bởi vì a và b có cùng giá trị.</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="III-Object-tu-dinh-nghia"><a href="#III-Object-tu-dinh-nghia" class="headerlink" title="III, Object tự định nghĩa"></a>III, Object tự định nghĩa</h1><ul>
+<p><strong>Chú ý</strong>: Nếu class không implement <strong>equals()</strong> method, <strong>equals()</strong> của class đó sẽ là của class cha implement <strong>equals()</strong> gần nó nhất.</p>
+<h2 id="2-Vi-du"><a href="#2-Vi-du" class="headerlink" title="2, Ví dụ"></a>2, Ví dụ</h2><ul>
 <li><strong>Ví dụ 1</strong>: <strong>shallow comparison</strong> không override <strong>equals()</strong> method</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> val;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">(<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestComparator</span>()</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;  </span><br><span class="line">        Test a = <span class="keyword">new</span> Test(<span class="number">1000</span>);</span><br><span class="line">        Test b = <span class="keyword">new</span> Test(<span class="number">1000</span>);</span><br><span class="line">        a == b <span class="comment">// return false bởi vì a và b trỏ đến 2 object khác nhau.</span></span><br><span class="line">        a.equals(b) <span class="comment">// return false mặc định equals() cũng so sánh memory address như ==.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestComparator</span>()</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;  </span><br><span class="line">        Test a = <span class="keyword">new</span> Test(<span class="number">1000</span>);</span><br><span class="line">        Test b = <span class="keyword">new</span> Test(<span class="number">1000</span>);</span><br><span class="line">        a.equals(b) <span class="comment">// return false mặc định equals() cũng so sánh memory address (của Object class) như ==.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><strong>Ví dụ 2</strong>: <strong>deep comparison</strong> override <strong>equals()</strong> method</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> val;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">(<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val = val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Deep comparison</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Test b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.val == b.val</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestComparator</span>()</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;  </span><br><span class="line">        Test a = <span class="keyword">new</span> Test(<span class="number">1000</span>);</span><br><span class="line">        Test b = <span class="keyword">new</span> Test(<span class="number">1000</span>);</span><br><span class="line">        a == b <span class="comment">// return false bởi vì a và b trỏ đến 2 object khác nhau.</span></span><br><span class="line">        a.equals(b) <span class="comment">// return true.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestComparator</span>()</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;  </span><br><span class="line">        Test a = <span class="keyword">new</span> Test(<span class="number">1000</span>);</span><br><span class="line">        Test b = <span class="keyword">new</span> Test(<span class="number">1000</span>);</span><br><span class="line">        a.equals(b) <span class="comment">// return true.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="II-Phuong-thuc-hashCode"><a href="#II-Phuong-thuc-hashCode" class="headerlink" title="II, Phương thức hashCode()"></a>II, Phương thức hashCode()</h1><ul>
+<li>Phương thức <strong>hashCode()</strong> trả về 1 giá trị <strong>int</strong>. hashCode được sử dụng phần lớn trong Collection sử dụng cơ chế <strong>hashing</strong> như HashMap, HashSet, HashTable…</li>
+<li>Một class override <strong>equals()</strong> thì class cũng nên override <strong>hashCode()</strong>.</li>
+<li>Một số lưu ý khi override <strong>hashCode()</strong>:<ul>
+<li>Nếu x và y có <strong>equals()</strong> return true, <strong>hashCode()</strong> cũng phải trả về cùng 1 int trên cả x và y.</li>
+<li>Nếu x và y có <strong>equals()</strong> return false, <strong>hashCode()</strong> không nhất thiết phải trả về 2 int khác nhau. Chúng có thể giống nhau nhưng trả về 2 int khác nhau sẽ giúp tăng performance cho các collection sử dụng cơ chế <strong>hashing</strong> như HashMap, HashSet, HashTable…</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
     <div class="article-footer">
@@ -424,7 +421,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://fs-sournary.github.io/2020/07/01/equal-operator-and-equals-method/" title="Tìm hiểu về == và equals()" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/01/equal-operator-and-equals-method/</a>
+      <a href="https://fs-sournary.github.io/2020/07/01/equals-and-hashcode/" title="Tìm hiểu về equals() và hashCode()" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/01/equals-and-hashcode/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -464,13 +461,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2020/07/01/equals-and-hashcode/" title="Tìm hiểu về equals() và hashCode()"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2020/07/01/transient-keyword/" title="Tìm hiểu về transient"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/07/01/equal-operator-and-equals-method/" title="Tìm hiểu về == và equals()"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
