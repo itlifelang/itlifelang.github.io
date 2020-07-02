@@ -18,18 +18,18 @@
   
   
   <title>Tìm hiểu về Exception | IT life</title>
-  <meta name="description" content="I, Mở đầu Exception là một đối tượng chung thường gặp trong khi tạo ra chương trinh. Trong bài viết này, mình sẽ trình bày rõ hơn exception, hệ thống phân cấp và cơ chế JVM xử lý các exception.  II, Đ">
+  <meta name="description" content="I, Mở đầu Exception là một sự kiện thường gặp trong khi tạo ra chương trinh. Trong bài viết này, mình sẽ trình bày rõ hơn exception, hệ thống phân cấp và cơ chế JVM xử lý các exception.  II, Định nghĩ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tìm hiểu về Exception">
 <meta property="og:url" content="https://fs-sournary.github.io/2020/06/30/exception/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, Mở đầu Exception là một đối tượng chung thường gặp trong khi tạo ra chương trinh. Trong bài viết này, mình sẽ trình bày rõ hơn exception, hệ thống phân cấp và cơ chế JVM xử lý các exception.  II, Đ">
+<meta property="og:description" content="I, Mở đầu Exception là một sự kiện thường gặp trong khi tạo ra chương trinh. Trong bài viết này, mình sẽ trình bày rõ hơn exception, hệ thống phân cấp và cơ chế JVM xử lý các exception.  II, Định nghĩ">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://fs-sournary.github.io/2020/06/30/exception/exception-1.png">
 <meta property="og:image" content="https://fs-sournary.github.io/2020/06/30/exception/exception-2.png">
 <meta property="og:image" content="https://fs-sournary.github.io/2020/06/30/exception/exception-3.png">
 <meta property="article:published_time" content="2020-06-30T09:41:14.000Z">
-<meta property="article:modified_time" content="2020-06-30T11:12:50.085Z">
+<meta property="article:modified_time" content="2020-07-02T14:30:45.045Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Kotlin">
@@ -63,7 +63,7 @@
         <a id="avatar" href="https://github.com/fs-sournary" target="_blank">
           <img class="img-circle img-rotate" src="/images/asta-2.jpg" width="200" height="200">
         </a>
-        <h2 id="name" class="hidden-xs hidden-sm">Vũ Đức Sang</h2>
+        <h2 id="name" class="hidden-xs hidden-sm">Vũ Đức Sang (Solo leveling)</h2>
         <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
         <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hà Nội, Việt Nam</small>
       </div>
@@ -165,7 +165,7 @@
     <div class="widget-body">
         <div id="board">
             <div class="content">
-                <p>Website chia sẻ các kiến thức về lập trình và cuộc sống</p>
+                <p>It doesn't matter how much slowly you go as long as you don't stop.</p>
             </div>
         </div>
     </div>
@@ -176,7 +176,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-pattern/" rel="tag">Design pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">11</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-pattern/" rel="tag">Design pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -186,7 +186,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -198,6 +198,31 @@
     <div class="widget-body">
       <ul class="recent-post-list list-unstyled ">
         
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/02/visibility-modifier-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://i.ytimg.com/vi/aiXJIw23Fhs/maxresdefault.jpg)" alt="Tìm hiểu về visibility modifier trong kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/02/visibility-modifier-in-kotlin/" class="title">Tìm hiểu về visibility modifier trong kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-02T10:12:08.000Z" itemprop="datePublished">2020-07-02</time>
+              </p>
+            </div>
+          </li>
+          
           <li>
             
             <div class="item-thumb">
@@ -298,31 +323,6 @@
             </div>
           </li>
           
-          <li>
-            
-            <div class="item-thumb">
-              <a href="/2020/07/01/nested-class/" class="thumb">
-    
-    
-        <span style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTPs-YVjLAaLsBu3BH54Re3BRYaHu1wY3cAUQ&amp;usqp=CAU)" alt="Tìm hiểu về nested class" class="thumb-image"></span>
-    
-</a>
-
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                
-              </p>
-              <p class="item-title">
-                <a href="/2020/07/01/nested-class/" class="title">Tìm hiểu về nested class</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2020-07-01T11:07:06.000Z" itemprop="datePublished">2020-07-01</time>
-              </p>
-            </div>
-          </li>
-          
       </ul>
     </div>
   </div>
@@ -372,11 +372,11 @@
     <div class="article-entry marked-body" itemprop="articleBody">
       
         <h1 id="I-Mo-dau"><a href="#I-Mo-dau" class="headerlink" title="I, Mở đầu"></a>I, Mở đầu</h1><ul>
-<li><strong>Exception</strong> là một đối tượng chung thường gặp trong khi tạo ra chương trinh.</li>
+<li>Exception là một sự kiện thường gặp trong khi tạo ra chương trinh.</li>
 <li>Trong bài viết này, mình sẽ trình bày rõ hơn exception, hệ thống phân cấp và cơ chế JVM xử lý các exception.</li>
 </ul>
 <h1 id="II-Dinh-nghia-va-phan-cap"><a href="#II-Dinh-nghia-va-phan-cap" class="headerlink" title="II, Định nghĩa vầ phân cấp"></a>II, Định nghĩa vầ phân cấp</h1><ul>
-<li><strong>Exception</strong> là sự kiện làm phá vớ luồng thực thi của chương trình. </li>
+<li><code>Exception</code> là sự kiện làm phá vớ luồng thực thi của chương trình. </li>
 <li>Nếu chúng ta không xử lý các exception, Thread hiện tại là:<ul>
 <li><strong>Main Thread:</strong> chương trình sẽ bị chết.</li>
 <li><strong>Không phải là main Thread:</strong> Thread sẽ bị ngắt.</li>
@@ -386,45 +386,45 @@
 <img src="/2020/06/30/exception/exception-1.png" class="">
 
 <ul>
-<li>Trong phân cấp <strong>Exception</strong> thì <strong>Throwable</strong> class ở mức cao nhất. </li>
-<li>Hai class con kế thừa <strong>Throwable</strong> là <strong>Error</strong> class và <strong>Exception</strong> class.</li>
-<li>Chúng ta có thể chia <strong>Exception</strong> thành 2 loại:<ul>
-<li><strong>Unchecked exception:</strong> bao gồm <strong>Error</strong> và <strong>RuntimeException</strong>.</li>
+<li>Trong phân cấp exception thì <code>Throwable</code> class ở mức cao nhất. </li>
+<li>Hai class con kế thừa <code>Throwable</code> là <code>Error</code> và <code>Exception</code>.</li>
+<li>Chúng ta có thể chia exception thành 2 loại:<ul>
+<li><strong>Unchecked exception:</strong> bao gồm <code>Error</code> và <code>RuntimeException</code>.</li>
 <li><strong>Checked exception:</strong> các loại exception khác.</li>
 </ul>
 </li>
 </ul>
 <h2 id="1-Checked-exception"><a href="#1-Checked-exception" class="headerlink" title="1, Checked exception"></a>1, Checked exception</h2><ul>
-<li><strong>Checked exception</strong> hay còn gọi là <strong>compile time exception</strong> bời vì chúng xảy ra ở compile time. </li>
-<li>Thông thường khi bạn compile chương trình nếu có <strong>checked exception</strong>, <strong>IDE</strong> sẽ thông báo cho chúng ta biết ngay.</li>
-<li>Như mình đã nói ở trên tất cả các class kế thừa <strong>Exception</strong> class ngoại trừ <strong>RuntimeException</strong> đều là <strong>checked exception</strong>.</li>
-<li>Các <strong>checked exception</strong> chúng ta hay gặp: <strong>FileNotFoundException</strong>, <strong>IOException</strong>…</li>
+<li><code>Checked exception</code> hay còn gọi là <code>compile time exception</code> bời vì chúng xảy ra ở compile time. </li>
+<li>Thông thường khi bạn compile chương trình nếu có checked exception, <strong>IDE</strong> sẽ thông báo cho chúng ta biết ngay.</li>
+<li>Như mình đã nói ở trên tất cả các class kế thừa <code>Exception</code> class ngoại trừ <code>RuntimeException</code> đều là checked exception.</li>
+<li>Các checked exception chúng ta hay gặp: <code>FileNotFoundException</code>, <code>IOException</code>…</li>
 </ul>
 <h2 id="2-Unchecked-exception"><a href="#2-Unchecked-exception" class="headerlink" title="2, Unchecked exception"></a>2, Unchecked exception</h2><ul>
-<li><strong>Unchecked exception</strong> hay còn gọi là <strong>runtime exception</strong> bởi vì chúng bị bỏ qua trong compile time và chỉ xảy ra ở runtime.</li>
-<li>Chúng thường xảy ra do bug, logic… của chương trình cũng có thể do môi trường của ứng dụng. </li>
-<li>Các class kế thừa <strong>Error</strong> và <strong>RuntimeException</strong> đều là <strong>unchecked exception</strong>.</li>
-<li>Các <strong>unchecked exception</strong> chúng ta hay gặp: <strong>NullPointerException</strong>, <strong>ArrayIndexOutOfBoundException</strong>, <strong>NumberFormatException</strong>…</li>
+<li><code>Unchecked exception</code> hay còn gọi là <code>runtime exception</code> bởi vì chúng bị bỏ qua trong compile time và chỉ xảy ra ở runtime.</li>
+<li>Chúng thường xảy ra do bug, logic… của chương trình cũng có thể do môi trường của ứng dụng. Do đó chúng khó bị phát hiện và fix hơn.</li>
+<li>Các class kế thừa <code>Error</code> và <code>RuntimeException</code> đều là unchecked exception.</li>
+<li>Các unchecked exception chúng ta hay gặp: <code>NullPointerException</code>, <code>ArrayIndexOutOfBoundException</code>, <code>NumberFormatException</code>…</li>
 </ul>
 <h1 id="III-Co-che-JVM-xu-ly-cac-Exception"><a href="#III-Co-che-JVM-xu-ly-cac-Exception" class="headerlink" title="III, Cơ chế JVM xử lý các Exception"></a>III, Cơ chế JVM xử lý các Exception</h1><img src="/2020/06/30/exception/exception-2.png" class="">
 
 <ul>
-<li><strong>Exception Handling</strong> là cơ chế xử lý các exception ở runtime để có thể duy trì luồng thực thi của chương trình.</li>
-<li><strong>Exception Handling</strong> được thực hiện bằng <strong>try/catch</strong> block.</li>
+<li><code>Exception Handling</code> là cơ chế xử lý các exception ở runtime để có thể duy trì luồng thực thi của chương trình.</li>
+<li>Exception Handling được thực hiện bằng <code>try/catch</code> block.</li>
 </ul>
 <img src="/2020/06/30/exception/exception-3.png" class="">
 
 <ul>
-<li>Nếu trong <strong>try</strong> block xảy ra 1 <strong>Exception</strong>, JVM sẽ tìm kiếm <strong>catch</strong> block có xử lý <strong>Exception</strong> đó.</li>
+<li>Nếu trong <code>try</code> block xảy ra <code>Exception</code>, code trong <code>try</code> sẽ không được thực thi nữa. JVM sẽ tìm kiếm <code>catch</code> block có xử lý <code>Exception</code> đó.</li>
 <li>Nếu không có <strong>catch</strong> block hay <strong>catch</strong> block không xử lý đúng Exception bị throw, code thực thi <strong>finally</strong> block và ngắt Thread hiện tại.</li>
-<li>Nếu <strong>catch</strong> block xử lý đúng Exception, code vẫn thực thi <strong>finally</strong> block và tiếp tục thực thi Thread như thông thường. </li>
+<li>Nếu <code>catch</code> block xử lý đúng Exception, code tiếp tục thực thi đến khi hết <code>catch</code>, sau đó <code>finally</code> thực thi Thread như thông thường. </li>
 </ul>
 <h1 id="IV-Mot-so-luu-y"><a href="#IV-Mot-so-luu-y" class="headerlink" title="IV, Một số lưu ý"></a>IV, Một số lưu ý</h1><ul>
-<li>Khi code trong <strong>try</strong> block throw 1 <strong>Exception</strong>, <strong>catch</strong> sẽ được check theo thứ tự thực thì. </li>
-<li>Khi 1 <strong>catch</strong> block đã được thực thi, các <strong>catch</strong> block theo sau sẽ bị bỏ qua.</li>
-<li>Các <strong>catch</strong> block nên được sắp xếp để xử lý theo thứ từ <strong>Exception con</strong> tới <strong>Exception cha</strong>. <strong>Ví dụ</strong>: chúng ta nên catch <strong>NumberFormatException</strong> trước khi catch <strong>Exception</strong>.</li>
-<li><strong>finally</strong> block luôn được thực hiện dù <strong>Exception</strong> có được catch hay không. <strong>finally</strong> block sẽ không được thực thi khi <strong>System.exit()</strong> được gọi hay <strong>Error</strong> xảy ra.</li>
-<li>Đối với mỗi <strong>try</strong> block, có thể không có, có 1 hoặc nhiều <strong>catch</strong> block nhưng sẽ chỉ có 1 <strong>finally</strong> block.</li>
+<li>Khi code trong <code>try</code> block throw <code>Exception</code>, các <code>catch</code> sẽ được check theo thứ tự thực thì. </li>
+<li>Khi 1 <code>catch</code> block đã được thực thi, các <code>catch</code> block theo sau sẽ bị bỏ qua.</li>
+<li>Các <code>catch</code> nên được sắp xếp để xử lý theo thứ từ <code>Exception con</code> tới <code>Exception cha</code>. <strong>Ví dụ</strong>: chúng ta nên catch <code>NumberFormatException</code> trước khi catch <code>Exception</code>.</li>
+<li>Khối <code>finally</code> luôn được thực hiện dù <code>Exception</code> có được catch hay không. Nó sẽ không được thực thi khi <code>System.exit()</code> được gọi hay <code>Error</code> mà môi trường không xử lý được xảy ra.</li>
+<li>Đối với mỗi <code>try</code> block, có thể không có hoặc có 1 hoặc nhiều <code>catch</code> block nhưng sẽ chỉ có 1 <code>finally</code> block.</li>
 </ul>
 
       
@@ -454,7 +454,7 @@
         </a>
       </div>
       <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang</span><small class="ml-1x"></small></a></h3>
+        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang (Solo leveling)</span><small class="ml-1x"></small></a></h3>
         <div>Android and self-learning developer</div>
       </div>
     </figure>

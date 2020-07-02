@@ -3260,7 +3260,7 @@ body {
   /* font-family: "PingHei","PingFang SC",Helvetica Neue,"Work Sans","Hiragino Sans GB","Microsoft YaHei",SimSun,sans-serif; */
   font-family: "PT Serif",Merriweather,Georgia,Cambria,Times New Roman,Times,serif;
   font-size: 14px;
-  line-height: 1.57143;
+  line-height: 2;
   font-weight: 400;
   letter-spacing: .03rem;
   color: #333333;
@@ -5536,7 +5536,7 @@ pre,
   margin: 10px 0;
   padding: 15px 10px;
   overflow: auto;
-  font-size: 13px;
+  font-size: 14px;
   color: #4d4d4c;
   line-height: 1.5;
 }
@@ -5553,7 +5553,7 @@ code {
   color: #555;
   background: #eee;
   border-radius: 3px;
-  font-size: 85%;
+  font-size: 100%;
 }
 
 pre code {
@@ -7042,9 +7042,9 @@ body.okayNav-loaded {
   line-height: 20px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 12px 28px 12px 20px;
+  padding: 12px 40px 12px 20px;
   border-bottom: 1px solid #e2e2e2;
-  font-family: "Microsoft Yahei Light","Microsoft Yahei",Helvetica,Arial,sans-serif;
+  font-family: inherit;
 }
 
 .ins-close {
@@ -7053,7 +7053,8 @@ body.okayNav-loaded {
   width: 20px;
   height: 20px;
   font-size: 24px;
-  margin-top: -15px;
+  margin-top: -12px;
+  margin-right: 10px;
   position: absolute;
   text-align: center;
   opacity: 1.0;
