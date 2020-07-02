@@ -17,22 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Tìm hiểu về nested class | IT life</title>
-  <meta name="description" content="I, Nested class Java&#x2F;Kotlin cho phép bạn định nghĩa 1 class nằm trong 1 class khác. Những class như thế gọi là nested class. Nested class chia làm 2 loại: static nested class và non-static nested clas">
+  <title>Tìm hiểu về lateinit và lazy trong Kotlin | IT life</title>
+  <meta name="description" content="I, Late-initialized variable Thông thường, trong kotlin các non-null member variable phải được khởi tạo khi khai báo. Tuy nhiên, trong nhiều trường hợp điều này không thuận tiện. lateinit là viết tắt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tìm hiểu về nested class">
-<meta property="og:url" content="https://fs-sournary.github.io/2020/07/01/nested-class/index.html">
+<meta property="og:title" content="Tìm hiểu về lateinit và lazy trong Kotlin">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/02/lateinit-vs-lazy-in-kotlin/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, Nested class Java&#x2F;Kotlin cho phép bạn định nghĩa 1 class nằm trong 1 class khác. Những class như thế gọi là nested class. Nested class chia làm 2 loại: static nested class và non-static nested clas">
+<meta property="og:description" content="I, Late-initialized variable Thông thường, trong kotlin các non-null member variable phải được khởi tạo khi khai báo. Tuy nhiên, trong nhiều trường hợp điều này không thuận tiện. lateinit là viết tắt">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-01T11:07:06.000Z">
-<meta property="article:modified_time" content="2020-07-02T00:51:52.635Z">
+<meta property="article:published_time" content="2020-07-02T03:46:09.000Z">
+<meta property="article:modified_time" content="2020-07-02T04:31:03.158Z">
 <meta property="article:author" content="Sang">
-<meta property="article:tag" content="Java">
 <meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/01/nested-class/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/02/lateinit-vs-lazy-in-kotlin/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -332,14 +331,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-nested-class" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-lateinit-vs-lazy-in-kotlin" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Tìm hiểu về nested class
+      Tìm hiểu về lateinit và lazy trong Kotlin
     </h1>
   
 
@@ -347,50 +346,59 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/07/01/nested-class/" class="article-date">
-	  <time datetime="2020-07-01T11:07:06.000Z" itemprop="datePublished">2020-07-01</time>
+	<a href="/2020/07/02/lateinit-vs-lazy-in-kotlin/" class="article-date">
+	  <time datetime="2020-07-02T03:46:09.000Z" itemprop="datePublished">2020-07-02</time>
 	</a>
 </span>
         
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
+	<a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
   </span>
 
 
         
 
-        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/01/nested-class/#comments" class="article-comment-link">Comments</a></span> -->
+        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/02/lateinit-vs-lazy-in-kotlin/#comments" class="article-comment-link">Comments</a></span> -->
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="I-Nested-class"><a href="#I-Nested-class" class="headerlink" title="I, Nested class"></a>I, Nested class</h1><ul>
-<li>Java/Kotlin cho phép bạn định nghĩa 1 class nằm trong 1 class khác. Những class như thế gọi là <strong>nested class</strong>.</li>
-<li><strong>Nested class</strong> chia làm 2 loại: <strong>static nested class</strong> và <strong>non-static nested class/ inner class</strong>.</li>
+        <h1 id="I-Late-initialized-variable"><a href="#I-Late-initialized-variable" class="headerlink" title="I, Late-initialized variable"></a>I, Late-initialized variable</h1><ul>
+<li>Thông thường, trong kotlin các <strong>non-null member variable</strong> phải được khởi tạo khi khai báo. Tuy nhiên, trong nhiều trường hợp điều này không thuận tiện.</li>
+<li><strong>lateinit</strong> là viết tắt của late initialization, nó cho phép member variable khởi tạo sau.</li>
+<li><strong>Ví dụ 1</strong>: <strong>member variable</strong> được khởi tạo thông qua dependency injection hoặc trong <strong>setup()</strong> của unit test. Chúng ta có thể sử dụng <strong>lateinit</strong> để khai báo biến:</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OuterClass</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticNestedClass</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="II-Inner-class"><a href="#II-Inner-class" class="headerlink" title="II, Inner class"></a>II, Inner class</h1><ul>
-<li>Bởi vì <strong>Inner class</strong> liên kết với 1 instance của <strong>outer class</strong> nên nó có thể truy cập các member (variable và method) khác của <strong>outer class</strong> ngay cả khi chúng khai báo với <strong>private</strong>. </li>
-<li>Vì nó liên kết với 1 instance của <strong>outer class</strong> nên nó không thể chứa bất kì static member nào.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OuterClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Compiler error do inner class không được chứa bất cứ static member nào</span></span><br><span class="line">        <span class="comment">// static int i = 1; </span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">" "</span> + index);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">    lateinit <span class="keyword">var</span> subject: TestSubject</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SetUp</span> <span class="function">fun <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        subject = TestSubject()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span> <span class="function">fun <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        subject.method()  <span class="comment">// dereference directly</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>Một instance của <strong>inner class</strong> chỉ có thể tồn tại khi có 1 <strong>outer class</strong>.</li>
+<li>Khi dùng <strong>lateinit</strong> chúng ta cần tuân theo các quy định sau:<ul>
+<li>1, Chỉ được dùng với <strong>var</strong> tạo thành <strong>lateinit var</strong> cho member variable ở trong class body.</li>
+<li>2, Không được dùng trong constructor và method. </li>
+<li>3, Chỉ dùng cho các member variable không có custom getter và setter.</li>
+<li>4, Chỉ dùng cho các member variable không null và không phải là primitive type.</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OuterClass outerClass = <span class="keyword">new</span> OuterClass();</span><br><span class="line">OuterClass.InnerClass innerClass = outerClass.<span class="keyword">new</span> InnerClass();</span><br></pre></td></tr></table></figure>
+</li>
+<li>Nếu truy cập <strong>lateinit var</strong> variable trước khi nó được khởi tạo, chúng ta sẽ gặp exception. </li>
+<li>Do đó, để tránh exception chúng ta nên xác định xem <strong>lateinit var</strong> variable đã được khởi tạo chưa</li>
+<li>Để xác định <strong>lateinit var</strong> variable đã được khởi tạo chưa, chúng ta sử dụng <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/is-initialized.html" target="_blank" rel="noopener">isInitialized</a> như sau:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lateinit <span class="keyword">var</span> bar: Bar</span><br><span class="line"></span><br><span class="line"><span class="function">fun <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (::bar.isInitialized) &#123;</span><br><span class="line">        println(foo.bar)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="III-static-nested-class"><a href="#III-static-nested-class" class="headerlink" title="III, static nested class"></a>III, static nested class</h1><ul>
-<li>Giống như static member khác, <strong>static nested class</strong> liên kết với class chứa nó (không phải liên kết với instance).</li>
-<li>Do đó, nó không thể sử dụng các member của class chứa nó.</li>
-<li><strong>static nested class</strong> có behavior giống như <strong>top-level class</strong>.</li>
-<li>Bạn có thể khởi tạo nó mà không cần đến instance của class chứa nó:</li>
+<h1 id="II-Lazy-variable"><a href="#II-Lazy-variable" class="headerlink" title="II, Lazy variable"></a>II, Lazy variable</h1><ul>
+<li>Đôi khi chúng ta muốn member variable được khởi tạo khi chúng ta cần dùng đến nó.</li>
+<li>Trong trường hợp như vậy chúng ta có thể sử dụng <strong>lazy variable</strong> thông qua <strong>lazy()</strong>.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/lazy.html" target="_blank" rel="noopener">lazy()</a> là 1 function có tham số là 1 lambada và trả về 1 <strong>Lazy<T> object</strong>: lần đầu tiên gọi <strong>get()</strong> trên member variable thì biểu thức lambada trong <strong>lazy()</strong> sẽ được xử lý, khởi tạo và ghi nhớ giá trị cho member variable. Các lần gọi <strong>get()</strong>, member variable sẽ lấy giá trị được ghỉ nhớ đó.</li>
+<li><strong>Ví dụ 2:</strong> Lần đàu tiên sử dụng <strong>name</strong>, lambada được xử lý do đó <strong>name = It life</strong>, đồng thời giá trị được ghỉ nhớ. Các lần sử dụng <strong>name</strong> tiếp theo thì vẫn có giá trị là <strong>It life</strong>:</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OuterClass.StaticNestedClass nestedObject = <span class="keyword">new</span> OuterClass.StaticNestedClass();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    val name: String by lazy &#123; “It life” &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>lazy()</strong> chỉ dùng cho các “val” member variable, </li>
+</ul>
+
       
     </div>
     <div class="article-footer">
@@ -399,7 +407,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://fs-sournary.github.io/2020/07/01/nested-class/" title="Tìm hiểu về nested class" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/01/nested-class/</a>
+      <a href="https://fs-sournary.github.io/2020/07/02/lateinit-vs-lazy-in-kotlin/" title="Tìm hiểu về lateinit và lazy trong Kotlin" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/02/lateinit-vs-lazy-in-kotlin/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -439,13 +447,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2020/07/01/string-stringbuilder-and-stringbuffer/" title="Tìm hiểu về String, StringBuilder và StringBuffer"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2020/07/01/static-keyword/" title="Tìm hiểu về static trong Java"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/07/01/null-safety-in-kotlin/" title="Tìm hiểu về null safety trong kotlin"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     

@@ -17,22 +17,16 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Tìm hiểu về nested class | IT life</title>
-  <meta name="description" content="I, Nested class Java&#x2F;Kotlin cho phép bạn định nghĩa 1 class nằm trong 1 class khác. Những class như thế gọi là nested class. Nested class chia làm 2 loại: static nested class và non-static nested clas">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Tìm hiểu về nested class">
-<meta property="og:url" content="https://fs-sournary.github.io/2020/07/01/nested-class/index.html">
+  <title>Tag: Kotlin | IT life</title>
+  <meta property="og:type" content="website">
+<meta property="og:title" content="IT and life">
+<meta property="og:url" content="https://fs-sournary.github.io/tags/Kotlin/page/2/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, Nested class Java&#x2F;Kotlin cho phép bạn định nghĩa 1 class nằm trong 1 class khác. Những class như thế gọi là nested class. Nested class chia làm 2 loại: static nested class và non-static nested clas">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-01T11:07:06.000Z">
-<meta property="article:modified_time" content="2020-07-02T00:51:52.635Z">
 <meta property="article:author" content="Sang">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/01/nested-class/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/tags/Kotlin/page/2/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -329,138 +323,86 @@
 </aside>
 
   
-  
-<main class="main" role="main">
-  <div class="content">
-  <article id="post-nested-class" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <main class="main" role="main">
+  <article class="content article article-tags post-type-list" itemscope="">
+    <header class="article-header">
+      <h1 itemprop="name" class="hidden-xs">Tag: Kotlin</h1>
+      <p class="text-muted hidden-xs">Total 1 articles</p>
+      <nav role="navigation" id="nav-main" class="okayNav">
+        <ul>
+          <li><a href="/tags">All</a></li>
+          
+          <li><a href="/tags/Android/">Android</a></li>
+          
+          <li><a href="/tags/Design-pattern/">Design pattern</a></li>
+          
+          <li><a href="/tags/Java/">Java</a></li>
+          
+          <li><a href="/tags/Kotlin/">Kotlin</a></li>
+          
+        </ul>
+      </nav>
+    </header>
+    <!-- /header -->
+    <div class="article-body">
+      <div class="row">
+        
+<div class="col-md-6">
     
-    <div class="article-header">
-      
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Tìm hiểu về nested class
-    </h1>
-  
-
-      
-      <div class="article-meta">
-        <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2020/07/01/nested-class/" class="article-date">
-	  <time datetime="2020-07-01T11:07:06.000Z" itemprop="datePublished">2020-07-01</time>
-	</a>
-</span>
-        
-        
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
-  </span>
-
-
-        
-
-        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/01/nested-class/#comments" class="article-comment-link">Comments</a></span> -->
-        
-      </div>
-    </div>
-    <div class="article-entry marked-body" itemprop="articleBody">
-      
-        <h1 id="I-Nested-class"><a href="#I-Nested-class" class="headerlink" title="I, Nested class"></a>I, Nested class</h1><ul>
-<li>Java/Kotlin cho phép bạn định nghĩa 1 class nằm trong 1 class khác. Những class như thế gọi là <strong>nested class</strong>.</li>
-<li><strong>Nested class</strong> chia làm 2 loại: <strong>static nested class</strong> và <strong>non-static nested class/ inner class</strong>.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OuterClass</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticNestedClass</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="II-Inner-class"><a href="#II-Inner-class" class="headerlink" title="II, Inner class"></a>II, Inner class</h1><ul>
-<li>Bởi vì <strong>Inner class</strong> liên kết với 1 instance của <strong>outer class</strong> nên nó có thể truy cập các member (variable và method) khác của <strong>outer class</strong> ngay cả khi chúng khai báo với <strong>private</strong>. </li>
-<li>Vì nó liên kết với 1 instance của <strong>outer class</strong> nên nó không thể chứa bất kì static member nào.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OuterClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Compiler error do inner class không được chứa bất cứ static member nào</span></span><br><span class="line">        <span class="comment">// static int i = 1; </span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">" "</span> + index);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Một instance của <strong>inner class</strong> chỉ có thể tồn tại khi có 1 <strong>outer class</strong>.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OuterClass outerClass = <span class="keyword">new</span> OuterClass();</span><br><span class="line">OuterClass.InnerClass innerClass = outerClass.<span class="keyword">new</span> InnerClass();</span><br></pre></td></tr></table></figure>
-
-<h1 id="III-static-nested-class"><a href="#III-static-nested-class" class="headerlink" title="III, static nested class"></a>III, static nested class</h1><ul>
-<li>Giống như static member khác, <strong>static nested class</strong> liên kết với class chứa nó (không phải liên kết với instance).</li>
-<li>Do đó, nó không thể sử dụng các member của class chứa nó.</li>
-<li><strong>static nested class</strong> có behavior giống như <strong>top-level class</strong>.</li>
-<li>Bạn có thể khởi tạo nó mà không cần đến instance của class chứa nó:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OuterClass.StaticNestedClass nestedObject = <span class="keyword">new</span> OuterClass.StaticNestedClass();</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <div class="article-footer">
-      <!-- <blockquote class="mt-2x">
-  <ul class="post-copyright list-unstyled">
-    
-    <li class="post-copyright-link hidden-xs">
-      <strong>本文链接：</strong>
-      <a href="https://fs-sournary.github.io/2020/07/01/nested-class/" title="Tìm hiểu về nested class" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/01/nested-class/</a>
-    </li>
-    
-    <li class="post-copyright-license">
-      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
-    </li>
-  </ul>
-</blockquote>
-
-
-<div class="panel panel-default panel-badger">
+<article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
   <div class="panel-body">
-    <figure class="media">
-      <div class="media-left">
-        <a href="https://github.com/fs-sournary" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="/images/asta-2.jpg" class="img-rounded w-full" alt="">
-        </a>
-      </div>
-      <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang</span><small class="ml-1x"></small></a></h3>
-        <div>Android and self-learning developer</div>
-      </div>
-    </figure>
-  </div>
-</div>
- -->
+     <div class="article-meta">
+       <time datetime="2020-06-30T03:14:24.000Z" itemprop="datePublished">2020-06-30</time>
+     </div>
+     <h3 class="article-title" itemprop="name">
+       <a class="article-link" href="/2020/06/30/volatile-keyword/">Tìm hiểu về volatile keyword</a>
+     </h3>
+   </div>
+   
+   <div class="panel-footer">
+     
+      <a href="/tags/Java/" class="label label-default mb">Java</a>
+     
+      <a href="/tags/Kotlin/" class="label label-default mb">Kotlin</a>
+     
+     
+   </div>
+   
+</article>
 
+
+</div>
+
+      </div>
     </div>
   </article>
   
     
-
-  
-</div>
-
-  <nav class="bar bar-footer clearfix" data-stick-bottom>
-  <div class="bar-inner">
-  
-  <ul class="pager pull-left">
+    <nav class="bar bar-footer clearfix" data-stick-bottom>
+        <div class="bar-inner">
+        <ul class="pager pull-left">
+            
+            <li class="prev">
+                <a href="/tags/Kotlin/">
+                    <i class="icon icon-angle-left"></i>
+                    Prev
+                </a>
+            </li>
+            
+            
+            <li class="next disabled">
+                <a href="javascript:;">
+                    Next
+                    <i class="icon icon-angle-right"></i>                    
+                </a>
+            </li>
+            
+        </ul>
+        <div class="total-article bar-right">Page 2 of 2</div>
+        </div>
+    </nav>
     
-    <li class="prev">
-      <a href="/2020/07/01/string-stringbuilder-and-stringbuffer/" title="Tìm hiểu về String, StringBuilder và StringBuffer"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
-    
-    <li class="next">
-      <a href="/2020/07/01/static-keyword/" title="Tìm hiểu về static trong Java"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
-    </li>
-    
-    
-  </ul>
-  
-  
-  
-  <div class="bar-right">
-    
-  </div>
-  </div>
-</nav>
-  
-
-
+ 
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -511,10 +453,6 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
-
-
-
-   
 
 
 
