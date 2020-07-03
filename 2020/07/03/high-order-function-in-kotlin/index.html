@@ -17,16 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Tag: Android | IT life</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="IT and life">
-<meta property="og:url" content="https://fs-sournary.github.io/tags/Android/index.html">
+  <title>Tìm hiểu về high-order function trong kotlin | IT life</title>
+  <meta name="description" content="I, High-order function Các kotlin function đều là first class, nó có nghĩa là bạn có thể gán nó cho 1 variable, làm kiểu của tham số hoặc kết quả của 1 high-order function. High-order function là func">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tìm hiểu về high-order function trong kotlin">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/03/high-order-function-in-kotlin/index.html">
 <meta property="og:site_name" content="IT and life">
+<meta property="og:description" content="I, High-order function Các kotlin function đều là first class, nó có nghĩa là bạn có thể gán nó cho 1 variable, làm kiểu của tham số hoặc kết quả của 1 high-order function. High-order function là func">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-03T08:47:59.000Z">
+<meta property="article:modified_time" content="2020-07-03T09:57:28.404Z">
 <meta property="article:author" content="Sang">
+<meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/tags/Android/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/03/high-order-function-in-kotlin/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -313,60 +318,140 @@
 </aside>
 
   
-  <main class="main" role="main">
-  <article class="content article article-tags post-type-list" itemscope="">
-    <header class="article-header">
-      <h1 itemprop="name" class="hidden-xs">Tag: Android</h1>
-      <p class="text-muted hidden-xs">Total 1 articles</p>
-      <nav role="navigation" id="nav-main" class="okayNav">
-        <ul>
-          <li><a href="/tags">All</a></li>
-          
-          <li><a href="/tags/Android/">Android</a></li>
-          
-          <li><a href="/tags/Design-pattern/">Design pattern</a></li>
-          
-          <li><a href="/tags/Kotlin/">Kotlin</a></li>
-          
-          <li><a href="/tags/Java/">Java</a></li>
-          
-        </ul>
-      </nav>
-    </header>
-    <!-- /header -->
-    <div class="article-body">
-      <div class="row">
-        
-<div class="col-md-6">
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-high-order-function-in-kotlin" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
-<article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="panel-body">
-     <div class="article-meta">
-       <time datetime="2020-06-28T02:43:12.000Z" itemprop="datePublished">2020-06-28</time>
-     </div>
-     <h3 class="article-title" itemprop="name">
-       <a class="article-link" href="/2020/06/28/android-design-pattern-part-I/">Implement design pattern trong Android với Kotlin phần I</a>
-     </h3>
-   </div>
-   
-   <div class="panel-footer">
-     
-      <a href="/tags/Android/" class="label label-default mb">Android</a>
-     
-      <a href="/tags/Design-pattern/" class="label label-default mb">Design pattern</a>
-     
-     
-   </div>
-   
-</article>
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tìm hiểu về high-order function trong kotlin
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/07/03/high-order-function-in-kotlin/" class="article-date">
+	  <time datetime="2020-07-03T08:47:59.000Z" itemprop="datePublished">2020-07-03</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
+  </span>
 
 
-</div>
+        
 
+        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/03/high-order-function-in-kotlin/#comments" class="article-comment-link">Comments</a></span> -->
+        
       </div>
     </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="I-High-order-function"><a href="#I-High-order-function" class="headerlink" title="I, High-order function"></a>I, High-order function</h1><ul>
+<li>Các kotlin function đều là <code>first class</code>, nó có nghĩa là bạn có thể gán nó cho 1 variable, làm kiểu của tham số hoặc kết quả của 1 high-order function.</li>
+<li><code>High-order function</code> là function lấy function khác làm tham số hoặc trả về 1 function.</li>
+<li>Để hiểu rõ hơn, chúng ta sẽ đi phân tích high-order function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/fold.html" target="_blank" rel="noopener">fold()</a>:</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> Iterable<span class="type">&lt;T&gt;</span>.<span class="title">fold</span><span class="params">(initial: <span class="type">R</span>, operation: (<span class="type">R</span>, <span class="type">T</span>) -&gt; <span class="type">R</span>)</span></span>: R &#123;</span><br><span class="line">    <span class="keyword">var</span> accumulator = initial</span><br><span class="line">    <span class="keyword">for</span> (element <span class="keyword">in</span> <span class="keyword">this</span>) accumulator = operation(accumulator, element)</span><br><span class="line">    <span class="keyword">return</span> accumulator</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>fold()</code> nhận 2 tham số: <ul>
+<li>1, <code>initial</code>: có kiểu là <code>R</code></li>
+<li>2, <code>operation</code>: có kiểu là <code>(R, T) -&gt; R</code> ?</li>
+</ul>
+</li>
+<li>Như mình đã nói ở trên, function cũng có có thể làm tham số.</li>
+<li>Do đó <code>(R, T) -&gt; R</code> định nghĩa cho 1 function type có:<ul>
+<li>1, 2 tham số là với kiểu là R và T.</li>
+<li>2, Giá trị trả về có kiểu là R.</li>
+</ul>
+</li>
+</ul>
+<h1 id="II-Function-types"><a href="#II-Function-types" class="headerlink" title="II, Function types"></a>II, Function types</h1><ul>
+<li>Ta có <code>(R, T) -&gt; R</code> là một <code>function type</code> do đó nó có thể là kiểu dữ liệu của 1 variable như <code>val operation: (R, T) -&gt; R = ...</code></li>
+<li>Khi sử dụng function type, bạn cần chú ý:<ul>
+<li>1, Function type đều có 1 list kiểu dữ liệu các tham số và kiểu của dữ liệu trả về. Ví dụ <code>(A, B) -&gt; C</code> có danh sách kiểu dữ liệu là A, B và gía trị trả về có kiểu dữ liệu là C.</li>
+<li>2, list kiểu dữ liệu của tham số có thể rỗng như <code>() -&gt; A</code>. Kiểu của dữ liệu trả về không được thiếu.</li>
+<li>3, Function type có thể có thêm kiểu dữ liệu của <code>receiver</code>. Ví dụ <code>A.(B) -&gt; C</code> có kiểu dữ liệu của receiver là A, kiểu dữ liệu của tham số là B và kiểu dữ liệu của giá trị trả về là C.</li>
+<li>4, <code>Suspending function</code> là function đặc biệt (dùng nhiều trong Coroutine mình sẽ giới thiệu công cụ tuyệt vời này sau), bạn phải thêm <code>suspend</code> keyword như <code>suspend () -&gt; A</code>, <code>suspend A.(B) -&gt; C</code>.</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://fs-sournary.github.io/2020/07/03/high-order-function-in-kotlin/" title="Tìm hiểu về high-order function trong kotlin" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/03/high-order-function-in-kotlin/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/fs-sournary" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/asta-2.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang (Solo leveling)</span><small class="ml-1x"></small></a></h3>
+        <div>Android and self-learning developer</div>
+      </div>
+    </figure>
+  </div>
+</div>
+ -->
+
+    </div>
   </article>
-   
+  
+    
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2020/07/03/labels-and-jump-expression-in-kotlin/" title="Tìm hiểu về labels và jump expression trong Kotlin"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -417,6 +502,10 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+
+
+
+   
 
 
 

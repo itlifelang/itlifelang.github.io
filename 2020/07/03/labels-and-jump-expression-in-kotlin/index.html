@@ -17,22 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Tìm hiểu về synchronized | IT life</title>
-  <meta name="description" content="I, Lời mở đầu Nếu bạn chưa đọc về volatile, mình khuyên bạn nên tìm hiểu trước về keyword này trước. Trong Java&#x2F;kotlin, chúng ta có thể đã sử dụng qua synchronized keyword.  Vâỵ thực sự nó có ý nghĩa">
+  <title>Tìm hiểu về labels và jump expression trong Kotlin | IT life</title>
+  <meta name="description" content="I, Label Trong Kotlin, bất cứ expression nào đều có thể được đánh dấu bằng label. Label được tạo nên từ định danh của label và @ như abc@, lit@, forTest@… Để đặt label lên 1 expression, chúng ta chỉ c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tìm hiểu về synchronized">
-<meta property="og:url" content="https://fs-sournary.github.io/2020/06/30/synchronized-keyword/index.html">
+<meta property="og:title" content="Tìm hiểu về labels và jump expression trong Kotlin">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/03/labels-and-jump-expression-in-kotlin/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, Lời mở đầu Nếu bạn chưa đọc về volatile, mình khuyên bạn nên tìm hiểu trước về keyword này trước. Trong Java&#x2F;kotlin, chúng ta có thể đã sử dụng qua synchronized keyword.  Vâỵ thực sự nó có ý nghĩa">
+<meta property="og:description" content="I, Label Trong Kotlin, bất cứ expression nào đều có thể được đánh dấu bằng label. Label được tạo nên từ định danh của label và @ như abc@, lit@, forTest@… Để đặt label lên 1 expression, chúng ta chỉ c">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-06-30T08:43:23.000Z">
-<meta property="article:modified_time" content="2020-07-02T14:35:11.890Z">
+<meta property="article:published_time" content="2020-07-03T07:25:59.000Z">
+<meta property="article:modified_time" content="2020-07-03T08:46:04.169Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Kotlin">
-<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/2020/06/30/synchronized-keyword/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/03/labels-and-jump-expression-in-kotlin/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -322,14 +321,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-synchronized-keyword" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-labels-and-jump-expression-in-kotlin" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Tìm hiểu về synchronized
+      Tìm hiểu về labels và jump expression trong Kotlin
     </h1>
   
 
@@ -337,51 +336,76 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/06/30/synchronized-keyword/" class="article-date">
-	  <time datetime="2020-06-30T08:43:23.000Z" itemprop="datePublished">2020-06-30</time>
+	<a href="/2020/07/03/labels-and-jump-expression-in-kotlin/" class="article-date">
+	  <time datetime="2020-07-03T07:25:59.000Z" itemprop="datePublished">2020-07-03</time>
 	</a>
 </span>
         
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
+	<a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
   </span>
 
 
         
 
-        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/30/synchronized-keyword/#comments" class="article-comment-link">Comments</a></span> -->
+        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/03/labels-and-jump-expression-in-kotlin/#comments" class="article-comment-link">Comments</a></span> -->
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="I-Loi-mo-dau"><a href="#I-Loi-mo-dau" class="headerlink" title="I, Lời mở đầu"></a>I, Lời mở đầu</h1><ul>
-<li>Nếu bạn chưa đọc về <a href="https://fs-sournary.github.io/2020/06/30/volatile-keyword/">volatile</a>, mình khuyên bạn nên tìm hiểu trước về keyword này trước.</li>
-<li>Trong Java/kotlin, chúng ta có thể đã sử dụng qua <code>synchronized</code> keyword. </li>
-<li>Vâỵ thực sự nó có ý nghĩa gì và thường áp dụng vào trong trường hợp nào ? Hôm nay mình sẽ nói cụ thể hơn về keyword này.</li>
+        <h1 id="I-Label"><a href="#I-Label" class="headerlink" title="I, Label"></a>I, Label</h1><ul>
+<li>Trong Kotlin, bất cứ expression nào đều có thể được đánh dấu bằng <code>label</code>.</li>
+<li>Label được tạo nên từ định danh của label và <code>@</code> như <code>abc@</code>, <code>lit@</code>, <code>forTest@</code>…</li>
+<li>Để đặt label lên 1 expression, chúng ta chỉ cần đặt label trước expression đó.</li>
+<li><strong>Ví dụ 1:</strong> đặt <code>loop@</code> label cho vòng lặp <code>for</code></li>
 </ul>
-<h1 id="II-Y-nghia-va-use-cases"><a href="#II-Y-nghia-va-use-cases" class="headerlink" title="II, Ý nghĩa và use cases"></a>II, Ý nghĩa và use cases</h1><ul>
-<li>Cớ chế <code>synchronized</code> có thể được sử dụng như <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/synchronized.html" target="_blank" rel="noopener">synchronized()</a> function hay <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-synchronized/" target="_blank" rel="noopener">Synchronized</a> annotation.</li>
-<li>Trong multiple thread application, việc đọc và ghi có thể bị cản trở bởi 1 vài lý do như switching, file handler…</li>
-<li>Cơ chế <strong>synchronized</strong> đâm bảo rằng việc đọc và viết các variable, object hay thực hiện các function không bị cản trở.</li>
-<li>Trong Sun document, họ cũng đã nói rõ về keyword này: </li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">loop@ <span class="keyword">for</span> (i in <span class="number">1</span>..<span class="number">100</span>) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="II-Jump-expression"><a href="#II-Jump-expression" class="headerlink" title="II, Jump expression"></a>II, Jump expression</h1><ul>
+<li>Kotlin cung cấp 3 jump expression:<ul>
+<li>1, <code>return</code>: mặc định nó sẽ return function gần nhất hoặc return anonymous function.</li>
+<li>2, <code>break</code>: kết thúc vòng lập gần nhất.</li>
+<li>3, <code>continue</code>: thực hiện bước tiếp theo của vòng lặp gần nhất.</li>
 </ul>
-<blockquote>
-<p>synchronized methods enable a simple strategy for preventing thread interference and memory consistency errors: if an object is visible to more than one thread, all reads or writes to that object’s variables are done through synchronized methods.</p>
-</blockquote>
-<ul>
-<li><strong>Ví dụ:</strong></li>
+</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SynchronizedDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Volatile</span></span><br><span class="line">    <span class="meta">@Synchronized</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> index: Int = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="1-Break-va-continue"><a href="#1-Break-va-continue" class="headerlink" title="1, Break và continue"></a>1, Break và continue</h2><ul>
+<li><strong>Ví dụ 2:</strong> khi <code>i = 5</code>, vòng lặp sẽ kết thúc bằng việc sử dụng <code>break</code>.</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">loop@</span> <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>..<span class="number">9</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">5</span>) <span class="keyword">break</span><span class="symbol">@loop</span></span><br><span class="line">    print(i) <span class="comment">// result: 1234</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>Trong ví dụ trên, <code>index</code> được annotate bằng <code>volatile</code> keyword có nghĩa là <code>index</code> sẽ visible với các Thread dùng tới nó.</li>
-<li>Nhưng không có gì đảo rằng việc đọc và ghi <code>index</code> trên các Thread khác nhau không bị cản trở và có thể bị error.</li>
-<li>Khi bạn sử dụng <code>@Synchronized</code> annotation, nó sẽ đảm bảo các cản trở đó sẽ không bị diễn ra. Do đó nó sẽ an toàn (thread-safe) khi sử dụng multiple thread.</li>
-<li>Mình hay kết hợp <code>volatile</code> và <code>synchronized</code> để implement <a href="https://fs-sournary.github.io/2020/06/28/android-design-pattern-part-I/#1-Singleton-pattern">Singleton pattern</a>.</li>
+<li><strong>Ví dụ 3:</strong> khi <code>i = 5</code>, sẽ không in ra 5 bởi vì <code>continue</code> nhảy đến step tiếp theo trong <code>for</code>. </li>
 </ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">loop@</span> <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>..<span class="number">9</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">5</span>) <span class="keyword">continue</span><span class="symbol">@loop</span></span><br><span class="line">    print(i) <span class="comment">// result: 12346789. Don't have 5 because `continue` jumps to next step.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-return"><a href="#2-return" class="headerlink" title="2, return"></a>2, return</h2><ul>
+<li>Các local function, object expression và lambada có thể lồng nhau.</li>
+<li>Mặc định, <code>return</code> sẽ return function gần nó nhất hoặc anonymous function.</li>
+<li><strong>Ví dụ 4:</strong> sau khi in ra 1, 2 thì <code>return</code> kết thúc hàm gần nó nhất là <code>foo()</code></li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach &#123;</span><br><span class="line">        <span class="keyword">if</span> (it == <span class="number">3</span>) <span class="keyword">return</span> <span class="comment">// non-local return directly to the caller of foo()</span></span><br><span class="line">        print(it)</span><br><span class="line">    &#125;</span><br><span class="line">    println(<span class="string">"this point is unreachable"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Result: 1, 2</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Một tác dụng quan trọng của <code>return</code> là dùng để return 1 lambada. </li>
+<li><strong>Ví dụ 5:</strong></li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach <span class="symbol">lit@</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (it == <span class="number">3</span>) <span class="keyword">return</span><span class="symbol">@lit</span> <span class="comment">// local return to the caller of the lambda, i.e. the forEach loop</span></span><br><span class="line">        print(it)</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">" done with explicit label"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Result: 1245 done with implicit label</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Thông thường, Kotlin đã định nghĩa sẵn các label cho lambada được truyền vào 1 function. Label thường có tên giống với tên của lambada đó.</li>
+</ul>
+<p><strong>Ví dụ 6:</strong></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach &#123;</span><br><span class="line">        <span class="keyword">if</span> (it == <span class="number">3</span>) <span class="keyword">return</span><span class="symbol">@forEach</span> <span class="comment">// local return to the caller of the lambda, i.e. the forEach loop</span></span><br><span class="line">        print(it)</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">" done with implicit label"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Result: 1245 done with implicit label</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Chúng ta không thể dùng <code>break</code> và <code>continue</code> trong vòng lặp.</li>
+</ul>
+<p><strong>Ví dụ 7:</strong> chúng ta muốn dừng việc lặp của <code>listOf(1, 2, 3, 4, 5)</code> khi item nó bằng 3</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">fun <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    run loop@&#123;</span><br><span class="line">        listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach &#123;</span><br><span class="line">            <span class="keyword">if</span> (it == <span class="number">3</span>) <span class="keyword">return</span><span class="meta">@loop</span> <span class="comment">// non-local return from the lambda passed to run</span></span><br><span class="line">            print(it)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">" done with nested loop"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Result: 12 done with nested loop</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -391,7 +415,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://fs-sournary.github.io/2020/06/30/synchronized-keyword/" title="Tìm hiểu về synchronized" target="_blank" rel="external">https://fs-sournary.github.io/2020/06/30/synchronized-keyword/</a>
+      <a href="https://fs-sournary.github.io/2020/07/03/labels-and-jump-expression-in-kotlin/" title="Tìm hiểu về labels và jump expression trong Kotlin" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/03/labels-and-jump-expression-in-kotlin/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -432,12 +456,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2020/06/30/exception/" title="Tìm hiểu về Exception"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+      <a href="/2020/07/03/high-order-function-in-kotlin/" title="Tìm hiểu về high-order function trong kotlin"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/2020/06/30/volatile-keyword/" title="Tìm hiểu về volatile keyword"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/07/03/array-vs-collection-in-kotlin/" title="So sánh Array và Collection trong Kotlin"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
