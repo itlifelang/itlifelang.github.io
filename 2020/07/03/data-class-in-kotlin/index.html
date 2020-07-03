@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Tìm hiểu về data class trong Kotlin | IT life</title>
+  <meta name="description" content="I, Data class Chúng ta thường xuyên tạo các class với mục đích chính là xử lý data. Ở những class như vậy, chúng ta cần thiết phải implement 1 số phương thức liên quan tới data. Ví dụ 1: ở Java, việc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tìm hiểu về data class trong Kotlin">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/03/data-class-in-kotlin/index.html">
+<meta property="og:site_name" content="IT and life">
+<meta property="og:description" content="I, Data class Chúng ta thường xuyên tạo các class với mục đích chính là xử lý data. Ở những class như vậy, chúng ta cần thiết phải implement 1 số phương thức liên quan tới data. Ví dụ 1: ở Java, việc">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-02T22:07:38.000Z">
+<meta property="article:modified_time" content="2020-07-02T23:49:02.222Z">
+<meta property="article:author" content="Sang">
+<meta property="article:tag" content="Kotlin">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/03/data-class-in-kotlin/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/information.svg" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/fs-sournary" target="_blank">
+          <img class="img-circle img-rotate" src="/images/asta-2.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Vũ Đức Sang (Solo leveling)</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hà Nội, Việt Nam</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/fs-sournary" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>It doesn't matter how much slowly you go as long as you don't stop</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-pattern/" rel="tag">Design pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/03/array-vs-collection-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://i.ytimg.com/vi/c61qqPfiA2w/maxresdefault.jpg)" alt="So sánh Array và Collection trong Kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/03/array-vs-collection-in-kotlin/" class="title">So sánh Array và Collection trong Kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-03T02:34:16.000Z" itemprop="datePublished">2020-07-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/03/scope-function-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://piotrminkowski.files.wordpress.com/2020/04/kotlin-scope-functions.png)" alt="Tìm hiểu về scope function trong Kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/03/scope-function-in-kotlin/" class="title">Tìm hiểu về scope function trong Kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-03T00:30:54.000Z" itemprop="datePublished">2020-07-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/03/data-class-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://miro.medium.com/max/2560/1*0aJHAfRmoOM2BSw_dPGDMw.jpeg)" alt="Tìm hiểu về data class trong Kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/03/data-class-in-kotlin/" class="title">Tìm hiểu về data class trong Kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-02T22:07:38.000Z" itemprop="datePublished">2020-07-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/02/visibility-modifier-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://i.ytimg.com/vi/aiXJIw23Fhs/maxresdefault.jpg)" alt="Tìm hiểu về visibility modifier trong kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/02/visibility-modifier-in-kotlin/" class="title">Tìm hiểu về visibility modifier trong kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-02T10:12:08.000Z" itemprop="datePublished">2020-07-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/02/lateinit-vs-lazy-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://ahsensaeed.com/wp-content/uploads/2019/05/kotlin-lateinit-delegate-vs-lazy-fucntion.png)" alt="Tìm hiểu về lateinit và lazy trong Kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/02/lateinit-vs-lazy-in-kotlin/" class="title">Tìm hiểu về lateinit và lazy trong Kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-02T03:46:09.000Z" itemprop="datePublished">2020-07-02</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-data-class-in-kotlin" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tìm hiểu về data class trong Kotlin
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/07/03/data-class-in-kotlin/" class="article-date">
+	  <time datetime="2020-07-02T22:07:38.000Z" itemprop="datePublished">2020-07-03</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
+  </span>
+
+
+        
+
+        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/03/data-class-in-kotlin/#comments" class="article-comment-link">Comments</a></span> -->
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="I-Data-class"><a href="#I-Data-class" class="headerlink" title="I, Data class"></a>I, Data class</h1><ul>
+<li>Chúng ta thường xuyên tạo các class với mục đích chính là xử lý data.</li>
+<li>Ở những class như vậy, chúng ta cần thiết phải implement 1 số phương thức liên quan tới data.</li>
+<li><strong>Ví dụ 1:</strong> ở <code>Java</code>, việc này hoàn toàn làm bằng tay và khá dài dòng</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Data</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == o) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="keyword">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">        User user = (User) o;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (age != user.age) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> name != <span class="keyword">null</span> ? user.equals(user.name) : user.name == <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = name != <span class="keyword">null</span> ? user.hashCode() : <span class="number">0</span>;</span><br><span class="line">        result = <span class="number">31</span> * result + age;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Data&#123;"</span> + <span class="string">"name="</span> + name + <span class="string">", age="</span> + age + <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Kotlin cung cấp cho chúng ta <code>data class</code> để những class được tạo có mục đích chính là nắm giữ data.</li>
+<li>Bạn chỉ cần thêm <code>data</code> keyword vào trước <code>class</code> trong khai báo 1 class.</li>
+<li><strong>Ví dụ 2:</strong> data class sẽ implement đầy đủ các phương thức hơn so với ví dụ 1</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">data class <span class="title">User</span><span class="params">(val name: String, val age: Int)</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Compiler sẽ tự động compile để implement các function dựa trên các property được khai báo ở primary constructor:<ul>
+<li>1, <code>equals()</code>, <code>hashCode()</code>.</li>
+<li>2, <code>toString()</code> với định dạng <code>&quot;User(name=John, age=42)&quot;</code>.</li>
+<li>3, <code>ComponentN()</code> để get các property dựa trên thứ tự sắp xếp của chúng như <code>val name: String = person.component1()</code>, <code>val age: Int = person.component2()</code>.</li>
+<li>4, <code>copy()</code> (mình sẽ nói rõ hơn ở III).</li>
+</ul>
+</li>
+<li>Data class cũng cần phải tuân thủ các quy định sau:<ul>
+<li>1, Primary constructor cần ít nhất 1 parameter.</li>
+<li>2, Tất cả parameter của primary constructor phải được sử dụng với <code>val</code> hoặc <code>var</code>.</li>
+<li>3, Data class không thể là <code>abstract</code>, <code>open</code>, <code>sealed</code> hoặc <code>inner</code> class (static nested class vãn được nhé).</li>
+</ul>
+</li>
+</ul>
+<h1 id="II-Property-o-body-class"><a href="#II-Property-o-body-class" class="headerlink" title="II, Property ở body class"></a>II, Property ở body class</h1><ul>
+<li>Ở trên mình nói nhiều đến parameter ở trong primary constructor, nhưng nếu bạn khai báo property trong body class thì sao ?</li>
+<li>Chỉ có các paramter ở trong primary constructor được sử dụng cho <code>equals()</code>, <code>hashCode()</code>, <code>toString()</code>, <code>copy()</code> và <code>componentN()</code>. </li>
+<li><strong>Ví dụ 3:</strong> chỉ có <code>name</code> parameter được sử dụng và chỉ có 1 method <code>component1()</code> được sinh ra. </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">data class <span class="title">Person</span><span class="params">(val name: String)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> age: Int = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">fun <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    val person1 = Person(<span class="string">"John"</span>)</span><br><span class="line">    val person2 = Person(<span class="string">"John"</span>)</span><br><span class="line">    person1.age = <span class="number">10</span></span><br><span class="line">    person2.age = <span class="number">20</span></span><br><span class="line">    println(<span class="string">"person1 == person2: $&#123;person1 == person2&#125;"</span>) <span class="comment">// return true</span></span><br><span class="line">    println(<span class="string">"person1 with age $&#123;person1.age&#125;: $&#123;person1&#125;"</span>) <span class="comment">// person1 with age 10: Person(name=John)</span></span><br><span class="line">    println(<span class="string">"person2 with age $&#123;person2.age&#125;: $&#123;person2&#125;"</span>) <span class="comment">// person2 with age 20: Person(name=John)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Do <code>age</code> không được sử dụng, do đó nếu 2 variable <code>Person</code> có <code>age</code> khác nhau nhưng <code>name</code> bằng nhau thì 2 variable <code>Person</code> vẫn bằng nhau.</li>
+</ul>
+<h1 id="III-Copy"><a href="#III-Copy" class="headerlink" title="III, Copy()"></a>III, Copy()</h1><ul>
+<li>Phương thức <code>copy()</code> được sử dụng nếu bạn muốn tạo ra 1 Object mới:<ul>
+<li>1, có cùng type.</li>
+<li>2, Object mới copy 1 vài parameter(các paramter không đổi) hoặc copy tất cả.</li>
+</ul>
+</li>
+<li><strong>Ví dụ 4:</strong> class <code>Person</code> ở ví dụ 2 implement <code>copy()</code> như sau:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">data class <span class="title">User</span><span class="params">(val name: String, val age: Int)</span></span>&#123; </span><br><span class="line"></span><br><span class="line">    <span class="function">fun <span class="title">copy</span><span class="params">(name: String = <span class="keyword">this</span>.name, age: Int = <span class="keyword">this</span>.age)</span> </span>= User(name, age)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">val itLife = User(name = <span class="string">"IT life"</span>, age = <span class="number">20</span>)</span><br><span class="line">val copyIt = itLife.copy(age = <span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="IV-Standard-data-class"><a href="#IV-Standard-data-class" class="headerlink" title="IV, Standard data class"></a>IV, Standard data class</h1><ul>
+<li>Standard library cung cấp 2 data class là <code>Pair</code> và <code>Triple</code>.</li>
+<li><strong>Ví dụ 5:</strong> xem source code của <code>Pair</code> và <code>Triple</code> trong <code>Tuples.kt</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// `Pair` data class</span></span><br><span class="line"><span class="keyword">public</span> data <span class="class"><span class="keyword">class</span> <span class="title">Pair</span>&lt;<span class="title">out</span> <span class="title">A</span>, <span class="title">out</span> <span class="title">B</span>&gt;(</span></span><br><span class="line">    public val first: A , </span><br><span class="line">    <span class="keyword">public</span> val second: B</span><br><span class="line">) : Serializable &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> override fun <span class="title">toString</span><span class="params">()</span>: String </span>= <span class="string">"($first, $second)"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// `Triple` data class</span></span><br><span class="line"><span class="keyword">public</span> data <span class="class"><span class="keyword">class</span> <span class="title">Triple</span>&lt;<span class="title">out</span> <span class="title">A</span>, <span class="title">out</span> <span class="title">B</span>, <span class="title">out</span> <span class="title">C</span>&gt;(</span></span><br><span class="line">    public val first: A,</span><br><span class="line">    <span class="keyword">public</span> val second: B,</span><br><span class="line">    <span class="keyword">public</span> val third: C</span><br><span class="line">) : Serializable &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> override fun <span class="title">toString</span><span class="params">()</span>: String </span>= <span class="string">"($first, $second, $third)"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://fs-sournary.github.io/2020/07/03/data-class-in-kotlin/" title="Tìm hiểu về data class trong Kotlin" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/03/data-class-in-kotlin/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/fs-sournary" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/asta-2.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang (Solo leveling)</span><small class="ml-1x"></small></a></h3>
+        <div>Android and self-learning developer</div>
+      </div>
+    </figure>
+  </div>
+</div>
+ -->
+
+    </div>
+  </article>
+  
+    
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/07/03/scope-function-in-kotlin/" title="Tìm hiểu về scope function trong Kotlin"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/07/02/visibility-modifier-in-kotlin/" title="Tìm hiểu về visibility modifier trong kotlin"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/fs-sournary" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+</body>
+</html>

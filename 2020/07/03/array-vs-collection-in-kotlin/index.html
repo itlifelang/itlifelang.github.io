@@ -17,16 +17,23 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Archive: 2020/6 | IT life</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="IT and life">
-<meta property="og:url" content="https://fs-sournary.github.io/archives/2020/06/index.html">
+  <title>So sánh Array và Collection trong Kotlin | IT life</title>
+  <meta name="description" content="I, Array1234567891011public class Array&lt;T&gt; &amp;#123;    public inline constructor(size: Int, init: (Int) -&gt; T)    public operator fun get(index: Int): T    public operator fun set(index: Int, va">
+<meta property="og:type" content="article">
+<meta property="og:title" content="So sánh Array và Collection trong Kotlin">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/03/array-vs-collection-in-kotlin/index.html">
 <meta property="og:site_name" content="IT and life">
+<meta property="og:description" content="I, Array1234567891011public class Array&lt;T&gt; &amp;#123;    public inline constructor(size: Int, init: (Int) -&gt; T)    public operator fun get(index: Int): T    public operator fun set(index: Int, va">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://fs-sournary.github.io/2020/07/03/array-vs-collection-in-kotlin/collections-diagram.png">
+<meta property="article:published_time" content="2020-07-03T02:34:16.000Z">
+<meta property="article:modified_time" content="2020-07-03T03:59:50.739Z">
 <meta property="article:author" content="Sang">
+<meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fs-sournary.github.io/2020/07/03/array-vs-collection-in-kotlin/collections-diagram.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/archives/2020/06/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/03/array-vs-collection-in-kotlin/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -315,78 +322,150 @@
   
   
 <main class="main" role="main">
-  	<article class="content article article-archives article-type-list" itemscope="">
-	    <header class="article-header">
-	      <h1 itemprop="title">Archive: 2020/6</h1>
-	      <p class="text-muted">Total 4 articles</p>
-	    </header>
-	    <div class="article-body">
-	      
-  
-  
+  <div class="content">
+  <article id="post-array-vs-collection-in-kotlin" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
-    
+    <div class="article-header">
       
+        
+  
+    <h1 class="article-title" itemprop="name">
+      So sánh Array và Collection trong Kotlin
+    </h1>
+  
+
       
-      <section class="panel panel-default b-no">
-        <div class="panel-heading" role="tab">
-          <h3 class="panel-title">
-            <a data-toggle="collapse" href="#collapse2020" aria-expanded="true">
-              <i class="icon icon-calendar-plus text-active"></i><i class="icon icon-calendar-minus text"></i>
-              2020
-            </a>
-            <!-- <a href="/archives/2020" class="archive-year">2020</a> -->
-          </h3>
-        </div>
-        <div id="collapse2020" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2020">
-        <div class="panel-body">
-          <div class="collection">
-    
-    
-<a href="/2020/06/30/exception/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-06-30T09:41:14.000Z" itemprop="datePublished">2020-06-30</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Tìm hiểu về Exception
-</a>
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/07/03/array-vs-collection-in-kotlin/" class="article-date">
+	  <time datetime="2020-07-03T02:34:16.000Z" itemprop="datePublished">2020-07-03</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
+  </span>
 
 
+        
+
+        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/03/array-vs-collection-in-kotlin/#comments" class="article-comment-link">Comments</a></span> -->
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="I-Array"><a href="#I-Array" class="headerlink" title="I, Array"></a>I, Array</h1><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Array</span>&lt;<span class="type">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">inline</span> <span class="keyword">constructor</span>(size: <span class="built_in">Int</span>, <span class="keyword">init</span>: (<span class="built_in">Int</span>) -&gt; T)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">get</span><span class="params">(index: <span class="type">Int</span>)</span></span>: T</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">set</span><span class="params">(index: <span class="type">Int</span>, value: <span class="type">T</span>)</span></span>: <span class="built_in">Unit</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">val</span> size: <span class="built_in">Int</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">iterator</span><span class="params">()</span></span>: Iterator&lt;T&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>Array&lt;T&gt;</code> là class chứa một mảng các phần tử T.</li>
+<li>Để tạo 1 array, chúng ta có thể sử dụng:<ul>
+<li>1, <code>arrayOf()</code>: tạo ra 1 array và mỗi phần tử không được phép null.</li>
+<li>2, <code>arrayOfNulls()</code>: tạo ra 1 array các phần tử và cho phép phần tử null.</li>
+<li>3, <code>Array()</code>: tạo ra một mảng với kích thước cố định và khởi tạo giá trị ban đầu cho từng phần tử.</li>
+</ul>
+</li>
+<li><strong>Chú ý:</strong> <code>Array</code> không phải là 1 phần của <code>Collection</code>.</li>
+<li><strong>Ví dụ 1:</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val array = arrayOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Creates an Array&lt;String&gt; with values ["0", "1", "4", "9", "16"]</span></span><br><span class="line">val asc = Array(<span class="number">5</span>) &#123; i -&gt; (i * i).toString() &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Đối với primitive object type, Kotlin cung cấp sẵn các class để tạo ra array: <code>ByteArray</code>, <code>CharArray</code>, <code>ShortArray</code>, <code>IntArray</code>, <code>LongArray</code>, <code>FloatArray</code>, <code>DoubleArray</code> và <code>BooleanArray</code>.</li>
+<li>Chúng không có quan hệ gì với <code>Array&lt;T&gt;</code> class cả. </li>
+</ul>
+<h1 id="II-Collection"><a href="#II-Collection" class="headerlink" title="II, Collection"></a>II, Collection</h1><ul>
+<li>Chúng ta thường nhầm lẫn rằng <code>Array</code> là 1 phần của <code>Collection</code>. Điều này là không đúng.</li>
+<li>Collection là một tập hợp các Object cùng kiểu. </li>
+<li>Mỗi object trong collection được gọi là phần tử / element / item.</li>
+<li>Collection có 3 kiểu cơ bản:<ul>
+<li>1, <code>List</code>: là 1 tập hợp có thứ tự và mỗi item được truy cập thông qua chỉ số (vị trí). Chỉ số là các số integer. Một item có thể xuất hiện nhiều hơn 1 lần trong List (chỉ số khác nhau).</li>
+<li>2, <code>Set</code>: là 1 tập hợp các item mà mỗi item là duy nhất. Các element không được lặp lại do đó nó có thể chứa duy nhất 1 <code>null</code> item. Trong Set, thứ tự các item là không quan trọng. </li>
+<li>3, <code>Map</code> (dictionary): 1 tập các item có dạng <code>key/value</code>. Key là duy nhất dùng để phân biệt các item, value có thể được lặp lại.</li>
+</ul>
+</li>
+<li>Trong mỗi kiểu cơ bản chúng ta có thể chia nó làm 2 dạng:<ul>
+<li>1, <code>Read-only</code>: chỉ cho phép truy cập tới các item.</li>
+<li>2, <code>Mutable</code>: read-only + khả năng write: add, remove và update.</li>
+</ul>
+</li>
+<li>Chúng ta có thể xem source code của các collection trong file <code>Collections.kt</code></li>
+</ul>
+<img src="/2020/07/03/array-vs-collection-in-kotlin/collections-diagram.png" class="">
+
+<ul>
+<li><a href="https://kotlinlang.org/docs/reference/collections-overview.html#list" target="_blank" rel="noopener">List</a> và <a href="https://kotlinlang.org/docs/reference/collections-overview.html#set" target="_blank" rel="noopener">Set</a> đều kế implement <code>Collection</code> interface.</li>
+<li>Tuy <a href="https://kotlinlang.org/docs/reference/collections-overview.html#map" target="_blank" rel="noopener">Map</a> không implement <code>Collection</code> nhưng nó vẫn là 1 kiểu của collection.</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://fs-sournary.github.io/2020/07/03/array-vs-collection-in-kotlin/" title="So sánh Array và Collection trong Kotlin" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/03/array-vs-collection-in-kotlin/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/fs-sournary" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/asta-2.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang (Solo leveling)</span><small class="ml-1x"></small></a></h3>
+        <div>Android and self-learning developer</div>
+      </div>
+    </figure>
+  </div>
+</div>
+ -->
+
+    </div>
+  </article>
   
     
-    
-    
-<a href="/2020/06/30/synchronized-keyword/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-06-30T08:43:23.000Z" itemprop="datePublished">2020-06-30</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Tìm hiểu về synchronized
-</a>
-
 
   
-    
-    
-    
-<a href="/2020/06/30/volatile-keyword/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-06-30T03:14:24.000Z" itemprop="datePublished">2020-06-30</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Tìm hiểu về volatile keyword
-</a>
+</div>
 
-
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
   
+  <ul class="pager pull-left">
     
     
+    <li class="next">
+      <a href="/2020/07/03/scope-function-in-kotlin/" title="Tìm hiểu về scope function trong Kotlin"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
     
-<a href="/2020/06/28/android-design-pattern-part-I/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-06-28T02:43:12.000Z" itemprop="datePublished">2020-06-28</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Implement design pattern trong Android với Kotlin phần I
-</a>
-
-
+    
+  </ul>
   
   
-    </div></div></div></section>
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
   
 
-	    </div>
-  	</article>
-  	 	
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -437,6 +516,10 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+
+
+
+   
 
 
 
