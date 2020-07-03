@@ -4645,7 +4645,7 @@ input[type="search"] {
 .label {
   display: inline-block;
   padding: .3em .6em;
-  font-size: 75%;
+  font-size: 12px;
   font-weight: bold;
   line-height: 1;
   color: #777777;
@@ -4734,6 +4734,7 @@ a.label:focus {
   margin-bottom: 21px;
   background-color: #fff;
   border: 1px solid #f2f2f2;
+  border-radius: 0.25em;
 }
 
 .panel .article-title {
@@ -4742,9 +4743,11 @@ a.label:focus {
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  font-size: 18px;
-  line-height: 32px;
+  font-size: 16px;
+  line-height: 2;
   height: 64px;
+  margin-top: 0;
+  margin-bottom: 0;
   word-break: break-all !important;
   word-wrap: break-word !important;
 }
@@ -4789,8 +4792,7 @@ a.label:focus {
 }
 
 .panel-footer {
-  padding: 10px 15px;
-  border-top: 1px solid #f2f2f2;
+  padding: 0 15px 10px;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
 }
@@ -5062,6 +5064,11 @@ table table {
 
 .modal-small .modal-dialog {
   width: 480px;
+}
+
+.archives-about > .article-body > ul {
+  margin-inline-start: 20px;
+  padding-inline-start: 0;
 }
 
 @font-face {
@@ -5786,8 +5793,8 @@ body.no-sidebar .sidebar {
 
 #title {
   font-size: 13px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 /**
@@ -5928,7 +5935,7 @@ body.no-sidebar .sidebar {
 .main .article-meta {
   font-size: 13px;
   color: #999;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .main .article-meta a {

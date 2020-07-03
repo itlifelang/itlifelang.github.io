@@ -18,15 +18,15 @@
   
   
   <title>Tìm hiểu về high-order function trong kotlin | IT life</title>
-  <meta name="description" content="I, High-order function Các kotlin function đều là first class, nó có nghĩa là bạn có thể gán nó cho 1 variable, làm kiểu của tham số hoặc kết quả của 1 high-order function. High-order function là func">
+  <meta name="description" content="I, High-order function Các kotlin function đều là first class: nó có thể trở thành kiểu dữ liệu cho variable hoặc tham số - kết quả của high-order function.  Ta gọi đó là kiểu dữ liệu function (functi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tìm hiểu về high-order function trong kotlin">
 <meta property="og:url" content="https://fs-sournary.github.io/2020/07/03/high-order-function-in-kotlin/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, High-order function Các kotlin function đều là first class, nó có nghĩa là bạn có thể gán nó cho 1 variable, làm kiểu của tham số hoặc kết quả của 1 high-order function. High-order function là func">
+<meta property="og:description" content="I, High-order function Các kotlin function đều là first class: nó có thể trở thành kiểu dữ liệu cho variable hoặc tham số - kết quả của high-order function.  Ta gọi đó là kiểu dữ liệu function (functi">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-03T08:47:59.000Z">
-<meta property="article:modified_time" content="2020-07-03T09:57:28.404Z">
+<meta property="article:modified_time" content="2020-07-03T22:53:56.818Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
@@ -58,8 +58,8 @@
         <a id="avatar" href="https://github.com/fs-sournary" target="_blank">
           <img class="img-circle img-rotate" src="/images/asta-2.jpg" width="200" height="200">
         </a>
-        <h2 id="name" class="hidden-xs hidden-sm">Vũ Đức Sang (Solo leveling)</h2>
-        <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+        <h2 id="name" class="hidden-xs hidden-sm">Vũ Đức Sang</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Solo leveling</h3>
         <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hà Nội, Việt Nam</small>
       </div>
       
@@ -189,7 +189,7 @@
               <a href="/2020/07/03/high-order-function-in-kotlin/" class="thumb">
     
     
-        <span class="thumb-image thumb-none"></span>
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về high-order function trong kotlin" class="thumb-image"></span>
     
 </a>
 
@@ -214,7 +214,7 @@
               <a href="/2020/07/03/labels-and-jump-expression-in-kotlin/" class="thumb">
     
     
-        <span style="background-image:url(https://s3.ap-south-1.amazonaws.com/mindorks-server-uploads/learn-kotlin-returns-jumps-and-labels-banner.png)" alt="Tìm hiểu về labels và jump expression trong Kotlin" class="thumb-image"></span>
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về labels và jump expression trong Kotlin" class="thumb-image"></span>
     
 </a>
 
@@ -239,7 +239,7 @@
               <a href="/2020/07/03/array-vs-collection-in-kotlin/" class="thumb">
     
     
-        <span style="background-image:url(https://i.ytimg.com/vi/c61qqPfiA2w/maxresdefault.jpg)" alt="So sánh Array và Collection trong Kotlin" class="thumb-image"></span>
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="So sánh Array và Collection trong Kotlin" class="thumb-image"></span>
     
 </a>
 
@@ -264,7 +264,7 @@
               <a href="/2020/07/03/scope-function-in-kotlin/" class="thumb">
     
     
-        <span style="background-image:url(https://piotrminkowski.files.wordpress.com/2020/04/kotlin-scope-functions.png)" alt="Tìm hiểu về scope function trong Kotlin" class="thumb-image"></span>
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về scope function trong Kotlin" class="thumb-image"></span>
     
 </a>
 
@@ -289,7 +289,7 @@
               <a href="/2020/07/03/data-class-in-kotlin/" class="thumb">
     
     
-        <span style="background-image:url(https://miro.medium.com/max/2560/1*0aJHAfRmoOM2BSw_dPGDMw.jpeg)" alt="Tìm hiểu về data class trong Kotlin" class="thumb-image"></span>
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về data class trong Kotlin" class="thumb-image"></span>
     
 </a>
 
@@ -357,34 +357,40 @@
     <div class="article-entry marked-body" itemprop="articleBody">
       
         <h1 id="I-High-order-function"><a href="#I-High-order-function" class="headerlink" title="I, High-order function"></a>I, High-order function</h1><ul>
-<li>Các kotlin function đều là <code>first class</code>, nó có nghĩa là bạn có thể gán nó cho 1 variable, làm kiểu của tham số hoặc kết quả của 1 high-order function.</li>
+<li>Các kotlin function đều là <code>first class</code>: nó có thể trở thành <code>kiểu dữ liệu</code> cho variable hoặc tham số - kết quả của high-order function. </li>
+<li>Ta gọi đó là <code>kiểu dữ liệu function</code> (function type).</li>
 <li><code>High-order function</code> là function lấy function khác làm tham số hoặc trả về 1 function.</li>
 <li>Để hiểu rõ hơn, chúng ta sẽ đi phân tích high-order function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/fold.html" target="_blank" rel="noopener">fold()</a>:</li>
+<li><strong>Ví dụ 1:</strong></li>
 </ul>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> Iterable<span class="type">&lt;T&gt;</span>.<span class="title">fold</span><span class="params">(initial: <span class="type">R</span>, operation: (<span class="type">R</span>, <span class="type">T</span>) -&gt; <span class="type">R</span>)</span></span>: R &#123;</span><br><span class="line">    <span class="keyword">var</span> accumulator = initial</span><br><span class="line">    <span class="keyword">for</span> (element <span class="keyword">in</span> <span class="keyword">this</span>) accumulator = operation(accumulator, element)</span><br><span class="line">    <span class="keyword">return</span> accumulator</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><code>fold()</code> nhận 2 tham số: <ul>
+<li>Hàm <code>fold()</code> nhận 2 tham số: <ul>
 <li>1, <code>initial</code>: có kiểu là <code>R</code></li>
 <li>2, <code>operation</code>: có kiểu là <code>(R, T) -&gt; R</code> ?</li>
 </ul>
 </li>
-<li>Như mình đã nói ở trên, function cũng có có thể làm tham số.</li>
-<li>Do đó <code>(R, T) -&gt; R</code> định nghĩa cho 1 function type có:<ul>
-<li>1, 2 tham số là với kiểu là R và T.</li>
-<li>2, Giá trị trả về có kiểu là R.</li>
+<li>Như mình đã nói ở trên, <code>(R, T) -&gt; R</code> là kiểu dữ liệu function. Do đó nó sẽ là kiểu dữ liệu của tham số <code>operation</code> trong high-order function <code>fold()</code>.</li>
+<li>Ta có <code>(R, T) -&gt; R</code> định nghĩa cho 1 kiểu dữ liệu function có:<ul>
+<li>1, Hai tham số là với kiểu dữ liệu là R và T.</li>
+<li>2, Giá trị trả về có kiểu dữ liệu là R.</li>
 </ul>
 </li>
 </ul>
 <h1 id="II-Function-types"><a href="#II-Function-types" class="headerlink" title="II, Function types"></a>II, Function types</h1><ul>
-<li>Ta có <code>(R, T) -&gt; R</code> là một <code>function type</code> do đó nó có thể là kiểu dữ liệu của 1 variable như <code>val operation: (R, T) -&gt; R = ...</code></li>
+<li>Ở ví dụ 1, <code>(R, T) -&gt; R</code> là một kiểu dữ liệu function. Do đó nó cũng như các kiểu dữ liệu thông thường khác dạng <code>val operation: (R, T) -&gt; R = ...</code></li>
 <li>Khi sử dụng function type, bạn cần chú ý:<ul>
-<li>1, Function type đều có 1 list kiểu dữ liệu các tham số và kiểu của dữ liệu trả về. Ví dụ <code>(A, B) -&gt; C</code> có danh sách kiểu dữ liệu là A, B và gía trị trả về có kiểu dữ liệu là C.</li>
-<li>2, list kiểu dữ liệu của tham số có thể rỗng như <code>() -&gt; A</code>. Kiểu của dữ liệu trả về không được thiếu.</li>
-<li>3, Function type có thể có thêm kiểu dữ liệu của <code>receiver</code>. Ví dụ <code>A.(B) -&gt; C</code> có kiểu dữ liệu của receiver là A, kiểu dữ liệu của tham số là B và kiểu dữ liệu của giá trị trả về là C.</li>
-<li>4, <code>Suspending function</code> là function đặc biệt (dùng nhiều trong Coroutine mình sẽ giới thiệu công cụ tuyệt vời này sau), bạn phải thêm <code>suspend</code> keyword như <code>suspend () -&gt; A</code>, <code>suspend A.(B) -&gt; C</code>.</li>
+<li>1, Kiểu dữ liệu function đều có: <code>danh sách kiểu dữ liệu các tham số</code> + <code>kiểu dữ liệu của giá trị trả về</code>. Ví dụ <code>(A, B) -&gt; C</code> có 2 tham số với kiểu dữ liệu lần lượt là A, B và kiểu dữ liệu của giá trị trả về là C.</li>
+<li>2, Danh sách kiểu dữ liệu của tham số có thể rỗng như <code>() -&gt; A</code>. Kiểu của dữ liệu trả về phải được xác định dù đó có là <code>Unit</code>.</li>
+<li>3, Kiểu dữ liệu function có thể có thêm kiểu dữ liệu của <code>receiver</code>. Ví dụ <code>A.(B) -&gt; C</code> có kiểu dữ liệu của receiver là A, kiểu dữ liệu của tham số là B và kiểu dữ liệu của giá trị trả về là C.</li>
+<li>4, <code>Suspending function</code> là function có kiểu dữ liệu function đặc biệt (mình sẽ nói về công cụ tuyệt vời này sau), bạn phải thêm <code>suspend</code> keyword như <code>suspend () -&gt; A</code>, <code>suspend A.(B) -&gt; C</code>.</li>
 </ul>
 </li>
+<li><strong>Không bắt buộc</strong>: chúng ta có thể thêm tên cho các tham số như <code>(x: Int, y: Int) -&gt; Point</code>. Nó giúp bạn cho bạn viết document thuận tiện hơn.</li>
+<li><strong>Ví dụ 2</strong>: thêm tên cho các tham số cho kiểu dữ liệu của <code>operation</code> trong hàm <code>fold()</code> ở ví dụ 1</li>
 </ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// It's ok to name for `R` type with `acc`.</span></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> Iterable<span class="type">&lt;T&gt;</span>.<span class="title">fold</span><span class="params">(initial: <span class="type">R</span>, operation: (<span class="type">acc</span>: <span class="type">R</span>, <span class="type">T</span>) -&gt; <span class="type">R</span>)</span></span>: R &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -413,7 +419,7 @@
         </a>
       </div>
       <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang (Solo leveling)</span><small class="ml-1x"></small></a></h3>
+        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang</span><small class="ml-1x">Solo leveling</small></a></h3>
         <div>Android and self-learning developer</div>
       </div>
     </figure>
