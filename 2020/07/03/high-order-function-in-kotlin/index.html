@@ -26,7 +26,7 @@
 <meta property="og:description" content="I, High-order function Các kotlin function đều là first class: nó có thể trở thành kiểu dữ liệu cho variable hoặc tham số - kết quả của high-order function. Ta gọi đó là kiểu dữ liệu function (functio">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-03T08:47:59.000Z">
-<meta property="article:modified_time" content="2020-07-04T03:26:12.568Z">
+<meta property="article:modified_time" content="2020-07-04T08:52:33.790Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
@@ -161,7 +161,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-pattern/" rel="tag">Design pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">17</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-pattern/" rel="tag">Design pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">18</span></li></ul>
     </div>
   </div>
 
@@ -171,7 +171,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -183,6 +183,31 @@
     <div class="widget-body">
       <ul class="recent-post-list list-unstyled ">
         
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/04/inline-noninline-and-crossiinline-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về inline function trong kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/04/inline-noninline-and-crossiinline-in-kotlin/" class="title">Tìm hiểu về inline function trong kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-04T04:11:39.000Z" itemprop="datePublished">2020-07-04</time>
+              </p>
+            </div>
+          </li>
+          
           <li>
             
             <div class="item-thumb">
@@ -283,31 +308,6 @@
             </div>
           </li>
           
-          <li>
-            
-            <div class="item-thumb">
-              <a href="/2020/07/03/data-class-in-kotlin/" class="thumb">
-    
-    
-        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về data class trong Kotlin" class="thumb-image"></span>
-    
-</a>
-
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                
-              </p>
-              <p class="item-title">
-                <a href="/2020/07/03/data-class-in-kotlin/" class="title">Tìm hiểu về data class trong Kotlin</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2020-07-02T22:07:38.000Z" itemprop="datePublished">2020-07-03</time>
-              </p>
-            </div>
-          </li>
-          
       </ul>
     </div>
   </div>
@@ -360,6 +360,7 @@
 <li>Các kotlin function đều là <code>first class</code>: nó có thể trở thành <code>kiểu dữ liệu</code> cho variable hoặc tham số - kết quả của high-order function.</li>
 <li>Ta gọi đó là <code>kiểu dữ liệu function</code> (function type).</li>
 <li><code>High-order function</code> là function lấy function khác làm tham số hoặc trả về 1 function.</li>
+<li><strong>Chú ý:</strong> sử dụng high-order function sẽ khiến tạo thêm các function type object trong memory. Do đó để tối ưu bộ nhớ, chúng ta có thể sử dụng <code>inline function</code>.</li>
 <li>Để hiểu rõ hơn, chúng ta sẽ đi phân tích high-order function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/fold.html" target="_blank" rel="noopener">fold()</a>:</li>
 <li><strong>Ví dụ 1:</strong></li>
 </ul>
@@ -500,6 +501,10 @@
   <div class="bar-inner">
   
   <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/07/04/inline-noninline-and-crossiinline-in-kotlin/" title="Tìm hiểu về inline function trong kotlin"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
     
     
     <li class="next">

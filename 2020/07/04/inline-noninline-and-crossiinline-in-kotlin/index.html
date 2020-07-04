@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Tìm hiểu về inline function trong kotlin | IT life</title>
+  <meta name="description" content="I, Inline function1, Vấn đề Trước khi đọc bài viết này, mình khuyên bạn nên đọc về high-order function trước. High-order function gặp vấn đề là mỗi parameter có function type cần được khởi tạo bằng 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tìm hiểu về inline function trong kotlin">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/04/inline-noninline-and-crossiinline-in-kotlin/index.html">
+<meta property="og:site_name" content="IT and life">
+<meta property="og:description" content="I, Inline function1, Vấn đề Trước khi đọc bài viết này, mình khuyên bạn nên đọc về high-order function trước. High-order function gặp vấn đề là mỗi parameter có function type cần được khởi tạo bằng 1">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-04T04:11:39.000Z">
+<meta property="article:modified_time" content="2020-07-04T11:19:53.320Z">
+<meta property="article:author" content="Sang">
+<meta property="article:tag" content="Kotlin">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/04/inline-noninline-and-crossiinline-in-kotlin/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/information.svg" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/fs-sournary" target="_blank">
+          <img class="img-circle img-rotate" src="/images/asta-2.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Vũ Đức Sang</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Solo leveling</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hà Nội, Việt Nam</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/fs-sournary" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>It doesn't matter how much slowly you go as long as you don't stop</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-pattern/" rel="tag">Design pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">18</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/04/inline-noninline-and-crossiinline-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về inline function trong kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/04/inline-noninline-and-crossiinline-in-kotlin/" class="title">Tìm hiểu về inline function trong kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-04T04:11:39.000Z" itemprop="datePublished">2020-07-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/03/high-order-function-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về high-order function trong kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/03/high-order-function-in-kotlin/" class="title">Tìm hiểu về high-order function trong kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-03T08:47:59.000Z" itemprop="datePublished">2020-07-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/03/labels-and-jump-expression-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về labels và jump expression trong Kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/03/labels-and-jump-expression-in-kotlin/" class="title">Tìm hiểu về labels và jump expression trong Kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-03T07:25:59.000Z" itemprop="datePublished">2020-07-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/03/array-vs-collection-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="So sánh Array và Collection trong Kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/03/array-vs-collection-in-kotlin/" class="title">So sánh Array và Collection trong Kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-03T02:34:16.000Z" itemprop="datePublished">2020-07-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/03/scope-function-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về scope function trong Kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/03/scope-function-in-kotlin/" class="title">Tìm hiểu về scope function trong Kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-03T00:30:54.000Z" itemprop="datePublished">2020-07-03</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-inline-noninline-and-crossiinline-in-kotlin" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tìm hiểu về inline function trong kotlin
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/07/04/inline-noninline-and-crossiinline-in-kotlin/" class="article-date">
+	  <time datetime="2020-07-04T04:11:39.000Z" itemprop="datePublished">2020-07-04</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
+  </span>
+
+
+        
+
+        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/04/inline-noninline-and-crossiinline-in-kotlin/#comments" class="article-comment-link">Comments</a></span> -->
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="I-Inline-function"><a href="#I-Inline-function" class="headerlink" title="I, Inline function"></a>I, Inline function</h1><h2 id="1-Van-de"><a href="#1-Van-de" class="headerlink" title="1, Vấn đề"></a>1, Vấn đề</h2><ul>
+<li>Trước khi đọc bài viết này, mình khuyên bạn nên đọc về <a href="https://itlifelang.github.io/2020/07/03/high-order-function-in-kotlin/" target="_blank" rel="noopener">high-order function</a> trước.</li>
+<li>High-order function gặp vấn đề là mỗi parameter có function type cần được khởi tạo bằng 1 <code>function object</code> trong memory và tạo ra runtime overhead.</li>
+<li><strong>Ví dụ 1:</strong></li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InlineExample</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Test with anonymous function</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">testAnonymous</span><span class="params">()</span></span> &#123;</span><br><span class="line">        makeHighOrder(<span class="function"><span class="title">fun</span><span class="params">()</span></span> = <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Test with lambada function</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">testLambada</span><span class="params">()</span></span> &#123;</span><br><span class="line">        makeHighOrder &#123; <span class="number">1</span> &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">makeHighOrder</span><span class="params">(action: () -&gt; <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">        action()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Khi chúng ta dùng xem nó được compile qua java code bằng <code>Tools &gt; Kotlin &gt; Show kotlin bytecode &gt; Decompile</code>, chúng ta sẽ thấy class <code>InlineExample.java</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">InlineExample</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">testAnonymous</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.makeHighOrder((Function0)<span class="keyword">null</span>.INSTANCE);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">testLambada</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.makeHighOrder((Function0)<span class="keyword">null</span>.INSTANCE);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">makeHighOrder</span><span class="params">(Function0 action)</span> </span>&#123;</span><br><span class="line">      action.invoke();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Ta có thể thấy <code>makeHighOrder()</code> trong <code>InlineExample.java</code> có 1 tham số <code>action</code> có kiểu <code>Function0</code>.</li>
+<li>Khi nó được sử dụng ở <code>testAnonymous()</code> và <code>testLambada()</code> thì sẽ tạo ra 2 object <code>Function0</code>.</li>
+<li>Trong kotlin, chúng ta không tạo ra đối tượng nào cả ? Đây cũng là vấn đề của high-order function.</li>
+</ul>
+<h2 id="2-Inline-function"><a href="#2-Inline-function" class="headerlink" title="2, Inline function"></a>2, Inline function</h2><ul>
+<li><strong>Ví dụ 2:</strong> tương tự như ví dụ 1 nhưng mình sẽ thêm <code>inline</code> keyword vào trước <code>makeHighOrder()</code></li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InlineExample</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Test with anonymous function</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">testAnonymous</span><span class="params">()</span></span> &#123;</span><br><span class="line">        makeHighOrder(<span class="function"><span class="title">fun</span><span class="params">()</span></span> = <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Test with lambada function</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">testLambada</span><span class="params">()</span></span> &#123;</span><br><span class="line">        makeHighOrder &#123; <span class="number">1</span> &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Add `inline` keyword</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">makeHighOrder</span><span class="params">(action: () -&gt; <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">        action()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Khi đó, InlineExample sẽ được compile sang java code như sau</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">InlineExample</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">testAnonymous</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">int</span> $i$f$makeHighOrder = <span class="keyword">false</span>;</span><br><span class="line">      <span class="keyword">boolean</span> var3 = <span class="keyword">false</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">testLambada</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">int</span> $i$f$makeHighOrder = <span class="keyword">false</span>;</span><br><span class="line">      <span class="keyword">boolean</span> var3 = <span class="keyword">false</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">makeHighOrder</span><span class="params">(Function0 action)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">int</span> $i$f$makeHighOrder = <span class="number">0</span>;</span><br><span class="line">      action.invoke();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Mặc dù <code>makeHighOrder()</code> vẫn được compile gần giống như cũ.</li>
+<li>Nhưng khi gọi <code>testAnonymous()</code> và <code>testLambada()</code> nhưng không tạo ra <code>Function0</code> nào nữa.</li>
+<li>Có chuyện gì xảy ra khi ta sử dụng inline function ?</li>
+<li>Từ khóa <code>inline</code> đã copy implement của function vào nơi gọi function (call-site) đó. Do đó các call-site không tạo ra bất cứ object nào.</li>
+<li><strong>Chú ý:</strong><ul>
+<li>Inline function được dùng để tối ưu cho high-order function.</li>
+<li>Nếu bạn thêm <code>inline</code> vào những function thông thường sẽ không có ý nghĩa về mặt tối ưu. Android studio sẽ có warning và suggest bạn bỏ <code>inline</code> đi.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// No performance impact. We will get warning here</span></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">(a: <span class="type">Int</span>)</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Gioi-han-va-cach-dung-inline-function"><a href="#3-Gioi-han-va-cach-dung-inline-function" class="headerlink" title="3, Giới hạn và cách dùng inline function"></a>3, Giới hạn và cách dùng inline function</h2><ul>
+<li>Nhược điểm của inline function mà chúng ta có thể thấy ngay là chúng có thể gây ra nhiều code thừa vì implement của nó có thể dùng ở nhiều nơi.</li>
+<li>Inline function dùng ở đâu ?</li>
+<li>Chúng ta nên tránh sử dụng <code>inline</code> cho những function lớn. Chúng ta nên <code>inline</code> cho những function nhỏ (vài ba dòng).</li>
+<li>Nếu bạn xem source code của file <code>_Collections.kt</code> thì bạn sẽ thấy các inline function chỉ có từ 1 đến 3 dòng.</li>
+</ul>
+<h1 id="II-Noinline"><a href="#II-Noinline" class="headerlink" title="II, Noinline"></a>II, Noinline</h1><ul>
+<li>Inline function không cho phép parameter có function type:<ul>
+<li>Gán cho 1 local variable.</li>
+<li>Truyền vào trong function khác ở body.</li>
+</ul>
+</li>
+<li><strong>Ví dụ 3:</strong></li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">makeHighOrder</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    action: () -&gt; <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    notInline: () -&gt; <span class="type">Unit</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span> &#123;</span><br><span class="line">    action()</span><br><span class="line">    <span class="keyword">val</span> t = notInline <span class="comment">// Compilation error</span></span><br><span class="line">    makeNotInline(notInline) <span class="comment">// Compilation error</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">makeNotInline</span><span class="params">(notInline: () -&gt; <span class="type">Unit</span>)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Trong trường hợp này, chúng ta có thể đánh dấu <code>notInline</code> bằng từ khoá <code>noinline</code> như ví dụ 4.</li>
+<li><strong>Ví dụ 4:</strong> sửa error ở ví dụ 3</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">makeHighOrder</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    action: () -&gt; <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">noinline</span> notInline: () -&gt; <span class="type">Unit</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span> &#123;</span><br><span class="line">    action()</span><br><span class="line">    <span class="keyword">val</span> t = notInline <span class="comment">// It is ok because of `noinline`</span></span><br><span class="line">    makeNotInline(notInline) <span class="comment">// It is ok because of `noinline`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">makeNotInline</span><span class="params">(notInline: () -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Khi sử dụng <code>noinline</code> cho biến <code>notInline</code> thì khi khởi tạo <code>notInline</code> lại tạo ra object trong bộ nhớ.</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://fs-sournary.github.io/2020/07/04/inline-noninline-and-crossiinline-in-kotlin/" title="Tìm hiểu về inline function trong kotlin" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/04/inline-noninline-and-crossiinline-in-kotlin/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/fs-sournary" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/asta-2.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang</span><small class="ml-1x">Solo leveling</small></a></h3>
+        <div>Android and self-learning developer</div>
+      </div>
+    </figure>
+  </div>
+</div>
+ -->
+
+    </div>
+  </article>
+  
+    
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2020/07/03/high-order-function-in-kotlin/" title="Tìm hiểu về high-order function trong kotlin"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/fs-sournary" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+</body>
+</html>

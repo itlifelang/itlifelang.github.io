@@ -17,26 +17,16 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Tìm hiểu về Exception | IT life</title>
-  <meta name="description" content="I, Mở đầu Exception là một sự kiện thường gặp trong khi tạo ra chương trinh. Trong bài viết này, mình sẽ trình bày rõ hơn exception, hệ thống phân cấp và cơ chế JVM xử lý các exception.  II, Định nghĩ">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Tìm hiểu về Exception">
-<meta property="og:url" content="https://fs-sournary.github.io/2020/06/30/exception/index.html">
+  <title>Archive | IT life</title>
+  <meta property="og:type" content="website">
+<meta property="og:title" content="IT and life">
+<meta property="og:url" content="https://fs-sournary.github.io/archives/page/3/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, Mở đầu Exception là một sự kiện thường gặp trong khi tạo ra chương trinh. Trong bài viết này, mình sẽ trình bày rõ hơn exception, hệ thống phân cấp và cơ chế JVM xử lý các exception.  II, Định nghĩ">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://fs-sournary.github.io/2020/06/30/exception/exception-1.png">
-<meta property="og:image" content="https://fs-sournary.github.io/2020/06/30/exception/exception-2.png">
-<meta property="og:image" content="https://fs-sournary.github.io/2020/06/30/exception/exception-3.png">
-<meta property="article:published_time" content="2020-06-30T09:41:14.000Z">
-<meta property="article:modified_time" content="2020-07-02T14:30:45.045Z">
 <meta property="article:author" content="Sang">
-<meta property="article:tag" content="Kotlin">
-<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://fs-sournary.github.io/2020/06/30/exception/exception-1.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/2020/06/30/exception/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/archives/page/3/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -325,168 +315,74 @@
   
   
 <main class="main" role="main">
-  <div class="content">
-  <article id="post-exception" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  	<article class="content article article-archives article-type-list" itemscope="">
+	    <header class="article-header">
+	      <h1 itemprop="title">Archive</h1>
+	      <p class="text-muted">Total 1 articles</p>
+	    </header>
+	    <div class="article-body">
+	      
+  
+  
     
-    <div class="article-header">
+    
       
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Tìm hiểu về Exception
-    </h1>
-  
-
       
-      <div class="article-meta">
-        <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2020/06/30/exception/" class="article-date">
-	  <time datetime="2020-06-30T09:41:14.000Z" itemprop="datePublished">2020-06-30</time>
-	</a>
-</span>
-        
-        
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
-  </span>
-
-
-        
-
-        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/30/exception/#comments" class="article-comment-link">Comments</a></span> -->
-        
-      </div>
-    </div>
-    <div class="article-entry marked-body" itemprop="articleBody">
-      
-        <h1 id="I-Mo-dau"><a href="#I-Mo-dau" class="headerlink" title="I, Mở đầu"></a>I, Mở đầu</h1><ul>
-<li>Exception là một sự kiện thường gặp trong khi tạo ra chương trinh.</li>
-<li>Trong bài viết này, mình sẽ trình bày rõ hơn exception, hệ thống phân cấp và cơ chế JVM xử lý các exception.</li>
-</ul>
-<h1 id="II-Dinh-nghia-va-phan-cap"><a href="#II-Dinh-nghia-va-phan-cap" class="headerlink" title="II, Định nghĩa vầ phân cấp"></a>II, Định nghĩa vầ phân cấp</h1><ul>
-<li><code>Exception</code> là sự kiện làm phá vớ luồng thực thi của chương trình. </li>
-<li>Nếu chúng ta không xử lý các exception, Thread hiện tại là:<ul>
-<li><strong>Main Thread:</strong> chương trình sẽ bị chết.</li>
-<li><strong>Không phải là main Thread:</strong> Thread sẽ bị ngắt.</li>
-</ul>
-</li>
-</ul>
-<img src="/2020/06/30/exception/exception-1.png" class="">
-
-<ul>
-<li>Trong phân cấp exception thì <code>Throwable</code> class ở mức cao nhất. </li>
-<li>Hai class con kế thừa <code>Throwable</code> là <code>Error</code> và <code>Exception</code>.</li>
-<li>Chúng ta có thể chia exception thành 2 loại:<ul>
-<li><strong>Unchecked exception:</strong> bao gồm <code>Error</code> và <code>RuntimeException</code>.</li>
-<li><strong>Checked exception:</strong> các loại exception khác.</li>
-</ul>
-</li>
-</ul>
-<h2 id="1-Checked-exception"><a href="#1-Checked-exception" class="headerlink" title="1, Checked exception"></a>1, Checked exception</h2><ul>
-<li><code>Checked exception</code> hay còn gọi là <code>compile time exception</code> bời vì chúng xảy ra ở compile time. </li>
-<li>Thông thường khi bạn compile chương trình nếu có checked exception, <strong>IDE</strong> sẽ thông báo cho chúng ta biết ngay.</li>
-<li>Như mình đã nói ở trên tất cả các class kế thừa <code>Exception</code> class ngoại trừ <code>RuntimeException</code> đều là checked exception.</li>
-<li>Các checked exception chúng ta hay gặp: <code>FileNotFoundException</code>, <code>IOException</code>…</li>
-</ul>
-<h2 id="2-Unchecked-exception"><a href="#2-Unchecked-exception" class="headerlink" title="2, Unchecked exception"></a>2, Unchecked exception</h2><ul>
-<li><code>Unchecked exception</code> hay còn gọi là <code>runtime exception</code> bởi vì chúng bị bỏ qua trong compile time và chỉ xảy ra ở runtime.</li>
-<li>Chúng thường xảy ra do bug, logic… của chương trình cũng có thể do môi trường của ứng dụng. Do đó chúng khó bị phát hiện và fix hơn.</li>
-<li>Các class kế thừa <code>Error</code> và <code>RuntimeException</code> đều là unchecked exception.</li>
-<li>Các unchecked exception chúng ta hay gặp: <code>NullPointerException</code>, <code>ArrayIndexOutOfBoundException</code>, <code>NumberFormatException</code>…</li>
-</ul>
-<h1 id="III-Co-che-JVM-xu-ly-cac-Exception"><a href="#III-Co-che-JVM-xu-ly-cac-Exception" class="headerlink" title="III, Cơ chế JVM xử lý các Exception"></a>III, Cơ chế JVM xử lý các Exception</h1><img src="/2020/06/30/exception/exception-2.png" class="">
-
-<ul>
-<li><code>Exception Handling</code> là cơ chế xử lý các exception ở runtime để có thể duy trì luồng thực thi của chương trình.</li>
-<li>Exception Handling được thực hiện bằng <code>try/catch</code> block.</li>
-</ul>
-<img src="/2020/06/30/exception/exception-3.png" class="">
-
-<ul>
-<li>Nếu trong <code>try</code> block xảy ra <code>Exception</code>, code trong <code>try</code> sẽ không được thực thi nữa. JVM sẽ tìm kiếm <code>catch</code> block có xử lý <code>Exception</code> đó.</li>
-<li>Nếu không có <strong>catch</strong> block hay <strong>catch</strong> block không xử lý đúng Exception bị throw, code thực thi <strong>finally</strong> block và ngắt Thread hiện tại.</li>
-<li>Nếu <code>catch</code> block xử lý đúng Exception, code tiếp tục thực thi đến khi hết <code>catch</code>, sau đó <code>finally</code> thực thi Thread như thông thường. </li>
-</ul>
-<h1 id="IV-Mot-so-luu-y"><a href="#IV-Mot-so-luu-y" class="headerlink" title="IV, Một số lưu ý"></a>IV, Một số lưu ý</h1><ul>
-<li>Khi code trong <code>try</code> block throw <code>Exception</code>, các <code>catch</code> sẽ được check theo thứ tự thực thì. </li>
-<li>Khi 1 <code>catch</code> block đã được thực thi, các <code>catch</code> block theo sau sẽ bị bỏ qua.</li>
-<li>Các <code>catch</code> nên được sắp xếp để xử lý theo thứ từ <code>Exception con</code> tới <code>Exception cha</code>. <strong>Ví dụ</strong>: chúng ta nên catch <code>NumberFormatException</code> trước khi catch <code>Exception</code>.</li>
-<li>Khối <code>finally</code> luôn được thực hiện dù <code>Exception</code> có được catch hay không. Nó sẽ không được thực thi khi <code>System.exit()</code> được gọi hay <code>Error</code> mà môi trường không xử lý được xảy ra.</li>
-<li>Đối với mỗi <code>try</code> block, có thể không có hoặc có 1 hoặc nhiều <code>catch</code> block nhưng sẽ chỉ có 1 <code>finally</code> block.</li>
-</ul>
-
-      
-    </div>
-    <div class="article-footer">
-      <!-- <blockquote class="mt-2x">
-  <ul class="post-copyright list-unstyled">
+      <section class="panel panel-default b-no">
+        <div class="panel-heading" role="tab">
+          <h3 class="panel-title">
+            <a data-toggle="collapse" href="#collapse2020" aria-expanded="true">
+              <i class="icon icon-calendar-plus text-active"></i><i class="icon icon-calendar-minus text"></i>
+              2020
+            </a>
+            <!-- <a href="/archives/2020" class="archive-year">2020</a> -->
+          </h3>
+        </div>
+        <div id="collapse2020" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2020">
+        <div class="panel-body">
+          <div class="collection">
     
-    <li class="post-copyright-link hidden-xs">
-      <strong>本文链接：</strong>
-      <a href="https://fs-sournary.github.io/2020/06/30/exception/" title="Tìm hiểu về Exception" target="_blank" rel="external">https://fs-sournary.github.io/2020/06/30/exception/</a>
-    </li>
     
-    <li class="post-copyright-license">
-      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
-    </li>
-  </ul>
-</blockquote>
+<a href="/2020/06/28/android-design-pattern-part-I/" class="collection-item" target="_blank" itemprop="url">
+  <time datetime="2020-06-28T02:43:12.000Z" itemprop="datePublished">2020-06-28</time>
+  <span>&nbsp;&nbsp;&nbsp;</span> Implement design pattern trong Android với Kotlin phần I
+</a>
 
-
-<div class="panel panel-default panel-badger">
-  <div class="panel-body">
-    <figure class="media">
-      <div class="media-left">
-        <a href="https://github.com/fs-sournary" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="/images/asta-2.jpg" class="img-rounded w-full" alt="">
-        </a>
-      </div>
-      <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang</span><small class="ml-1x">Solo leveling</small></a></h3>
-        <div>Android and self-learning developer</div>
-      </div>
-    </figure>
-  </div>
-</div>
- -->
-
-    </div>
-  </article>
-  
-    
 
   
-</div>
-
-  <nav class="bar bar-footer clearfix" data-stick-bottom>
-  <div class="bar-inner">
   
-  <ul class="pager pull-left">
-    
-    <li class="prev">
-      <a href="/2020/07/01/serialization-and-deserialization/" title="Tìm hiểu về Serializable và Parcelable"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
-    
-    <li class="next">
-      <a href="/2020/06/30/synchronized-keyword/" title="Tìm hiểu về synchronized"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
-    </li>
-    
-    
-  </ul>
-  
-  
-  
-  <div class="bar-right">
-    
-  </div>
-  </div>
-</nav>
+    </div></div></div></section>
   
 
-
+	    </div>
+  	</article>
+  	
+    
+    <nav class="bar bar-footer clearfix" data-stick-bottom>
+        <div class="bar-inner">
+        <ul class="pager pull-left">
+            
+            <li class="prev">
+                <a href="/archives/page/2/">
+                    <i class="icon icon-angle-left"></i>
+                    Prev
+                </a>
+            </li>
+            
+            
+            <li class="next disabled">
+                <a href="javascript:;">
+                    Next
+                    <i class="icon icon-angle-right"></i>                    
+                </a>
+            </li>
+            
+        </ul>
+        <div class="total-article bar-right">Page 3 of 3</div>
+        </div>
+    </nav>
+    
+ 	
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -537,10 +433,6 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
-
-
-
-   
 
 
 

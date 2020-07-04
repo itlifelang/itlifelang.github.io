@@ -26,7 +26,7 @@
 <meta property="og:description" content="I, Label Trong Kotlin, bất cứ expression nào đều có thể được đánh dấu bằng label. Label được tạo nên từ định danh của label và @ như abc@, lit@, forTest@… Để đặt label lên 1 expression, chúng ta chỉ c">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-03T07:25:59.000Z">
-<meta property="article:modified_time" content="2020-07-03T22:55:19.737Z">
+<meta property="article:modified_time" content="2020-07-04T11:51:28.481Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
@@ -161,7 +161,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-pattern/" rel="tag">Design pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">17</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-pattern/" rel="tag">Design pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">18</span></li></ul>
     </div>
   </div>
 
@@ -171,7 +171,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -183,6 +183,31 @@
     <div class="widget-body">
       <ul class="recent-post-list list-unstyled ">
         
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/04/inline-noninline-and-crossiinline-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về inline function trong kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/04/inline-noninline-and-crossiinline-in-kotlin/" class="title">Tìm hiểu về inline function trong kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-04T04:11:39.000Z" itemprop="datePublished">2020-07-04</time>
+              </p>
+            </div>
+          </li>
+          
           <li>
             
             <div class="item-thumb">
@@ -283,31 +308,6 @@
             </div>
           </li>
           
-          <li>
-            
-            <div class="item-thumb">
-              <a href="/2020/07/03/data-class-in-kotlin/" class="thumb">
-    
-    
-        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về data class trong Kotlin" class="thumb-image"></span>
-    
-</a>
-
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                
-              </p>
-              <p class="item-title">
-                <a href="/2020/07/03/data-class-in-kotlin/" class="title">Tìm hiểu về data class trong Kotlin</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2020-07-02T22:07:38.000Z" itemprop="datePublished">2020-07-03</time>
-              </p>
-            </div>
-          </li>
-          
       </ul>
     </div>
   </div>
@@ -378,33 +378,38 @@
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">loop@</span> <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>..<span class="number">9</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">5</span>) <span class="keyword">break</span><span class="symbol">@loop</span></span><br><span class="line">    print(i) <span class="comment">// result: 1234</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><strong>Ví dụ 3:</strong> khi <code>i = 5</code>, sẽ không in ra 5 bởi vì <code>continue</code> nhảy đến step tiếp theo trong <code>for</code>. </li>
+<li><strong>Ví dụ 3:</strong> khi <code>i = 5</code>, sẽ không in ra 5 bởi vì <code>continue</code> nhảy đến step tiếp theo trong <code>for</code>.</li>
 </ul>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">loop@</span> <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>..<span class="number">9</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">5</span>) <span class="keyword">continue</span><span class="symbol">@loop</span></span><br><span class="line">    print(i) <span class="comment">// result: 12346789. Don't have 5 because `continue` jumps to next step.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="2-return"><a href="#2-return" class="headerlink" title="2, return"></a>2, return</h2><ul>
-<li>Các local function, object expression và lambada có thể lồng nhau.</li>
+<li>Các local function (function trong function khác), object expression và lambada có thể lồng nhau.</li>
 <li>Mặc định, <code>return</code> sẽ return function gần nó nhất hoặc anonymous function.</li>
+<li>Trong lambada, chỉ cho phép:<ul>
+<li><strong>return với label:</strong> return lambada đó.</li>
+<li><strong>return không có label nếu lambada ở trong inline function:</strong> return function ngoài gần nó nhất.</li>
+</ul>
+</li>
+<li>Tham khảo bài viết về inline function để hiểu rõ hơn vấn đề này. </li>
 <li><strong>Ví dụ 4:</strong> sau khi in ra 1, 2 thì <code>return</code> kết thúc hàm gần nó nhất là <code>foo()</code></li>
 </ul>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach &#123;</span><br><span class="line">        <span class="keyword">if</span> (it == <span class="number">3</span>) <span class="keyword">return</span> <span class="comment">// non-local return directly to the caller of foo()</span></span><br><span class="line">        print(it)</span><br><span class="line">    &#125;</span><br><span class="line">    println(<span class="string">"this point is unreachable"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Result: 1, 2</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>Một tác dụng quan trọng của <code>return</code> là dùng để return 1 lambada. </li>
+<li>Một tác dụng quan trọng của <code>return</code> là dùng để return 1 lambada.</li>
+<li>Khi tạo function có parameter được khởi tạo bởi lambada, label sẽ trùng với tên của funtion.</li>
+<li><strong>Chú ý:</strong></li>
 <li><strong>Ví dụ 5:</strong></li>
 </ul>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach <span class="symbol">lit@</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (it == <span class="number">3</span>) <span class="keyword">return</span><span class="symbol">@lit</span> <span class="comment">// local return to the caller of the lambda, i.e. the forEach loop</span></span><br><span class="line">        print(it)</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">" done with explicit label"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Result: 1245 done with implicit label</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>Thông thường, Kotlin đã định nghĩa sẵn các label cho lambada được truyền vào 1 function. Label thường có tên giống với tên của lambada đó.</li>
-</ul>
 <p><strong>Ví dụ 6:</strong></p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach &#123;</span><br><span class="line">        <span class="keyword">if</span> (it == <span class="number">3</span>) <span class="keyword">return</span><span class="symbol">@forEach</span> <span class="comment">// local return to the caller of the lambda, i.e. the forEach loop</span></span><br><span class="line">        print(it)</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">" done with implicit label"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Result: 1245 done with implicit label</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">makeLabel</span><span class="params">(action: () -&gt; <span class="type">Unit</span>)</span></span>&#123;</span><br><span class="line">    action()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">    makeLabel &#123;</span><br><span class="line">        print(<span class="string">"Label"</span>)</span><br><span class="line">        <span class="keyword">return</span><span class="symbol">@makeLabel</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>Chúng ta không thể dùng <code>break</code> và <code>continue</code> trong vòng lặp.</li>
+<li>Chúng ta không thể dùng <code>break</code> và <code>continue</code> trong lambada.</li>
 </ul>
-<p><strong>Ví dụ 7:</strong> chúng ta muốn dừng việc lặp của <code>listOf(1, 2, 3, 4, 5)</code> khi item nó bằng 3</p>
+<p><strong>Ví dụ 7:</strong> chúng ta muốn dừng việc lặp của <code>listOf(1, 2, 3, 4, 5)</code> khi item nó bằng 3 và vẫn muốn tiếp tục code của <code>foo()</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">fun <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    run loop@&#123;</span><br><span class="line">        listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach &#123;</span><br><span class="line">            <span class="keyword">if</span> (it == <span class="number">3</span>) <span class="keyword">return</span><span class="meta">@loop</span> <span class="comment">// non-local return from the lambda passed to run</span></span><br><span class="line">            print(it)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">" done with nested loop"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Result: 12 done with nested loop</span></span><br></pre></td></tr></table></figure>
 
       
