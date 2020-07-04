@@ -18,15 +18,15 @@
   
   
   <title>Tìm hiểu về high-order function trong kotlin | IT life</title>
-  <meta name="description" content="I, High-order function Các kotlin function đều là first class: nó có thể trở thành kiểu dữ liệu cho variable hoặc tham số - kết quả của high-order function.  Ta gọi đó là kiểu dữ liệu function (functi">
+  <meta name="description" content="I, High-order function Các kotlin function đều là first class: nó có thể trở thành kiểu dữ liệu cho variable hoặc tham số - kết quả của high-order function. Ta gọi đó là kiểu dữ liệu function (functio">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tìm hiểu về high-order function trong kotlin">
 <meta property="og:url" content="https://fs-sournary.github.io/2020/07/03/high-order-function-in-kotlin/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, High-order function Các kotlin function đều là first class: nó có thể trở thành kiểu dữ liệu cho variable hoặc tham số - kết quả của high-order function.  Ta gọi đó là kiểu dữ liệu function (functi">
+<meta property="og:description" content="I, High-order function Các kotlin function đều là first class: nó có thể trở thành kiểu dữ liệu cho variable hoặc tham số - kết quả của high-order function. Ta gọi đó là kiểu dữ liệu function (functio">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-03T08:47:59.000Z">
-<meta property="article:modified_time" content="2020-07-03T22:53:56.818Z">
+<meta property="article:modified_time" content="2020-07-04T03:26:12.568Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
@@ -357,15 +357,16 @@
     <div class="article-entry marked-body" itemprop="articleBody">
       
         <h1 id="I-High-order-function"><a href="#I-High-order-function" class="headerlink" title="I, High-order function"></a>I, High-order function</h1><ul>
-<li>Các kotlin function đều là <code>first class</code>: nó có thể trở thành <code>kiểu dữ liệu</code> cho variable hoặc tham số - kết quả của high-order function. </li>
+<li>Các kotlin function đều là <code>first class</code>: nó có thể trở thành <code>kiểu dữ liệu</code> cho variable hoặc tham số - kết quả của high-order function.</li>
 <li>Ta gọi đó là <code>kiểu dữ liệu function</code> (function type).</li>
 <li><code>High-order function</code> là function lấy function khác làm tham số hoặc trả về 1 function.</li>
 <li>Để hiểu rõ hơn, chúng ta sẽ đi phân tích high-order function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/fold.html" target="_blank" rel="noopener">fold()</a>:</li>
 <li><strong>Ví dụ 1:</strong></li>
 </ul>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> Iterable<span class="type">&lt;T&gt;</span>.<span class="title">fold</span><span class="params">(initial: <span class="type">R</span>, operation: (<span class="type">R</span>, <span class="type">T</span>) -&gt; <span class="type">R</span>)</span></span>: R &#123;</span><br><span class="line">    <span class="keyword">var</span> accumulator = initial</span><br><span class="line">    <span class="keyword">for</span> (element <span class="keyword">in</span> <span class="keyword">this</span>) accumulator = operation(accumulator, element)</span><br><span class="line">    <span class="keyword">return</span> accumulator</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>Hàm <code>fold()</code> nhận 2 tham số: <ul>
+<li>Hàm <code>fold()</code> nhận 2 tham số:<ul>
 <li>1, <code>initial</code>: có kiểu là <code>R</code></li>
 <li>2, <code>operation</code>: có kiểu là <code>(R, T) -&gt; R</code> ?</li>
 </ul>
@@ -382,8 +383,9 @@
 <li>Khi sử dụng function type, bạn cần chú ý:<ul>
 <li>1, Kiểu dữ liệu function đều có: <code>danh sách kiểu dữ liệu các tham số</code> + <code>kiểu dữ liệu của giá trị trả về</code>. Ví dụ <code>(A, B) -&gt; C</code> có 2 tham số với kiểu dữ liệu lần lượt là A, B và kiểu dữ liệu của giá trị trả về là C.</li>
 <li>2, Danh sách kiểu dữ liệu của tham số có thể rỗng như <code>() -&gt; A</code>. Kiểu của dữ liệu trả về phải được xác định dù đó có là <code>Unit</code>.</li>
-<li>3, Kiểu dữ liệu function có thể có thêm kiểu dữ liệu của <code>receiver</code>. Ví dụ <code>A.(B) -&gt; C</code> có kiểu dữ liệu của receiver là A, kiểu dữ liệu của tham số là B và kiểu dữ liệu của giá trị trả về là C.</li>
-<li>4, <code>Suspending function</code> là function có kiểu dữ liệu function đặc biệt (mình sẽ nói về công cụ tuyệt vời này sau), bạn phải thêm <code>suspend</code> keyword như <code>suspend () -&gt; A</code>, <code>suspend A.(B) -&gt; C</code>.</li>
+<li>3, Kiểu dữ liệu function có thể có thêm kiểu dữ liệu của <code>receiver</code>. Ví dụ <code>A.(B) -&gt; C</code> có kiểu dữ liệu của receiver là A, kiểu dữ liệu của tham số là B và kiểu dữ liệu của giá trị trả về là C. <code>this</code> đại diện cho <code>receiver</code>.</li>
+<li>4, Kiểu dữ liệu function có thể null, bạn chỉ cần thêm <code>()?</code> vào nguyên mẫu. Ví dụ <code>((A, B) -&gt; C)?</code>.</li>
+<li>5, <code>Suspending function</code> là function có kiểu dữ liệu function đặc biệt (mình sẽ nói về công cụ tuyệt vời này sau), bạn phải thêm <code>suspend</code> keyword như <code>suspend () -&gt; A</code>, <code>suspend A.(B) -&gt; C</code>.</li>
 </ul>
 </li>
 <li><strong>Không bắt buộc</strong>: chúng ta có thể thêm tên cho các tham số như <code>(x: Int, y: Int) -&gt; Point</code>. Nó giúp bạn cho bạn viết document thuận tiện hơn.</li>
@@ -391,6 +393,65 @@
 </ul>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// It's ok to name for `R` type with `acc`.</span></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> Iterable<span class="type">&lt;T&gt;</span>.<span class="title">fold</span><span class="params">(initial: <span class="type">R</span>, operation: (<span class="type">acc</span>: <span class="type">R</span>, <span class="type">T</span>) -&gt; <span class="type">R</span>)</span></span>: R &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li><strong>Ví dụ 3:</strong> kiểu dữ liệu function nhận thêm <code>receiver</code> thì <code>this</code> đại diện cho receiver.</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Only one parameter in the function type so `it` is implicitly used.</span></span><br><span class="line"><span class="keyword">val</span> sum1: <span class="built_in">Int</span>.(String) -&gt; <span class="built_in">Int</span> = &#123;</span><br><span class="line">    print(<span class="keyword">this</span>)</span><br><span class="line">    print(it)</span><br><span class="line">    <span class="number">4</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Two parameter in the function type so we must explicitly specify name of two.</span></span><br><span class="line"> <span class="keyword">val</span> sum: <span class="built_in">Int</span>.(String, String) -&gt; <span class="built_in">Int</span> = &#123; s1, s2 -&gt;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="III-Khoi-tao-kieu-du-lieu-function"><a href="#III-Khoi-tao-kieu-du-lieu-function" class="headerlink" title="III, Khởi tạo kiểu dữ liệu function"></a>III, Khởi tạo kiểu dữ liệu function</h1><ul>
+<li>Để tạo ra 1 instance của kiểu dữ liệu function, chúng ta có thể sử dụng: <code>function literal</code> hoặc <code>callable reference</code>.</li>
+<li>Ngoài ra còn có cách khác là tạo custom class implement kiểu dữ liệu function như 1 interface. Bạn phải override <code>invoke()</code>.</li>
+</ul>
+<h2 id="1-Function-literal"><a href="#1-Function-literal" class="headerlink" title="1, Function literal"></a>1, Function literal</h2><ul>
+<li><code>Function literal</code> bao gồm có:<ul>
+<li><strong>Lambada expression</strong> có dạng <code>{a, b -&gt; a + b}</code></li>
+<li><strong>Anonymous function</strong> có dạng <code>fun(s: String): Int { return s.toIntOrNull() ?: 0 }</code>.</li>
+</ul>
+</li>
+<li><strong>Ví dụ 4:</strong></li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> list = listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">list.filter &#123; item -&gt; item &gt; <span class="number">2</span> &#125; <span class="comment">// using lambada</span></span><br><span class="line"><span class="comment">// Or</span></span><br><span class="line">list.filter(<span class="function"><span class="title">fun</span><span class="params">(item)</span></span> = item &gt; <span class="number">2</span>) <span class="comment">// using anonymous function</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Callable-reference"><a href="#2-Callable-reference" class="headerlink" title="2, Callable reference"></a>2, Callable reference</h2><ul>
+<li><p>Các <code>callable reference</code> đều thêm <code>::</code> vào trước định danh của chúng.</p>
+</li>
+<li><p>Kiểu dữ liệu funtion có thể được khởi tạo với <code>Callable reference</code> bao gồm:</p>
+<ul>
+<li><strong>function reference</strong> có dạng <code>::isOdd</code>, <code>String::toInt</code></li>
+<li><strong>property reference</strong> có dạng <code>::x</code>, <code>List&lt;Int&gt;::size</code></li>
+<li><strong>constructor reference</strong> <code>::</code> + <code>class name</code> có dạng <code>::Foo</code></li>
+</ul>
+</li>
+<li><p><strong>Ví dụ 5:</strong> sử dụng function reference in ra kết quả <code>[1, 3]</code></p>
+</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">isOdd</span><span class="params">(x: <span class="type">Int</span>)</span></span> = x % <span class="number">2</span> != <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> numbers = listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">    println(numbers.filter(::isOdd))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Ví dụ 6:</strong> sử dụng property reference in ra kết quả <code>[1, 2, 3]</code></li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> strs = listOf(<span class="string">"a"</span>, <span class="string">"bc"</span>, <span class="string">"def"</span>)</span><br><span class="line">    println(strs.map(String::length))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Ví dụ 7:</strong> sử dụng constructor reference gọi constructor của <code>Foo</code> class trong để khởi tạo <code>factory</code></li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">(factory: () -&gt; <span class="type">Foo</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> x: Foo = factory()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test(::Foo)</span><br></pre></td></tr></table></figure>
+
+<h1 id="III-Goi-variable-cua-kieu-du-lieu-function"><a href="#III-Goi-variable-cua-kieu-du-lieu-function" class="headerlink" title="III, Gọi variable của kiểu dữ liệu function"></a>III, Gọi variable của kiểu dữ liệu function</h1><ul>
+<li><p>Chúng ta có thể gọi variable <code>f</code> có kiểu dữ liệu function bằng:</p>
+<ul>
+<li>Thông qua <code>invoke()</code> là <code>f.invoke()</code>.</li>
+<li>Gọi trực tiếp là <code>f()</code></li>
+</ul>
+</li>
+<li><p>Nếu f có thể null thì ta chỉ dùng được <code>f?.invoke()</code></p>
+</li>
+<li><p>Đối với kiểu dữ liệu function có receiver, chúng ta xem ví dụ 8.</p>
+</li>
+<li><p><strong>Ví dụ 8:</strong></p>
+</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> stringPlus: (String, String) -&gt; String = String::plus</span><br><span class="line"><span class="keyword">val</span> intPlus: <span class="built_in">Int</span>.(<span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> = <span class="built_in">Int</span>::plus</span><br><span class="line"></span><br><span class="line">println(stringPlus.invoke(<span class="string">"&lt;-"</span>, <span class="string">"-&gt;"</span>))</span><br><span class="line"><span class="comment">// Or</span></span><br><span class="line">println(stringPlus(<span class="string">"Hello, "</span>, <span class="string">"world!"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// Function type with receiver.</span></span><br><span class="line">println(intPlus.invoke(<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">println(intPlus(<span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line">println(<span class="number">2</span>.intPlus(<span class="number">3</span>)) <span class="comment">// extension-like call</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
