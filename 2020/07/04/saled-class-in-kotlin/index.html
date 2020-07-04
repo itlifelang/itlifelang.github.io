@@ -26,7 +26,7 @@
 <meta property="og:description" content="I, Sealed class Sealed được dịch ra là khép kín. Do đó sealed class hiểu nôm na là class khép kín. Trong kotlin, sealed class được sử dụng để giới hạn hệ thống class: variable của sealed class chỉ có">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-04T14:24:29.000Z">
-<meta property="article:modified_time" content="2020-07-04T21:50:10.426Z">
+<meta property="article:modified_time" content="2020-07-04T21:50:55.735Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
@@ -377,7 +377,7 @@
 <h1 id="III-Sealed-class-vs-abstract-class"><a href="#III-Sealed-class-vs-abstract-class" class="headerlink" title="III, Sealed class vs abstract class"></a>III, Sealed class vs abstract class</h1><ul>
 <li>Bản thân sealed class chính là abstract class nên nó có thể có subclass và abstract member.</li>
 <li>Subclass của abstract class có thể khai báo ở bất cứ đâu (dựa vào cả visibility modifier). Subclass của sealed class chỉ có thể được khai báo cùng file với nó.</li>
-<li>Sealed class cũng chỉ có private constructor. Mặc định nếu không khai báo constructor thì nó là private/</li>
+<li>Sealed class cũng chỉ có private constructor. Mặc định nếu không khai báo constructor thì nó là private.</li>
 <li><strong>Chú ý:</strong> class extend subclass của sealed class có thể được khai báo ở bất cứ đâu.</li>
 <li>Lợi ích lớn nhất của sealed class so với abstract class là khi sử dụng điều kiện <code>when</code>: khi chúng ta cover hết tất cả trường hợp thì không cần mệnh đề <code>else</code> nữa.</li>
 <li><strong>Ví dụ 2:</strong> kết hợp với ví dụ 1</li>
