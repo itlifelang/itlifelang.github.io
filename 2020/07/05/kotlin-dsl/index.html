@@ -17,16 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>IT life</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="IT and life">
-<meta property="og:url" content="https://fs-sournary.github.io/page/3/index.html">
+  <title>Tìm hiểu về kotlin DSL | IT life</title>
+  <meta name="description" content="I, DSL là gì Wikipedia định nghĩa DSL như sau:   A domain-specific language (DSL) is a computer language specialized to a particular application domain. This is in contrast to a general-purpose langua">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tìm hiểu về kotlin DSL">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/05/kotlin-dsl/index.html">
 <meta property="og:site_name" content="IT and life">
+<meta property="og:description" content="I, DSL là gì Wikipedia định nghĩa DSL như sau:   A domain-specific language (DSL) is a computer language specialized to a particular application domain. This is in contrast to a general-purpose langua">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-05T00:42:50.000Z">
+<meta property="article:modified_time" content="2020-07-06T04:10:31.619Z">
 <meta property="article:author" content="Sang">
+<meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/page/3/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/05/kotlin-dsl/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -313,135 +318,160 @@
 </aside>
 
   
-  <main class="main" role="main">
   
-  <div class="content article-list">
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-kotlin-dsl" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
+    <div class="article-header">
+      
+        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/30/synchronized-keyword/">Tìm hiểu về synchronized</a>
+    <h1 class="article-title" itemprop="name">
+      Tìm hiểu về kotlin DSL
     </h1>
   
 
-  </div>
-  
-  <p class="article-meta">
-    <span class="article-date">
+      
+      <div class="article-meta">
+        <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/06/30/synchronized-keyword/" class="article-date">
-	  <time datetime="2020-06-30T08:43:23.000Z" itemprop="datePublished">Jun 30</time>
+	<a href="/2020/07/05/kotlin-dsl/" class="article-date">
+	  <time datetime="2020-07-05T00:42:50.000Z" itemprop="datePublished">2020-07-05</time>
 	</a>
 </span>
-    
-    
+        
+        
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
+	<a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
   </span>
 
 
-    <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/30/synchronized-keyword/#comments" class="article-comment-link">Comments</a></span> -->
-    
-  </p>
-</article>
+        
 
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/30/volatile-keyword/">Tìm hiểu về volatile keyword</a>
-    </h1>
-  
+        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/05/kotlin-dsl/#comments" class="article-comment-link">Comments</a></span> -->
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="I-DSL-la-gi"><a href="#I-DSL-la-gi" class="headerlink" title="I, DSL là gì"></a>I, DSL là gì</h1><ul>
+<li><a href="https://en.wikipedia.org/wiki/Domain-specific_language" target="_blank" rel="noopener">Wikipedia</a> định nghĩa DSL như sau:</li>
+</ul>
+<blockquote>
+<p>A domain-specific language (DSL) is a computer language specialized to a particular application domain. This is in contrast to a general-purpose language (GPL), which is broadly applicable across domains</p>
+</blockquote>
+<ul>
+<li>Đói với các developer, DSL cung cấp các tool để đơn giản hoá việc thực hiện các cấu trúc phức tạp bằng cách tận dụng các tool sẵn có của ngôn ngữ lập trình.</li>
+<li>Trong Kotlin, chúng ta cũng đã sử dụng rất nhiều kotlin DSL. Hàm <code>forEach()</code> cũng là 1 Kotlin DSL:</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).forEach &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h1 id="II-Kotlin-DSL"><a href="#II-Kotlin-DSL" class="headerlink" title="II, Kotlin DSL"></a>II, Kotlin DSL</h1><ul>
+<li>Trước khi tìm hiểu về Kotlin DSL, bạn nên biết trước về <code>high-order function</code> và <code>function literal với receiver</code>. Nếu bạn đã sẵn sàng thì chúng ta bắt đầu tìm hiểu về <code>kotlin DSL</code></li>
+</ul>
+<h2 id="1-Tao-Kotlin-DSL"><a href="#1-Tao-Kotlin-DSL" class="headerlink" title="1, Tạo Kotlin DSL"></a>1, Tạo Kotlin DSL</h2><ul>
+<li>Để hiểu rõ hơn, chúng ta sẽ đi xem xét ví dụ sau:</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getResult</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">Int</span>, action: <span class="type">Int</span>.(<span class="type">Int</span>) -&gt; <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> action(a, b)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">val</span> text = getResult(<span class="number">1</span>, <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">this</span> + it</span><br><span class="line">    &#125; <span class="comment">// Result: 3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Function <code>getResult()</code> có 3 parameter, trong đó <code>action</code> có kiểu là function type với receiver. Do đó <code>action</code> cần được khởi tạo bởi <code>function literal với receiver</code> như ở <code>main()</code>.</li>
+<li>Trên đây là ví dụ để xây dựng nên Kotlin DSL.</li>
+<li>Kotlin xây dựng sẵn cho chúng ta một số library sử dụng Kotlin DSL:<ul>
+<li>Tạo ra markup code như <a href="https://github.com/Kotlin/kotlinx.html" target="_blank" rel="noopener">HTML</a>, XML.</li>
+<li>Làm việc với UI component: <a href="https://github.com/Kotlin/anko/wiki/Anko-Layouts" target="_blank" rel="noopener">Anko</a>.</li>
+<li>Cấu hình route cho web server: <a href="https://ktor.io/servers/features/routing.html" target="_blank" rel="noopener">Ktor</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="2-Su-dung-infix-keyword"><a href="#2-Su-dung-infix-keyword" class="headerlink" title="2, Sử dụng infix keyword"></a>2, Sử dụng infix keyword</h2><ul>
+<li><p>Chúng ta có thể thêm <code>infix</code> keyword cho function. </p>
+</li>
+<li><p>Khi đó tên của function được gọi là <code>infix notation</code>, chúng ta có thể gọi function sử dụng infix notion (bỏ qua <code>.</code> và <code>()</code>).</p>
+</li>
+<li><p>Các infix function cần tuân thủ:</p>
+<ul>
+<li>Chúng phải là member function hoặc extension function.</li>
+<li>Chúng chỉ có 1 paramter không có default value (<code>vararg</code> không được chấp nhận ).</li>
+</ul>
+</li>
+<li><p><strong>Ví dụ 1:</strong> sử dụng <code>infix</code> với extension function</p>
+</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">infix</span> <span class="function"><span class="keyword">fun</span> <span class="built_in">Int</span>.<span class="title">plus</span><span class="params">(other: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> = <span class="keyword">this</span> + other</span><br><span class="line"></span><br><span class="line"><span class="number">1</span> plus <span class="number">2</span> <span class="comment">// ok</span></span><br><span class="line"><span class="number">1</span>.plus(<span class="number">2</span>) <span class="comment">// ok</span></span><br><span class="line">plus(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// ok</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Ví dụ 2:</strong> sử dụng <code>infix</code> với member function, khi sử dụng infix notation bắt buộc phải có <code>this</code> keyword.</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStringCollection</span> </span>&#123;</span><br><span class="line">    <span class="keyword">infix</span> <span class="function"><span class="keyword">fun</span> <span class="title">add</span><span class="params">(s: <span class="type">String</span>)</span></span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">build</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">this</span> add <span class="string">"abc"</span>   <span class="comment">// Correct</span></span><br><span class="line">        add(<span class="string">"abc"</span>)       <span class="comment">// Correct</span></span><br><span class="line">        <span class="comment">//add "abc"        // Incorrect: the receiver must be specified</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://fs-sournary.github.io/2020/07/05/kotlin-dsl/" title="Tìm hiểu về kotlin DSL" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/05/kotlin-dsl/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/fs-sournary" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/asta-2.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang</span><small class="ml-1x">Solo leveling</small></a></h3>
+        <div>Android and self-learning developer</div>
+      </div>
+    </figure>
   </div>
+</div>
+ -->
+
+    </div>
+  </article>
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2020/06/30/volatile-keyword/" class="article-date">
-	  <time datetime="2020-06-30T03:14:24.000Z" itemprop="datePublished">Jun 30</time>
-	</a>
-</span>
     
-    
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
-  </span>
 
-
-    <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/30/volatile-keyword/#comments" class="article-comment-link">Comments</a></span> -->
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-book" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/28/android-design-pattern-part-I/">Implement design pattern trong Android với Kotlin phần I</a>
-    </h1>
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
   
-
-  </div>
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2020/07/04/saled-class-in-kotlin/" title="Tìm hiểu về sealed class trong kotlin"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2020/06/28/android-design-pattern-part-I/" class="article-date">
-	  <time datetime="2020-06-28T02:43:12.000Z" itemprop="datePublished">Jun 28</time>
-	</a>
-</span>
-    
-    
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Android/" rel="tag">Android</a>, <a class="article-tag-link" href="/tags/Design-pattern/" rel="tag">Design pattern</a>
-  </span>
-
-
-    <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/28/android-design-pattern-part-I/#comments" class="article-comment-link">Comments</a></span> -->
-    
-  </p>
-</article>
-
+  
+  
+  <div class="bar-right">
     
   </div>
-
+  </div>
+</nav>
   
-    
-    <nav class="bar bar-footer clearfix" data-stick-bottom>
-        <div class="bar-inner">
-        <ul class="pager pull-left">
-            
-            <li class="prev">
-                <a href="/page/2/">
-                    <i class="icon icon-angle-left"></i>
-                    Prev
-                </a>
-            </li>
-            
-            
-            <li class="next disabled">
-                <a href="javascript:;">
-                    Next
-                    <i class="icon icon-angle-right"></i>                    
-                </a>
-            </li>
-            
-        </ul>
-        <div class="total-article bar-right">Page 3 of 3</div>
-        </div>
-    </nav>
-    
- 
+
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
