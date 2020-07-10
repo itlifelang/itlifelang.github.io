@@ -26,7 +26,7 @@
 <meta property="og:description" content="I, High-order function Các kotlin function đều là first class: nó có thể trở thành kiểu dữ liệu cho variable, tham số hơặc kết quả return của high-order function. Ta gọi đó là function type (kiểu dữ l">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-03T08:47:59.000Z">
-<meta property="article:modified_time" content="2020-07-06T00:29:46.661Z">
+<meta property="article:modified_time" content="2020-01-01T06:30:46.276Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
@@ -161,7 +161,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-pattern/" rel="tag">Design pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">20</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cau-truc-du-lieu-va-giai-thuat/" rel="tag">Cấu trúc dữ liệu và giải thuật</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-pattern/" rel="tag">Design pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">20</span></li></ul>
     </div>
   </div>
 
@@ -171,7 +171,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -183,6 +183,31 @@
     <div class="widget-body">
       <ul class="recent-post-list list-unstyled ">
         
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/08/complexity-analysis/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về complexity analysis phần I" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/08/complexity-analysis/" class="title">Tìm hiểu về complexity analysis phần I</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-08T08:42:21.000Z" itemprop="datePublished">2020-07-08</time>
+              </p>
+            </div>
+          </li>
+          
           <li>
             
             <div class="item-thumb">
@@ -279,31 +304,6 @@
               </p>
               <p class="item-date">
                 <time datetime="2020-07-03T08:47:59.000Z" itemprop="datePublished">2020-07-03</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-thumb">
-              <a href="/2020/07/03/labels-and-jump-expression-in-kotlin/" class="thumb">
-    
-    
-        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về labels và jump expression trong Kotlin" class="thumb-image"></span>
-    
-</a>
-
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                
-              </p>
-              <p class="item-title">
-                <a href="/2020/07/03/labels-and-jump-expression-in-kotlin/" class="title">Tìm hiểu về labels và jump expression trong Kotlin</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2020-07-03T07:25:59.000Z" itemprop="datePublished">2020-07-03</time>
               </p>
             </div>
           </li>
@@ -455,7 +455,7 @@
 
 <h1 id="IV-Function-literal-voi-receiver"><a href="#IV-Function-literal-voi-receiver" class="headerlink" title="IV, Function literal với receiver"></a>IV, Function literal với receiver</h1><ul>
 <li>Như trên mình có nói rõ, function type có thể được khởi tạo bởi function literal (labamda expression hoặc anonymous function).</li>
-<li>Do đó, function type có receiver <code>(A, B) -&gt; C</code> có thể được khởi tạo bằng <code>function literal với recevier</code>.</li>
+<li>Do đó, function type có receiver <code>A.(B) -&gt; C</code> có thể được khởi tạo bằng <code>function literal với recevier</code>.</li>
 <li>Nói cách khác, lambada expression hay anonymous function sẽ nhận <code>this</code> keyword đại diện cho receiver object.</li>
 <li><strong>Ví dụ 9:</strong> <code>this</code> đại diện cho receiver object nên <code>plus()</code> là 1 function được gọi bởi receiver object.</li>
 </ul>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Tìm hiểu về complexity analysis phần I | IT life</title>
+  <meta name="description" content="I, Mở đầu Hằng ngày, chúng ta phải đối mặt với nhiều vấn đề. Mỗi vấn đề chúng ta có thể nghĩ ra nhiều phương án để giải quyết. Chúng ta đều mong muốn chọn ra phương án hiệu quả nhất. Ví dụ như khi đi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tìm hiểu về complexity analysis phần I">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/08/complexity-analysis/index.html">
+<meta property="og:site_name" content="IT and life">
+<meta property="og:description" content="I, Mở đầu Hằng ngày, chúng ta phải đối mặt với nhiều vấn đề. Mỗi vấn đề chúng ta có thể nghĩ ra nhiều phương án để giải quyết. Chúng ta đều mong muốn chọn ra phương án hiệu quả nhất. Ví dụ như khi đi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://fs-sournary.github.io/2020/07/08/complexity-analysis/big-omega-notation-chart.png">
+<meta property="og:image" content="https://fs-sournary.github.io/2020/07/08/complexity-analysis/big-theta-notation-chart.png">
+<meta property="og:image" content="https://fs-sournary.github.io/2020/07/08/complexity-analysis/big-omicron-notation-chart.png">
+<meta property="article:published_time" content="2020-07-08T08:42:21.000Z">
+<meta property="article:modified_time" content="2020-07-10T15:29:01.789Z">
+<meta property="article:author" content="Sang">
+<meta property="article:tag" content="Cấu trúc dữ liệu và giải thuật">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fs-sournary.github.io/2020/07/08/complexity-analysis/big-omega-notation-chart.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/08/complexity-analysis/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/information.svg" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/fs-sournary" target="_blank">
+          <img class="img-circle img-rotate" src="/images/asta-2.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Vũ Đức Sang</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Solo leveling</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hà Nội, Việt Nam</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/fs-sournary" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>It doesn't matter how much slowly you go as long as you don't stop</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cau-truc-du-lieu-va-giai-thuat/" rel="tag">Cấu trúc dữ liệu và giải thuật</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-pattern/" rel="tag">Design pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">20</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/08/complexity-analysis/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về complexity analysis phần I" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/08/complexity-analysis/" class="title">Tìm hiểu về complexity analysis phần I</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-08T08:42:21.000Z" itemprop="datePublished">2020-07-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/05/kotlin-dsl/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về kotlin DSL" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/05/kotlin-dsl/" class="title">Tìm hiểu về kotlin DSL</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-05T00:42:50.000Z" itemprop="datePublished">2020-07-05</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/04/saled-class-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về sealed class trong kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/04/saled-class-in-kotlin/" class="title">Tìm hiểu về sealed class trong kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-04T14:24:29.000Z" itemprop="datePublished">2020-07-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/04/inline-noninline-and-crossiinline-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về inline function trong kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/04/inline-noninline-and-crossiinline-in-kotlin/" class="title">Tìm hiểu về inline function trong kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-04T04:11:39.000Z" itemprop="datePublished">2020-07-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/03/high-order-function-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về high-order function trong kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/03/high-order-function-in-kotlin/" class="title">Tìm hiểu về high-order function trong kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-03T08:47:59.000Z" itemprop="datePublished">2020-07-03</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-complexity-analysis" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tìm hiểu về complexity analysis phần I
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/07/08/complexity-analysis/" class="article-date">
+	  <time datetime="2020-07-08T08:42:21.000Z" itemprop="datePublished">2020-07-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Cau-truc-du-lieu-va-giai-thuat/" rel="tag">Cấu trúc dữ liệu và giải thuật</a>
+  </span>
+
+
+        
+
+        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/08/complexity-analysis/#comments" class="article-comment-link">Comments</a></span> -->
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="I-Mo-dau"><a href="#I-Mo-dau" class="headerlink" title="I, Mở đầu"></a>I, Mở đầu</h1><ul>
+<li>Hằng ngày, chúng ta phải đối mặt với nhiều vấn đề. Mỗi vấn đề chúng ta có thể nghĩ ra nhiều phương án để giải quyết.</li>
+<li>Chúng ta đều mong muốn chọn ra phương án hiệu quả nhất.</li>
+<li>Ví dụ như khi đi từ nhà tới nơi làm việc, có thể biết được rất nhiều con đường nhưng chúng ta chỉ muốn đi con đường ngắn nhất để tiết kiệm thời gian và nhiên liệu.</li>
+<li>Trong lập trình cũng như thế, khi đối mặt với một vấn đề, các developer cũng sẽ tạo ra giải thuật khác nhau để giải quyết vấn đề đó.</li>
+<li>Điều quan trọng vẫn là tìm ra và sử dụng giải thuật tối ưu nhất.</li>
+<li><strong>Chú ý:</strong> những ví dụ sẽ được viết bằng java.</li>
+</ul>
+<h1 id="II-Giai-thuat"><a href="#II-Giai-thuat" class="headerlink" title="II, Giải thuật"></a>II, Giải thuật</h1><ul>
+<li><strong>Ví dụ 1:</strong> giải thuật của bài toán tìm tổng của 2 số <code>a</code> và <code>b</code> có thể bao gồm các bước sau:<ul>
+<li>Bước 1: Tạo ra biến <code>result</code> và lưu tổng của <code>a + b</code>.</li>
+<li>Bước 2: Trả về biến <code>result</code>.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">sun</span><span class="params">(int a, int b)</span></span>&#123;</span><br><span class="line">    int result = a + b;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Khi giải quyết 1 vấn đề trong lập trình, chúng ta cần xác định các yếu tố: <code>input</code>, <code>giải thuật</code> và <code>output</code>:</p>
+<ul>
+<li><strong>Input:</strong> là dữ liệu đầu vào được xác định từ bài toán. Chúng ta cần chuyển những dữ liệu đầu vào (input) thành kết quả mong muốn (output). Trong ví dụ 1, input là <code>a</code> và <code>b</code>.</li>
+<li><strong>Giải thuật:</strong> là tập hợp các bước biến đổi dữ liệu đầu vào (input) thành kết quả mong muốn (output). Trong ví dụ 1, giải thuật gồm 2 bước.</li>
+<li><strong>Output:</strong> là kết quả mong muốn của bài toán. Trong ví dụ 1, output là <code>result</code>.</li>
+</ul>
+</li>
+<li><p>Giải một bài toán trong lập trình tương tự như tạo ra một sản phẩm: từ nguyên liệu thô (input) qua các công đoạn để tạo ra sản phẩm mong muốn (output).</p>
+</li>
+<li><p>Việc chọn ra giải thuật hiệu quả sẽ giúp tiết kiệm thời gian và tài nguyên của chương trình.</p>
+</li>
+<li><p>Một giải thuật hiệu quả cần có những yếu tố sau:</p>
+<ul>
+<li><strong>Đúng đắn:</strong> với các input đầu vào, giải thuật phải cho ra output đúng theo yêu cầu. Nếu tồn tại ít nhất một output không đúng yêu cầu thì giải thuật đó là sai.</li>
+<li><strong>Giới hạn:</strong> đây cũng là 1 yếu tố quan trọng nhưng mọi người thường bỏ qua nó. Giải thuật phải được kết thúc sau một tập các bước xác định. Ví dụ như khi chúng ta tìm kiếm phần tử <code>k</code> trong vòng lặp có <code>n</code> phàn tử, khi tìm thấy phần tử <code>k</code> chúng ta phải dừng tìm kiếm ngay để tránh việc thực thi các thao tác sau không cần thiết.</li>
+<li><strong>Hiệu quả:</strong> chúng ta luôn muốn chọn ra giải thuật hiệu quả nhất cho code. Trong lập trình, sự hiệu quả của giải thuật thường được đánh giá bởi hai yếu tố là <code>bộ nhớ</code> và <code>thời gian</code>.</li>
+</ul>
+</li>
+</ul>
+<h1 id="III-Do-phuc-tap-cua-giai-thuat"><a href="#III-Do-phuc-tap-cua-giai-thuat" class="headerlink" title="III, Độ phức tạp của giải thuật"></a>III, Độ phức tạp của giải thuật</h1><ul>
+<li>Như mình đã nói ở trên, độ hiệu quả của thuật toán phụ thuộc vào hai yếu tố là <code>bộ nhớ</code> và <code>thời gian</code>.</li>
+<li>Do đó chúng ta luôn mong muốn tìm ra 1 thuật toán tiêu tốn ít bộ nhớ và thời gian. Nhưng việc này gần như là không thể.</li>
+<li>Trong giải thuật, bộ nhớ và thời gian là hai thái cực đối lập với nhau. Nếu giải thuật tiêu tốn ít thời gian thì nó sẽ cần nhiều bộ nhớ và ngược lại.</li>
+<li>Hiện nay bộ nhớ gần như không phải là vấn đề để giải quyết vấn đề, do đó người ta thường chú ý nhiều hơn vào yếu tố thời gian.</li>
+<li>Mình cũng sẽ đi sâu vào yếu tố thời gian của 1 giải thuật.</li>
+</ul>
+<h2 id="1-Bo-nho"><a href="#1-Bo-nho" class="headerlink" title="1, Bộ nhớ"></a>1, Bộ nhớ</h2><ul>
+<li>Mỗi giải thuật cần được cấp 1 lượng bộ nhớ nhất định để hoàn thành.</li>
+<li><strong>Ví dụ 2:</strong> chúng ta tạo 1 mảng chứa 20 phần tử. Space complexity dựa vào số phần tử của mảng. Nếu số lượng phần tử tăng lên (21, 22…phần tử) thì bộ nhớ yêu cầu sẽ tăng lên.</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int intArray[] = new int[<span class="number">20</span>];  <span class="comment">// allocating memory to array</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Trong lập trình, ngay cả khỉ bạn tạo ra 1 object thì chúng ta cũng cần cấp phát bộ nhớ cho nó.</li>
+</ul>
+<h2 id="2-Thoi-gian"><a href="#2-Thoi-gian" class="headerlink" title="2, Thời gian"></a>2, Thời gian</h2><ul>
+<li>Thời gian thực hiện các tác vụ (số thao tác) của 1 giải thuật được phân tích dựa vào <code>kích thước dữ liệu</code>.</li>
+<li>Giải thuật hiệu quả nhất là giải thuật có thời gian thực hiện ít nhất.</li>
+<li><strong>Chú ý:</strong> quy ước rằng mỗi thao tác sẽ có thời gian thực hiện giống nhau.</li>
+</ul>
+<h1 id="IV-Phan-tich-thoi-gian"><a href="#IV-Phan-tich-thoi-gian" class="headerlink" title="IV, Phân tích thời gian"></a>IV, Phân tích thời gian</h1><ul>
+<li><p>Chúng ta sử dụng <code>asymptotic notation</code> để phân tích và dựa vào kích thước của dữ liệu để đưa độ hiệu quả của giải thuật.</p>
+</li>
+<li><p>Trong phân tích với asymptotic notation, chúng ta xử lý với các kích thước dữ liệu lớn.</p>
+</li>
+<li><p>Asymptotic notation sẽ chỉ quan tâm tới <code>order of growth</code> của input. Trong order of growth, chúng ta chỉ sử dụng giới hạn lớn nhất vì các giới hạn thấp hơn không đáng kể với kích thước dữ liệu lớn.</p>
+</li>
+<li><p>Điều này có nghĩa khi chúng ta tăng/giảm kích thước dữ liệu thì thời gian tính của giải thuật sẽ tăng/giảm như thế nào.</p>
+</li>
+<li><p>Chúng ta có 3 asymptotic notation để mô tả thời gian tính của thuật toán:</p>
+<ul>
+<li>&#937; notation (Big omega).</li>
+<li>&#920; notation (Big theta).</li>
+<li>&#927; notation (Big omicron).</li>
+</ul>
+</li>
+<li><p><strong>Ví dụ 3:</strong> function <code>search()</code> kiểm tra số <code>k</code> có trong mảng <code>arr</code>. Nếu <code>k</code> nằm trong <code>arr</code> thì function sẽ trả về <code>1</code>, còn không thì sẽ trả về <code>0</code>. Phân tích bài toán, chúng ta có:</p>
+<ul>
+<li><strong>Input</strong>: mảng <code>arr</code> có <code>n</code> phần tử và số <code>k</code>.</li>
+<li><strong>Output:</strong> trả về <code>1</code> nếu <code>k</code> là 1 phần tử của <code>arr</code> còn không sẽ trả về <code>0</code>.</li>
+<li><strong>Giải thuật:</strong> chúng ta có thể sử dụng <code>linear search</code> được trình bày như sau:</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>, i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arr[i] == k) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Trong function <code>search()</code>, các câu lệnh được thực hiện số lần là:</p>
+<ul>
+<li><code>i = 0</code>: 1 lần.</li>
+<li><code>i &lt; n</code>: n + 1 lần.</li>
+<li><code>i++</code>: n lần.</li>
+<li><code>arr[i] == k</code>: <code>i</code> lần tuỳ thuộc vào <code>k</code>.</li>
+<li><code>return 1</code>: nhiều nhất 1 lần.</li>
+<li><code>return 0</code>: nhiều nhất 1 lần.</li>
+</ul>
+</li>
+<li><p>Chúng ta có thể nhận ra rằng khi tăng <code>k</code> (thay đổi kích thước dữ liệu) thì thời gian thực hiện giải thuật cũng tăng. Nếu ta có <code>arr[] = [0, 1, 2, 3, 4]</code> thì với:</p>
+<ul>
+<li><code>k = 0</code>: <code>arr[i] == k</code> thực hiện 1 lần.</li>
+<li><code>k = 2</code>: <code>arr[i] == k</code> thực hiện 3 lần.</li>
+<li><code>k &gt;= 4</code>: <code>arr[i] == k</code> thực hiện 5 lần.</li>
+</ul>
+</li>
+<li><p>Từ đó chúng ta có các khái niệm nói về các trường hợp có thể xảy ra của 1 giải thuật:</p>
+<ul>
+<li><strong>Best case:</strong> (trường hợp tốt nhất) trường hợp có thời gian thực hiện giải thuật là ít nhất. Trong ví dụ 3, best case xảy ra khi <code>k = 0</code>.</li>
+<li><strong>Average case:</strong> (trường hợp trung gian) chúng ta thử với tất cả input type để tìm ra số lần thực hiện với mỗi kiểu input. Sau đó, chúng ta cộng lại tất cả và chia số kiểu input.</li>
+<li><strong>Worst case</strong> (trường hợp tệ nhất) trường hợp có thời gian thực hiện giải thuật là nhiều nhất. Trong ví dụ 3, worst case xảy ra khi <code>k &gt;= 4</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-937-notation-Big-omega"><a href="#1-937-notation-Big-omega" class="headerlink" title="1, &#937; notation (Big omega)"></a>1, &#937; notation (Big omega)</h2><ul>
+<li><strong>&#937; notation</strong> nói đến <code>tiệm cận dưới</code> trong giải thuật.</li>
+<li>&#937; được áp dụng cho best case.</li>
+</ul>
+<blockquote>
+<p>&#937;(g(n)) = { f(n) nếu tồn tại các hằng số dương c and n0 sao cho 0 ≤ c.g(n) ≤ f(n) với mọi n ≥ n0 }</p>
+</blockquote>
+<ul>
+<li>Ta nói <code>g(n)</code> là cận dưới tiệm cần của <code>f(n)</code>.</li>
+</ul>
+<img src="/2020/07/08/complexity-analysis/big-omega-notation-chart.png" class="">
+
+<h2 id="2-920-notation-Big-theta"><a href="#2-920-notation-Big-theta" class="headerlink" title="2, &#920; notation (Big theta)"></a>2, &#920; notation (Big theta)</h2><ul>
+<li><strong>&#920;</strong> nói đến <code>tiệm cần đúng</code> trong giải thuật.</li>
+<li>&#920; định nghĩa ra 1 giới hạn trên và giới hạn dưới cho giải thuật.</li>
+<li>&#937; được áp dụng cho average case.</li>
+</ul>
+<blockquote>
+<p>&#920;(g(n)) = { f(n) nếu tồn tại các hằng số dương c1, c2 and n0 sao cho 0 ≤ c1.g(n) ≤ f(n) ≤ c2.g(n) với mọi n ≥ n0 }}</p>
+</blockquote>
+<ul>
+<li>Ta nói <code>g(n)</code> là đánh giá tiệm cận đúng cho <code>f(n)</code>.</li>
+</ul>
+<img src="/2020/07/08/complexity-analysis/big-theta-notation-chart.png" class="">
+
+<h2 id="3-927-notation-Big-omicron"><a href="#3-927-notation-Big-omicron" class="headerlink" title="3, &#927; notation (Big omicron)"></a>3, &#927; notation (Big omicron)</h2><ul>
+<li><strong>&#927;</strong> nói đến <code>tiệm cần trên</code> trong giải thuật.</li>
+<li>&#927; được áp dụng cho worst case.</li>
+</ul>
+<blockquote>
+<p>&#927;(g(n)) = { f(n) nếu tồn tại 2 hằng số dương c and n0 sao cho 0 ≤ f(n) ≤ c.g(n) với mọi n ≥ n0 }</p>
+</blockquote>
+<ul>
+<li>Ta nói <code>g(n)</code> là cận trên tiệm cận của <code>f(n)</code>.</li>
+</ul>
+<img src="/2020/07/08/complexity-analysis/big-omicron-notation-chart.png" class="">
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://fs-sournary.github.io/2020/07/08/complexity-analysis/" title="Tìm hiểu về complexity analysis phần I" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/08/complexity-analysis/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/fs-sournary" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/asta-2.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang</span><small class="ml-1x">Solo leveling</small></a></h3>
+        <div>Android and self-learning developer</div>
+      </div>
+    </figure>
+  </div>
+</div>
+ -->
+
+    </div>
+  </article>
+  
+    
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2020/07/05/kotlin-dsl/" title="Tìm hiểu về kotlin DSL"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/fs-sournary" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+</body>
+</html>
