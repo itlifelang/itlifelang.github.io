@@ -17,10 +17,10 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Tìm hiểu về complexity analysis phần I | IT life</title>
+  <title>Tìm hiểu về complexity analysis | IT life</title>
   <meta name="description" content="I, Mở đầu Hằng ngày, chúng ta phải đối mặt với nhiều vấn đề. Mỗi vấn đề chúng ta có thể nghĩ ra nhiều phương án để giải quyết. Chúng ta đều mong muốn chọn ra phương án hiệu quả nhất. Ví dụ như khi đi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tìm hiểu về complexity analysis phần I">
+<meta property="og:title" content="Tìm hiểu về complexity analysis">
 <meta property="og:url" content="https://fs-sournary.github.io/2020/07/08/complexity-analysis/index.html">
 <meta property="og:site_name" content="IT and life">
 <meta property="og:description" content="I, Mở đầu Hằng ngày, chúng ta phải đối mặt với nhiều vấn đề. Mỗi vấn đề chúng ta có thể nghĩ ra nhiều phương án để giải quyết. Chúng ta đều mong muốn chọn ra phương án hiệu quả nhất. Ví dụ như khi đi">
@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://fs-sournary.github.io/2020/07/08/complexity-analysis/big-theta-notation-chart.png">
 <meta property="og:image" content="https://fs-sournary.github.io/2020/07/08/complexity-analysis/big-omicron-notation-chart.png">
 <meta property="article:published_time" content="2020-07-08T08:42:21.000Z">
-<meta property="article:modified_time" content="2020-07-10T15:38:52.536Z">
+<meta property="article:modified_time" content="2020-07-11T00:20:00.929Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Cấu trúc dữ liệu và giải thuật">
 <meta name="twitter:card" content="summary">
@@ -193,7 +193,7 @@
               <a href="/2020/07/08/complexity-analysis/" class="thumb">
     
     
-        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về complexity analysis phần I" class="thumb-image"></span>
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về complexity analysis" class="thumb-image"></span>
     
 </a>
 
@@ -204,7 +204,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/2020/07/08/complexity-analysis/" class="title">Tìm hiểu về complexity analysis phần I</a>
+                <a href="/2020/07/08/complexity-analysis/" class="title">Tìm hiểu về complexity analysis</a>
               </p>
               <p class="item-date">
                 <time datetime="2020-07-08T08:42:21.000Z" itemprop="datePublished">2020-07-08</time>
@@ -332,7 +332,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Tìm hiểu về complexity analysis phần I
+      Tìm hiểu về complexity analysis
     </h1>
   
 
@@ -366,7 +366,6 @@
 <li>Ví dụ như khi đi từ nhà tới nơi làm việc, có thể biết được rất nhiều con đường nhưng chúng ta chỉ muốn đi con đường ngắn nhất để tiết kiệm thời gian và nhiên liệu.</li>
 <li>Trong lập trình cũng như thế, khi đối mặt với một vấn đề, các developer cũng sẽ tạo ra các giải thuật khác nhau để giải quyết vấn đề đó.</li>
 <li>Điều quan trọng vẫn là tìm ra và sử dụng giải thuật tối ưu nhất.</li>
-<li><strong>Chú ý:</strong> những ví dụ sẽ được viết bằng java.</li>
 </ul>
 <h1 id="II-Giai-thuat"><a href="#II-Giai-thuat" class="headerlink" title="II, Giải thuật"></a>II, Giải thuật</h1><ul>
 <li><strong>Ví dụ 1:</strong> giải thuật của bài toán tìm tổng của 2 số <code>a</code> và <code>b</code> có thể bao gồm các bước sau:<ul>
@@ -507,6 +506,41 @@
 </ul>
 <img src="/2020/07/08/complexity-analysis/big-omicron-notation-chart.png" class="">
 
+<h1 id="V-Vi-du-qua-bai-toan-tinh-tong"><a href="#V-Vi-du-qua-bai-toan-tinh-tong" class="headerlink" title="V, Ví dụ qua bài toán tính tổng"></a>V, Ví dụ qua bài toán tính tổng</h1><ul>
+<li><strong>Bài toán:</strong><ul>
+<li>Tìm tổng của dãy n phần tử liền kề nhau bắt đầu từ 1 và cách nhau 1 đơn vị. Dãy có dạng là <code>1, 2, 3, 4..., n-1, n</code>.</li>
+<li>Khi <code>n = 4</code> thì kết quả là <code>1 + 2 + 3 + 4 = 10</code>.</li>
+<li>Khi <code>n = 5</code> thì kết quả là <code>1 + 2 + 3 + 4 + 5 = 15</code>.</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-Giai-phap-927-1"><a href="#1-Giai-phap-927-1" class="headerlink" title="1, Giải pháp &#927;(1)"></a>1, Giải pháp &#927;(1)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findSum</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n * (n+<span class="number">1</span>) / <span class="number">2</span>; <span class="comment">// this will take some constant time c1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Chúng ta có duy nhất một câu lệnh.</li>
+<li>Với mọi kích thước dữ liệu (n = 1, 2, 3…), chúng ta chỉ mất một khoảng thời gian cố định để thực hiện câu lệnh đó.</li>
+<li>Do đó chúng ta có thời gian tính của thuật toán trong worst case là &#927;(1).</li>
+</ul>
+<h2 id="2-Giai-phap-927-n"><a href="#2-Giai-phap-927-n" class="headerlink" title="2, Giải pháp &#927;(n)"></a>2, Giải pháp &#927;(n)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findSum</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        sum = sum + i;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Tổng thời gian thực hiện các câu lệnh <code>sum = 0</code>, <code>i = 1</code> và <code>return sum</code> là <code>c0</code> (hằng số).</li>
+<li>Thời gian thực hiện câu lệnh <code>i &lt;= n</code> là <code>c1</code> (hằng số). Chúng ta thực hiện <code>n</code> lần <code>i &lt;= n</code> nên tổng thời gian cần để thực hiện <code>c1.n</code>.</li>
+<li>Thời gian thực hiện câu lệnh <code>sum = sum + i</code> là <code>c2</code> (hằng số). Chúng ta thực hiện <code>n</code> lần <code>sum = sum + i</code> nên tổng thời gian cần để thực hiện <code>c2.n</code>.</li>
+<li>Tổng thời gian thực hiện các câu lệnh là <code>c1.n + c2.n + c0</code> hay <code>(c1 + c2).n + c0</code>.</li>
+<li>Do đó chúng ta chỉ sử dụng giới hạn lớn nhất nên thời gian tính của thuật toán trong worst case sẽ là &#927;(n).</li>
+</ul>
+<h2 id="3-Giai-phap-927-n²"><a href="#3-Giai-phap-927-n²" class="headerlink" title="3, Giải pháp &#927;(n²)"></a>3, Giải pháp &#927;(n²)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findSum</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; ++j)</span><br><span class="line">            sum++;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Tổng thời gian thực hiện các câu lệnh <code>sum = 0</code>, <code>i = 1</code>, <code>j = 1</code> và <code>return sum</code> là <code>c0</code> (hằng số).</li>
+<li>Thời gian thực hiện câu lệnh <code>i &lt;= n</code> là <code>c1</code> (hằng số). Chúng ta thực hiện <code>n</code> lần <code>i &lt;= n</code> nên tổng thời gian thực hiên là <code>c1.n</code>.</li>
+<li>Thời gian thực hiện câu lệnh <code>j &lt;= i</code> là <code>c2</code> (hằng số). Chúng ta thực hiện <code>n.(n + 1)/2</code> lần <code>j &lt;= i</code> do đó tổng thời gian thực hiện là<br><code>n.(n + 1)/2.c2</code>.</li>
+<li>Tương tự với câu lệnh <code>sum++</code> thì tổng thời gian thực hiện là <code>n.(n + 1)/2.c3</code>.</li>
+<li>Do đó thời gian tính của thuật toán trong worst case là &#927;(n²). Mọi người tự tính và lấy giới hạn lớn nhất nhé.</li>
+</ul>
+
       
     </div>
     <div class="article-footer">
@@ -515,7 +549,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://fs-sournary.github.io/2020/07/08/complexity-analysis/" title="Tìm hiểu về complexity analysis phần I" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/08/complexity-analysis/</a>
+      <a href="https://fs-sournary.github.io/2020/07/08/complexity-analysis/" title="Tìm hiểu về complexity analysis" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/08/complexity-analysis/</a>
     </li>
     
     <li class="post-copyright-license">
