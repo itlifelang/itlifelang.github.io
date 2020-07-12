@@ -17,22 +17,23 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Tìm hiểu về equals() và hashCode() | IT life</title>
-  <meta name="description" content="I, Phương thức equals()1, Lý thuyết Như bài viết trước so sánh &#x3D;&#x3D; và equals(), mình cũng đã nói qua về phương thức equals(). Phương thức equals() được dùng để kiểm tra 1 object có equal to với object">
+  <title>Các thuật toán sắp xếp phần I | IT life</title>
+  <meta name="description" content="I, Bài toán sắp xếp1, Định nghĩa Theo D.Knuth: 40% thời gian hoạt động của máy tình là sắp xếp. Do đó tìm hiểu về bài toán sắp xếp và các giải thuật tối ưu là một tác vụ thiết yếu và rất quan trọng. S">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tìm hiểu về equals() và hashCode()">
-<meta property="og:url" content="https://fs-sournary.github.io/2020/07/01/equals-and-hashcode/index.html">
+<meta property="og:title" content="Các thuật toán sắp xếp phần I">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/11/sorting/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, Phương thức equals()1, Lý thuyết Như bài viết trước so sánh &#x3D;&#x3D; và equals(), mình cũng đã nói qua về phương thức equals(). Phương thức equals() được dùng để kiểm tra 1 object có equal to với object">
+<meta property="og:description" content="I, Bài toán sắp xếp1, Định nghĩa Theo D.Knuth: 40% thời gian hoạt động của máy tình là sắp xếp. Do đó tìm hiểu về bài toán sắp xếp và các giải thuật tối ưu là một tác vụ thiết yếu và rất quan trọng. S">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-01T07:54:12.000Z">
-<meta property="article:modified_time" content="2020-07-03T22:14:20.476Z">
+<meta property="og:image" content="https://fs-sournary.github.io/2020/07/11/sorting/sorting-categories.png">
+<meta property="article:published_time" content="2020-07-11T00:26:29.000Z">
+<meta property="article:modified_time" content="2020-07-11T04:04:40.425Z">
 <meta property="article:author" content="Sang">
-<meta property="article:tag" content="Kotlin">
-<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Cấu trúc dữ liệu và giải thuật">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fs-sournary.github.io/2020/07/11/sorting/sorting-categories.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/01/equals-and-hashcode/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/11/sorting/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -322,14 +323,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-equals-and-hashcode" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-sorting" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Tìm hiểu về equals() và hashCode()
+      Các thuật toán sắp xếp phần I
     </h1>
   
 
@@ -337,61 +338,97 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/07/01/equals-and-hashcode/" class="article-date">
-	  <time datetime="2020-07-01T07:54:12.000Z" itemprop="datePublished">2020-07-01</time>
+	<a href="/2020/07/11/sorting/" class="article-date">
+	  <time datetime="2020-07-11T00:26:29.000Z" itemprop="datePublished">2020-07-11</time>
 	</a>
 </span>
         
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
+	<a class="article-tag-link" href="/tags/Cau-truc-du-lieu-va-giai-thuat/" rel="tag">Cấu trúc dữ liệu và giải thuật</a>
   </span>
 
 
         
 
-        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/01/equals-and-hashcode/#comments" class="article-comment-link">Comments</a></span> -->
+        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/11/sorting/#comments" class="article-comment-link">Comments</a></span> -->
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="I-Phuong-thuc-equals"><a href="#I-Phuong-thuc-equals" class="headerlink" title="I, Phương thức equals()"></a>I, Phương thức equals()</h1><h2 id="1-Ly-thuyet"><a href="#1-Ly-thuyet" class="headerlink" title="1, Lý thuyết"></a>1, Lý thuyết</h2><ul>
-<li>Như bài viết trước <a href="https://itlifelang.github.io/2020/07/01/equal-operator-and-equals-method/" target="_blank" rel="noopener">so sánh == và equals()</a>, mình cũng đã nói qua về phương thức <code>equals()</code>.</li>
-<li>Phương thức <code>equals()</code> được dùng để kiểm tra 1 object có <code>equal to</code> với object khác không. Nó được thực thi theo hai cách:<ul>
-<li><strong>Shallow comparison:</strong> mặc định, <code>equals()</code> được định nghĩa trong <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html" target="_blank" rel="noopener">Object</a> class, nó kiểm tra 2 variable có cùng trỏ tới 1 object hay không (tương đương với x == y). Điều này bởi vì Object không có property nào để định nghĩa state.</li>
-<li><strong>Deep comparison:</strong>: class có các property và tiến hành implement <code>equals()</code> method dựa trên các property đó. Ví dụ như Integer, String…</li>
+        <h1 id="I-Bai-toan-sap-xep"><a href="#I-Bai-toan-sap-xep" class="headerlink" title="I, Bài toán sắp xếp"></a>I, Bài toán sắp xếp</h1><h2 id="1-Dinh-nghia"><a href="#1-Dinh-nghia" class="headerlink" title="1, Định nghĩa"></a>1, Định nghĩa</h2><ul>
+<li>Theo D.Knuth: 40% thời gian hoạt động của máy tình là sắp xếp.</li>
+<li>Do đó tìm hiểu về bài toán sắp xếp và các giải thuật tối ưu là một tác vụ thiết yếu và rất quan trọng.</li>
+<li>Sắp xếp (sorting) là quá trình tổ chức lại tập dữ liệu theo thứ tự tăng dần hoặc giảm dần.</li>
+<li>Dữ liệu cần sắp xếp có thể là:<ul>
+<li>Số (Number).</li>
+<li>Chuỗi ký tự (String).</li>
+<li>Object.</li>
+</ul>
+</li>
+<li>Bài toán sắp xếp có dạng:<ul>
+<li><strong>Input:</strong> dãy <code>n</code> số <code>A = (a1, a2, a3,..., an)</code>.</li>
+<li><strong>Output:</strong> một hoán vị (dãy được sắp xếp lại) theo thứ tự tăng dần của các phần tử có dạng <code>(b1, b2, b3,..., bn)</code> thoả mãn: <code>b1 &lt;= b2 &lt;= b3 &lt;= ... &lt;= bn</code>.</li>
+</ul>
+</li>
+<li>Bài toán sắp xếp được sắp xếp ở rất nhiều lĩnh vực:<ul>
+<li>Quản trị cơ sở dữ liệu.</li>
+<li>Khoa học và kĩ thuật.</li>
+<li>Máy tìm kiếm.</li>
+<li>Các thuật toán lập lịch như thiết kế chương trình dịch, truyền thông…</li>
+<li>…</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Shallow comparison</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Object</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Not have any member variable to define its state.</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Deep comparison</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Integer</span> <span class="keyword">extends</span> <span class="title">Number</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> value;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Integer) &#123;</span><br><span class="line">            <span class="keyword">return</span> value == ((Integer)obj).intValue();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Chú ý</strong>: Nếu class không implement <code>equals()</code> method, <code>equals()</code> của class đó sẽ là của class cha implement <code>equals()</code> gần nó nhất.</p>
-<h2 id="2-Vi-du"><a href="#2-Vi-du" class="headerlink" title="2, Ví dụ"></a>2, Ví dụ</h2><ul>
-<li><strong>Ví dụ 1</strong>: shallow comparison không override <code>equals()</code> method</li>
+<h2 id="2-Phan-loai"><a href="#2-Phan-loai" class="headerlink" title="2, Phân loại"></a>2, Phân loại</h2><ul>
+<li>Chúng ta có thể chia giải thuật sắp xếp thành hai loại.</li>
+<li><strong>Sắp xếp trong:</strong> đòi hỏi đưa toàn tập dữ liệu vào bộ nhớ trong của máy tính.</li>
+<li><strong>Sắp xếp ngoài:</strong> tập dữ liệu không thể cùng một lúc đưa vào hết bộ nhớ trong nhưng có thể đọc từng phần vào bộ nhớ ngoài.</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> val;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">(<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-Dac-trung"><a href="#3-Dac-trung" class="headerlink" title="3, Đặc trưng"></a>3, Đặc trưng</h2><ul>
+<li><strong>Tại chỗ (in place):</strong> giải thuật sử dụng một lượng bộ nhớ không đổi, nghĩa là bộ nhớ không phụ thuộc vào độ dài của dãy cần sắp xếp.</li>
+</ul>
+<h1 id="II-Cac-thao-tac-co-ban-trong-giai-thuat-sap-xep"><a href="#II-Cac-thao-tac-co-ban-trong-giai-thuat-sap-xep" class="headerlink" title="II, Các thao tác cơ bản trong giải thuật sắp xếp"></a>II, Các thao tác cơ bản trong giải thuật sắp xếp</h1><ul>
+<li>Giải thuật sắp xếp thường sử dụng hai thao tác cơ bản là <code>đổi chỗ</code> và <code>so sánh</code>.</li>
+</ul>
+<h2 id="1-Doi-cho"><a href="#1-Doi-cho" class="headerlink" title="1, Đổi chỗ"></a>1, Đổi chỗ</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    val temp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Thời gian tính của thao tác là &#927;(1).</li>
+</ul>
+<h2 id="2-So-sanh"><a href="#2-So-sanh" class="headerlink" title="2, So sánh"></a>2, So sánh</h2><ul>
+<li>Thao tác so sánh <code>a</code> và <code>b</code> trả về <code>true</code> nếu <code>a</code> lớn hơn hoặc bằng <code>b</code>. Nếu không sẽ trả về false.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">compare</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a &gt;= b) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestComparator</span>()</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;  </span><br><span class="line">        Test a = <span class="keyword">new</span> Test(<span class="number">1000</span>);</span><br><span class="line">        Test b = <span class="keyword">new</span> Test(<span class="number">1000</span>);</span><br><span class="line">        a.equals(b) <span class="comment">// return false mặc định equals() cũng so sánh memory address (của Object class) như ==.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="III-So-luoc-ve-cac-giai-thuat-sap-xep"><a href="#III-So-luoc-ve-cac-giai-thuat-sap-xep" class="headerlink" title="III, Sơ lược về các giải thuật sắp xếp"></a>III, Sơ lược về các giải thuật sắp xếp</h1><img src="/2020/07/11/sorting/sorting-categories.png" class="">
 
 <ul>
-<li><strong>Ví dụ 2</strong>: deep comparison override <code>equals()</code> method</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> val;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">(<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val = val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Deep comparison</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Test b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.val == b.val</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestComparator</span>()</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;  </span><br><span class="line">        Test a = <span class="keyword">new</span> Test(<span class="number">1000</span>);</span><br><span class="line">        Test b = <span class="keyword">new</span> Test(<span class="number">1000</span>);</span><br><span class="line">        a.equals(b) <span class="comment">// return true.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="II-Phuong-thuc-hashCode"><a href="#II-Phuong-thuc-hashCode" class="headerlink" title="II, Phương thức hashCode()"></a>II, Phương thức hashCode()</h1><ul>
-<li>Phương thức <code>hashCode()</code> trả về 1 giá trị <code>int</code>. Gía trị hashCode được sử dụng phần lớn trong Collection sử dụng cơ chế <code>hashing</code> như <code>HashMap</code>, <code>HashSet</code>, <code>HashTable</code>…</li>
-<li>Một class override <code>equals()</code> thì class cũng nên override <code>hashCode()</code>.</li>
-<li>Một số lưu ý khi override <code>hashCode()</code>:<ul>
-<li>Nếu x và y có <code>equals()</code> return true, <code>hashCode()</code> cũng phải trả về cùng 1 int trên cả x và y.</li>
-<li>Nếu x và y có <code>equals()</code> return false, <code>hashCode()</code> không nhất thiết phải trả về 2 int khác nhau. Chúng có thể giống nhau nhưng trả về 2 int khác nhau sẽ giúp tăng performance cho các collection sử dụng cơ chế <code>hashing</code>.</li>
+<li>Chúng ta sẽ đi tìm hiểu hai loại giải thuật sắp xếp:<ul>
+<li><strong>Simple algorithm:</strong> bao gồm insertion sort, selection sort và bubble sort.</li>
+<li><strong>Fancier algorithm:</strong> bao gồm merge sort, quịck sort.</li>
 </ul>
 </li>
+</ul>
+<h1 id="IV-Insertion-sort"><a href="#IV-Insertion-sort" class="headerlink" title="IV, Insertion sort"></a>IV, Insertion sort</h1><ul>
+<li><strong>Thuật toán:</strong> <ul>
+<li>Tại bước <code>k = 1, 2, 3,..., n</code>, đưa phần tử tại <code>k</code> về đúng vị trí trong dãy có k phần tử đầu tiên.</li>
+<li>Sau bước <code>k</code>, k phần tử đầu tiên được sắp xếp.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createInsertionSort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> last = a[i];</span><br><span class="line">        <span class="keyword">int</span> j = i;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; a[j - <span class="number">1</span>] &gt; last)&#123;</span><br><span class="line">            a[j] = a[j -<span class="number">1</span>];</span><br><span class="line">            j = j - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        a[j] = last;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Phân tích thời gian tính của giải thuật:<ul>
+<li><strong>Best case:</strong> xảy ra khi <code>a</code> là mảng đã được sắp xếp. Giải thuật sử dụng 0 phép đổi chỗ, n - 1 phép so sánh.</li>
+<li><strong>Average case:</strong> <code>n.n/4</code> phép đổi chỗ và phép so sánh.</li>
+<li><strong>Worst case:</strong> xảy ra khi các phần tử của <code>a</code> có thứ tự ngược với thứ tự cần sắp xếp. Giải thuật sử dụng <code>n.n/2</code> phép so sánh và đổi chỗ.</li>
+</ul>
+</li>
+<li>Giải thuật có thời gian tính của best case là tốt nhất.</li>
+<li>Giải thuật nên được sử dụng cho các tập hợp gần như đã được sắp xếp (các phần tử đứng gần đúng với vị trí cần sắp xếp).</li>
 </ul>
 
       
@@ -402,7 +439,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://fs-sournary.github.io/2020/07/01/equals-and-hashcode/" title="Tìm hiểu về equals() và hashCode()" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/01/equals-and-hashcode/</a>
+      <a href="https://fs-sournary.github.io/2020/07/11/sorting/" title="Các thuật toán sắp xếp phần I" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/11/sorting/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -443,12 +480,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2020/07/01/static-keyword/" title="Tìm hiểu về static trong Java"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+      <a href="/2020/07/11/jvmstatic-jvmoverload-and-jvmfield-in-kotlin/" title="Tìm hiểu về @JvmStatic, @JvmOverloads và @JvmField trong kotlin"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/2020/07/01/equal-operator-and-equals-method/" title="Tìm hiểu về == và equals()"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/07/08/complexity-analysis/" title="Tìm hiểu về complexity analysis"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Tìm hiểu về @JvmStatic, @JvmOverloads và @JvmField trong kotlin | IT life</title>
+  <meta name="description" content="I, Lời mở đầu Nếu bạn là 1 lập trình viên Android, bạn sẽ chọn ngôn ngữ nào Java hay Kotlin ? Đừng lo về vấn đề đó vì mỗi ngôn ngữ sẽ có những thế mạnh riêng. Chúng ta đều biết rằng cả Java và Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tìm hiểu về @JvmStatic, @JvmOverloads và @JvmField trong kotlin">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/11/jvmstatic-jvmoverload-and-jvmfield-in-kotlin/index.html">
+<meta property="og:site_name" content="IT and life">
+<meta property="og:description" content="I, Lời mở đầu Nếu bạn là 1 lập trình viên Android, bạn sẽ chọn ngôn ngữ nào Java hay Kotlin ? Đừng lo về vấn đề đó vì mỗi ngôn ngữ sẽ có những thế mạnh riêng. Chúng ta đều biết rằng cả Java và Kotlin">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-11T12:42:22.000Z">
+<meta property="article:modified_time" content="2020-07-12T21:45:49.202Z">
+<meta property="article:author" content="Sang">
+<meta property="article:tag" content="Kotlin">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/11/jvmstatic-jvmoverload-and-jvmfield-in-kotlin/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/information.svg" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/fs-sournary" target="_blank">
+          <img class="img-circle img-rotate" src="/images/asta-2.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Vũ Đức Sang</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Solo leveling</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hà Nội, Việt Nam</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/fs-sournary" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>It doesn't matter how much slowly you go as long as you don't stop</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cau-truc-du-lieu-va-giai-thuat/" rel="tag">Cấu trúc dữ liệu và giải thuật</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-pattern/" rel="tag">Design pattern</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">21</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/11/jvmstatic-jvmoverload-and-jvmfield-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về @JvmStatic, @JvmOverloads và @JvmField trong kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/11/jvmstatic-jvmoverload-and-jvmfield-in-kotlin/" class="title">Tìm hiểu về @JvmStatic, @JvmOverloads và @JvmField trong kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-11T12:42:22.000Z" itemprop="datePublished">2020-07-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/11/sorting/" class="thumb">
+    
+    
+        <span style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8S8Alc5Uv1K6qrrJB6MP9RMq3aMjU5uXShg&amp;usqp=CAU)" alt="Các thuật toán sắp xếp phần I" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/11/sorting/" class="title">Các thuật toán sắp xếp phần I</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-11T00:26:29.000Z" itemprop="datePublished">2020-07-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/08/complexity-analysis/" class="thumb">
+    
+    
+        <span style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8S8Alc5Uv1K6qrrJB6MP9RMq3aMjU5uXShg&amp;usqp=CAU)" alt="Tìm hiểu về complexity analysis" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/08/complexity-analysis/" class="title">Tìm hiểu về complexity analysis</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-08T08:42:21.000Z" itemprop="datePublished">2020-07-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/05/kotlin-dsl/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về kotlin DSL" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/05/kotlin-dsl/" class="title">Tìm hiểu về kotlin DSL</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-05T00:42:50.000Z" itemprop="datePublished">2020-07-05</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2020/07/04/saled-class-in-kotlin/" class="thumb">
+    
+    
+        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin-logo.svg/1200px-Kotlin-logo.svg.png)" alt="Tìm hiểu về sealed class trong kotlin" class="thumb-image"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/07/04/saled-class-in-kotlin/" class="title">Tìm hiểu về sealed class trong kotlin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-04T14:24:29.000Z" itemprop="datePublished">2020-07-04</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-jvmstatic-jvmoverload-and-jvmfield-in-kotlin" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tìm hiểu về @JvmStatic, @JvmOverloads và @JvmField trong kotlin
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/07/11/jvmstatic-jvmoverload-and-jvmfield-in-kotlin/" class="article-date">
+	  <time datetime="2020-07-11T12:42:22.000Z" itemprop="datePublished">2020-07-11</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
+  </span>
+
+
+        
+
+        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/11/jvmstatic-jvmoverload-and-jvmfield-in-kotlin/#comments" class="article-comment-link">Comments</a></span> -->
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="I-Loi-mo-dau"><a href="#I-Loi-mo-dau" class="headerlink" title="I, Lời mở đầu"></a>I, Lời mở đầu</h1><ul>
+<li>Nếu bạn là 1 lập trình viên Android, bạn sẽ chọn ngôn ngữ nào Java hay Kotlin ? Đừng lo về vấn đề đó vì mỗi ngôn ngữ sẽ có những thế mạnh riêng.</li>
+<li>Chúng ta đều biết rằng cả Java và Kotlin đều chạy trên JVM. </li>
+<li>Một class Kotlin đều có thể compile ra một class Java thông qua <code>Kotlin compiler</code>. Nếu sử dụng Android Studio thì Kotlin compiler sẽ compile <code>Test.kt</code> class thành <code>Test.java</code> class.</li>
+<li>Đôi khi chúng ta muốn sử dụng những feature của Java hoặc sử dụng Kotlin code ở trong Java file để tối ưu performance cho JVM.</li>
+<li>Trong bài viết này, chúng ta sẽ đi tìm hiểu về vấn đề này thông qua 3 annotation: <code>@JvmStatic</code>, <code>@JvmOverloads</code> và <code>@JvmField</code>.</li>
+</ul>
+<h1 id="II-JvmStatic"><a href="#II-JvmStatic" class="headerlink" title="II, @JvmStatic"></a>II, @JvmStatic</h1><ul>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-static/" target="_blank" rel="noopener">@JvmStatic</a> là 1 annotation chỉ dùng trong <code>object</code> và <code>companion object class</code>: trong java compiled file, Kotlin compiler sẽ compile các member:<ul>
+<li><strong>Function</strong>: thành 1 static method trong Java class.</li>
+<li><strong>Property:</strong> thành 1 static variable và getter/setter method cho static variable đó trong Java class.</li>
+</ul>
+</li>
+<li><strong>Ví dụ 1:</strong></li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> JvmStaticTest &#123;</span><br><span class="line">    <span class="meta">@JvmStatic</span></span><br><span class="line">    <span class="keyword">var</span> view: DialView? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@JvmStatic</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">doSomething</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// do something here</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Sử dụng Kotlin compiler để compile Kotlin class sang Java class, chúng ta được kết quả:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">AnnotationTest</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Nullable</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> DialView view;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> AnnotationTest INSTANCE;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Nullable</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> DialView <span class="title">getView</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> view;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">setView</span><span class="params">(@Nullable DialView var0)</span> </span>&#123;</span><br><span class="line">      view = var0;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@JvmStatic</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// Ọther implementations will be ignored.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Kotlin compiler compile <code>AnnotationTest</code> object class thành <code>AnnotationTest.java</code> class. Chúng ta thấy:<ul>
+<li>Property <code>view</code> trong AnnotationTest object &#8660; property <code>view</code> và 2 static function <code>getView()</code>/<code>setView()</code> trong AnnotationTest.class.</li>
+<li>Function <code>doSomething()</code> trong AnnotationTest object &#8660; static function <code>doSomething()</code> trong AnnotationTest.java.</li>
+</ul>
+</li>
+</ul>
+<h1 id="II-JvmOverloads"><a href="#II-JvmOverloads" class="headerlink" title="II, @JvmOverloads"></a>II, @JvmOverloads</h1><ul>
+<li><p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/" target="_blank" rel="noopener">@JvmOverloads</a> là 1 annotation áp dụng cho function hoặc constructor: trong java compiled file, Kotlin compiler tạo ra các overloading function dựa trên các default parameter values của function gốc.</p>
+</li>
+<li><p>Nếu một method có <code>N</code> parameter và <code>M</code> parameter có giá trị mặc định thì <code>M</code> overload function sẽ được sinh ra:</p>
+<ul>
+<li>Overloading function thứ 1 có <code>N - 1</code> parameter. Body của nó là gọi lại function gốc với <code>N - 1</code> parameter đầu tiên và default value của parameter của parameter cuối cùng.</li>
+<li>Overloading function thứ 2 có <code>N - 2</code> parameter. Body của nó là gọi là function gốc với <code>N - 2</code> parameter đàu tiên và default value của hai parameter cuối cùng.</li>
+<li>…</li>
+</ul>
+</li>
+<li><p><strong>Ví dụ 2:</strong> annotate constructor của class <code>DialView</code> với <code>@JvmOverloads</code>.</p>
+</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DialView</span> <span class="meta">@JvmOverloads</span> <span class="keyword">constructor</span></span>(</span><br><span class="line">    context: Context,</span><br><span class="line">    attrs: AttributeSet? = <span class="literal">null</span>,</span><br><span class="line">    defStyleAttr: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">) : View(context, attrs, defStyleAttr) &#123;</span><br><span class="line">    <span class="comment">// Do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Constructor trong Kotlin class có 3 parameter và 2 default parameter value. Do đó chúng ta sẽ có 2 overloading constructor.</li>
+<li>Khi không sử dụng <code>@JvmOverloads</code>, class <code>DialView</code> được viết lại như sau:</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DiaView</span>: <span class="type">View &#123;</span></span></span><br><span class="line">    <span class="keyword">constructor</span>(context: Context, attrs: AttributeSet? = <span class="literal">null</span>, defAttr: <span class="built_in">Int</span> = <span class="number">0</span>) : <span class="keyword">super</span>(</span><br><span class="line">        context, attrs, defAttr</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Overloading constructor 1.</span></span><br><span class="line">    <span class="keyword">constructor</span>(context: Context, attrs: AttributeSet?) : <span class="keyword">this</span>(context, attrs, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Overloading constructor 2.</span></span><br><span class="line">    <span class="keyword">constructor</span>(context: Context) : <span class="keyword">this</span>(context, <span class="literal">null</span>, <span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Ví dụ 3:</strong> annotate function <code>doJvmOverloadsFunction()</code> của class <code>JvmOverloadsTest</code> với <code>@JvmOverloads</code></li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JvmOverloadsTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JvmOverloads</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">doJvmOverloadsFunction</span><span class="params">(address: <span class="type">String</span>, location: <span class="type">String</span>? = <span class="literal">null</span>, age: <span class="type">Int</span> = <span class="number">0</span>)</span></span>&#123;</span><br><span class="line">        <span class="comment">// Do something here</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Nếu không sử dụng <code>@JvmOverloads</code>, chúng ta có thể viết lại <code>JvmOverloadTest</code> như sau:</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JvmOverloadsTest</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">doJvmOverloadsFunction</span><span class="params">(address: <span class="type">String</span>, location: <span class="type">String</span>? = <span class="literal">null</span>, age: <span class="type">Int</span> = <span class="number">0</span>)</span></span>&#123;</span><br><span class="line">        <span class="comment">// Do something here</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Overloading function 1</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">doJvmOverloadsFunction</span><span class="params">(address: <span class="type">String</span>, location: <span class="type">String</span>?)</span></span>&#123;</span><br><span class="line">        doJvmOverloadsFunction(address, location, <span class="number">0</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Overloading function 2</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">doJvmOverloadsFunction</span><span class="params">(address: <span class="type">String</span>)</span></span>&#123;</span><br><span class="line">        doJvmOverloadsFunction(address, <span class="literal">null</span>, <span class="number">0</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="III-JvmField"><a href="#III-JvmField" class="headerlink" title="III, @JvmField"></a>III, @JvmField</h1><ul>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-field/" target="_blank" rel="noopener">@JvmField</a> là một annotation được sử dụng cho câc field (property, parameter): trong java complied file, kotlin compiler sẽ không sinh ra method getter và setter cho variable, việc thực hiện get và set sẽ thông qua chính variable đó.</li>
+<li>Do việc thực hiện get và set đều thông qua variable nên field đó là property thì nó không được có visibility modifier là <code>private</code>.</li>
+<li>Annotation <code>@JvmField</code> có nhiều ý nghĩa hơn khi chúng ta sử dung một field của Kotlin class trong 1 Java class. Hãy xem xét ví dụ 4 và 5 để làm rõ hơn.</li>
+<li><strong>Ví dụ 4:</strong></li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JvmFieldTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> test: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Khi bạn muốn sử dụng <code>test</code> trong Java class <code>Test.java</code>:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeJvmFieldTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        JvmFieldTest jvmFieldTest = <span class="keyword">new</span> JvmFieldTest();</span><br><span class="line">        <span class="comment">// Kotlin compiler automatically generate getter and setter method for `test`.</span></span><br><span class="line">        jvmFieldTest.getTest(); </span><br><span class="line">        jvmFieldTest.setTest(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Ví dụ 5:</strong> Viết lại ví dụ 4 và annotate <code>test</code> với <code>JvmField</code></li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JvmFieldTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JvmField</span></span><br><span class="line">    <span class="keyword">var</span> test: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Khi bạn muốn sử dụng <code>test</code> trong Java class <code>Test.java</code>:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeJvmFieldTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        JvmFieldTest jvmFieldTest = <span class="keyword">new</span> JvmFieldTest();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// There are no more any getter and setter methods</span></span><br><span class="line">        <span class="comment">// jvmFieldTest.getTest();  // Compilation errors</span></span><br><span class="line">        <span class="comment">// jvmFieldTest.setTest(1); // Compilation errors</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// Expose via variable directly</span></span><br><span class="line">        jvmFieldTest.test;</span><br><span class="line">        jvmFieldTest.test = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://fs-sournary.github.io/2020/07/11/jvmstatic-jvmoverload-and-jvmfield-in-kotlin/" title="Tìm hiểu về @JvmStatic, @JvmOverloads và @JvmField trong kotlin" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/11/jvmstatic-jvmoverload-and-jvmfield-in-kotlin/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/fs-sournary" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/asta-2.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang</span><small class="ml-1x">Solo leveling</small></a></h3>
+        <div>Android and self-learning developer</div>
+      </div>
+    </figure>
+  </div>
+</div>
+ -->
+
+    </div>
+  </article>
+  
+    
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2020/07/11/sorting/" title="Các thuật toán sắp xếp phần I"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/fs-sournary" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+</body>
+</html>

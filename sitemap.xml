@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://fs-sournary.github.io/2020/07/11/jvmstatic-jvmoverload-and-jvmfield-in-kotlin/</loc>
+    
+    <lastmod>2020-07-12T21:45:49.202Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://fs-sournary.github.io/2020/06/28/android-design-pattern-part-I/</loc>
+    
+    <lastmod>2020-07-11T11:27:47.179Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://fs-sournary.github.io/2020/07/11/sorting/</loc>
+    
+    <lastmod>2020-07-11T04:04:40.425Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://fs-sournary.github.io/2020/07/08/complexity-analysis/</loc>
     
-    <lastmod>2020-07-11T00:20:00.929Z</lastmod>
+    <lastmod>2020-07-11T02:00:23.288Z</lastmod>
     
   </url>
   
@@ -124,13 +145,6 @@
     <loc>https://fs-sournary.github.io/about/index.html</loc>
     
     <lastmod>2020-07-03T00:01:01.025Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://fs-sournary.github.io/2020/06/28/android-design-pattern-part-I/</loc>
-    
-    <lastmod>2020-07-02T14:42:25.158Z</lastmod>
     
   </url>
   
