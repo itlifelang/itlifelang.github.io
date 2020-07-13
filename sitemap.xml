@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://fs-sournary.github.io/2020/07/13/extension-function-in-kotlin/</loc>
+    
+    <lastmod>2020-07-13T04:04:40.218Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://fs-sournary.github.io/2020/07/11/jvmstatic-jvmoverload-and-jvmfield-in-kotlin/</loc>
     
     <lastmod>2020-07-12T21:45:49.202Z</lastmod>
