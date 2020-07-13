@@ -18,15 +18,15 @@
   
   
   <title>Tìm hiểu về sealed class trong kotlin | IT life</title>
-  <meta name="description" content="I, Sealed class Sealed được dịch ra là khép kín. Do đó sealed class hiểu nôm na là class khép kín. Trong kotlin, sealed class được sử dụng để giới hạn hệ thống class: variable của sealed class chỉ có">
+  <meta name="description" content="I, Sealed class Sealed được dịch ra là khép kín. Do đó sealed class hiểu nôm na là class khép kín. Sealed class được sử dụng để giới hạn hệ thống class: một variable có kiểu nằm trong một tập giới hạn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tìm hiểu về sealed class trong kotlin">
 <meta property="og:url" content="https://fs-sournary.github.io/2020/07/04/saled-class-in-kotlin/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, Sealed class Sealed được dịch ra là khép kín. Do đó sealed class hiểu nôm na là class khép kín. Trong kotlin, sealed class được sử dụng để giới hạn hệ thống class: variable của sealed class chỉ có">
+<meta property="og:description" content="I, Sealed class Sealed được dịch ra là khép kín. Do đó sealed class hiểu nôm na là class khép kín. Sealed class được sử dụng để giới hạn hệ thống class: một variable có kiểu nằm trong một tập giới hạn">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-04T14:24:29.000Z">
-<meta property="article:modified_time" content="2020-07-04T21:50:55.735Z">
+<meta property="article:modified_time" content="2020-07-13T07:26:36.020Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
@@ -358,13 +358,12 @@
       
         <h1 id="I-Sealed-class"><a href="#I-Sealed-class" class="headerlink" title="I, Sealed class"></a>I, Sealed class</h1><ul>
 <li>Sealed được dịch ra là khép kín. Do đó sealed class hiểu nôm na là class khép kín.</li>
-<li>Trong kotlin, <code>sealed class</code> được sử dụng để giới hạn hệ thống class: variable của sealed class chỉ có thể ở trong 1 tập giới hạn (có vẻ giống với enum class).</li>
-<li>Về mặt ý nghĩa, sealed class là phần mở rộng của enum class.</li>
-<li>Đồng thời, sealed class cũng là abstract class (mặc dù không có <code>abstract</code> keyword). Do đó chúng không thể được khởi tạo sealed class và sealed class thể chứa abstract member.</li>
+<li>Sealed class được sử dụng để giới hạn hệ thống class: một variable có kiểu nằm trong một tập giới hạn.</li>
+<li>Về mặt ý nghĩa, sealed class là phần mở rộng của enum class. Đồng thời, sealed class cũng là abstract class (mặc dù không có <code>abstract</code> keyword).</li>
 </ul>
-<h1 id="II-Sealed-class-vs-enum-class"><a href="#II-Sealed-class-vs-enum-class" class="headerlink" title="II, Sealed class vs enum class"></a>II, Sealed class vs enum class</h1><ul>
-<li>Như mình đã nói ở trên, sealded class là phần mở rộng của enum class do đó nó sẽ tốt hơn enum class.</li>
-<li><strong>Giống nhau:</strong> Variable của sealed class hay enum class đều bị giới hạn ở 1 tập nhất định.</li>
+<h1 id="II-So-sanh-sealed-class-va-enum-class"><a href="#II-So-sanh-sealed-class-va-enum-class" class="headerlink" title="II, So sánh sealed class và enum class"></a>II, So sánh sealed class và enum class</h1><ul>
+<li>Như mình đã nói ở trên, sealed class là phần mở rộng của enum class do đó nó sẽ tốt hơn enum class.</li>
+<li><strong>Giống nhau:</strong> variable có kiểu nằm trong một tập giới hạn.</li>
 <li><strong>Khác nhau:</strong><ul>
 <li>Các enum constant chỉ có 1 kiểu khai báo (giống với enum class) và tồn tại như 1 instance của enum class. Các enum constant chỉ có thể nằm trong body của enum class.</li>
 <li>Sealed class có thể có subclass. Các subclass của sealed class có thể khai báo theo nhiều cách khác nhau. Các subclass phải được khai báo cùng file với sealed class.</li>
@@ -374,15 +373,15 @@
 </ul>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Enum</span></span><br><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">State</span></span>(<span class="keyword">val</span> message: String) &#123;</span><br><span class="line">    SUCCESS(<span class="string">"Success"</span>),</span><br><span class="line">    ERROR(<span class="keyword">val</span> exception: Exception) <span class="comment">// not possible with enums</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Sealed class and its subclasses</span></span><br><span class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">class</span> <span class="title">Expr</span></span></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Const</span></span>(<span class="keyword">val</span> number: <span class="built_in">Double</span>) : Expr()</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sum</span></span>(<span class="keyword">val</span> e1: Expr, <span class="keyword">val</span> e2: Expr) : Expr()</span><br><span class="line"><span class="keyword">object</span> NotANumber : Expr()</span><br></pre></td></tr></table></figure>
 
-<h1 id="III-Sealed-class-vs-abstract-class"><a href="#III-Sealed-class-vs-abstract-class" class="headerlink" title="III, Sealed class vs abstract class"></a>III, Sealed class vs abstract class</h1><ul>
+<h1 id="III-So-sanh-sealed-class-va-abstract-class"><a href="#III-So-sanh-sealed-class-va-abstract-class" class="headerlink" title="III, So sánh sealed class và abstract class"></a>III, So sánh sealed class và abstract class</h1><ul>
 <li>Bản thân sealed class chính là abstract class nên nó có thể có subclass và abstract member.</li>
-<li>Subclass của abstract class có thể khai báo ở bất cứ đâu (dựa vào cả visibility modifier). Subclass của sealed class chỉ có thể được khai báo cùng file với nó.</li>
-<li>Sealed class cũng chỉ có private constructor. Mặc định nếu không khai báo constructor thì nó là private.</li>
-<li><strong>Chú ý:</strong> class extend subclass của sealed class có thể được khai báo ở bất cứ đâu.</li>
+<li>Subclass của abstract class có thể khai báo ở bất cứ đâu. Subclass của sealed class chỉ có thể được khai báo cùng file với nó.</li>
+<li>Mặc định, constructor của sealed class có visibility modifier là <code>private</code>.</li>
+<li>Các class extend subclass của sealed class có thể được khai báo ở bất cứ đâu.</li>
 <li>Lợi ích lớn nhất của sealed class so với abstract class là khi sử dụng điều kiện <code>when</code>: khi chúng ta cover hết tất cả trường hợp thì không cần mệnh đề <code>else</code> nữa.</li>
-<li><strong>Ví dụ 2:</strong> kết hợp với ví dụ 1</li>
+<li><strong>Ví dụ 2:</strong></li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">eval</span><span class="params">(expr: <span class="type">Expr</span>)</span></span>: <span class="built_in">Double</span> = <span class="keyword">when</span>(expr) &#123;</span><br><span class="line">    <span class="keyword">is</span> Const -&gt; expr.number</span><br><span class="line">    <span class="keyword">is</span> Sum -&gt; eval(expr.e1) + eval(expr.e2)</span><br><span class="line">    NotANumber -&gt; <span class="built_in">Double</span>.NaN</span><br><span class="line">    <span class="comment">// the `else` clause is not required because we've covered all the cases</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">class</span> <span class="title">Expr</span></span></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Const</span></span>(<span class="keyword">val</span> number: <span class="built_in">Double</span>) : Expr()</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sum</span></span>(<span class="keyword">val</span> e1: Expr, <span class="keyword">val</span> e2: Expr) : Expr()</span><br><span class="line"><span class="keyword">object</span> NotANumber : Expr()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">eval</span><span class="params">(expr: <span class="type">Expr</span>)</span></span>: <span class="built_in">Double</span> = <span class="keyword">when</span>(expr) &#123;</span><br><span class="line">    <span class="keyword">is</span> Const -&gt; expr.number</span><br><span class="line">    <span class="keyword">is</span> Sum -&gt; eval(expr.e1) + eval(expr.e2)</span><br><span class="line">    NotANumber -&gt; <span class="built_in">Double</span>.NaN</span><br><span class="line">    <span class="comment">// the `else` clause is not required because we've covered all the cases</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
