@@ -18,15 +18,15 @@
   
   
   <title>Tìm hiểu về scope function trong Kotlin | IT life</title>
-  <meta name="description" content="I, Scope function Kotlin standard library cung cấp Scope function với mục đích duy nhất là xử lý 1 đoạn code trong context của object. Scope function lấy tham số là 1 function của 1 object. Khi sử dụn">
+  <meta name="description" content="I, Scope function Recommend: trước khi đọc bài này, mình khuyên các bạn đọc về high-order function trước. Kotlin cung cấp scope function với mục đích là xử lý code trong context của object. Scope func">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tìm hiểu về scope function trong Kotlin">
 <meta property="og:url" content="https://fs-sournary.github.io/2020/07/03/scope-function-in-kotlin/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, Scope function Kotlin standard library cung cấp Scope function với mục đích duy nhất là xử lý 1 đoạn code trong context của object. Scope function lấy tham số là 1 function của 1 object. Khi sử dụn">
+<meta property="og:description" content="I, Scope function Recommend: trước khi đọc bài này, mình khuyên các bạn đọc về high-order function trước. Kotlin cung cấp scope function với mục đích là xử lý code trong context của object. Scope func">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-03T00:30:54.000Z">
-<meta property="article:modified_time" content="2020-07-03T22:55:46.241Z">
+<meta property="article:modified_time" content="2020-07-13T04:44:20.529Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Kotlin">
 <meta name="twitter:card" content="summary">
@@ -357,18 +357,17 @@
     <div class="article-entry marked-body" itemprop="articleBody">
       
         <h1 id="I-Scope-function"><a href="#I-Scope-function" class="headerlink" title="I, Scope function"></a>I, Scope function</h1><ul>
-<li>Kotlin standard library cung cấp <code>Scope function</code> với mục đích duy nhất là xử lý 1 đoạn code trong context của object.</li>
-<li>Scope function lấy tham số là 1 function của 1 object. Khi sử dụng, chúng ta có thể:<ul>
-<li>1, thay thế function đó bằng cách truyền vào <code>lambada expression</code>.</li>
-<li>2, truy cập vào object của function mà không cần định nghĩa <code>name</code> cho nó.</li>
-</ul>
-</li>
-<li>Kotlin cung cấp cho 5 loại scope function là <code>let</code>, <code>run</code>, <code>with</code>, <code>apply</code> và <code>also</code>.</li>
+<li><strong>Recommend:</strong> trước khi đọc bài này, mình khuyên các bạn đọc về high-order function trước.</li>
+<li>Kotlin cung cấp <code>scope function</code> với mục đích là xử lý code trong context của object.</li>
+<li>Scope function có parameter có kiểu dữ liệu là function type. Chúng ta thường khởi tạo nó bằng lambada expression.</li>
+<li>Scope function không phải là kiến thức mới mà nó được tạo ra để code ngắn gọn và đễ đọc hơn.</li>
+<li><strong>Chú ý:</strong> Scope function có thể làm cho code khó đọc và dẫn tới error. Do đó chúng ta nên tránh lồng các scope function vâo nhau và cẩn thận khi nối chúng.</li>
 </ul>
 <h1 id="II-Phan-biet"><a href="#II-Phan-biet" class="headerlink" title="II, Phân biệt"></a>II, Phân biệt</h1><ul>
-<li>Các loại scope function khác nhau ở 2 điểm:<ul>
-<li>1, Object reference trong lambada function: <code>this</code> (lambada receiver) hay <code>it</code> (lambada argument). </li>
-<li>2, Giá trị trả về: context object hay lambada result.</li>
+<li>Kotlin cung cấp cho 5 loại scope function là <code>let</code>, <code>run</code>, <code>with</code>, <code>apply</code> và <code>also</code>.</li>
+<li>Các loại scope function khác nhau ở 2 điểm chính:<ul>
+<li><strong>Object reference</strong>: <code>this</code> (lambada receiver) hoặc <code>it</code> (lambada argument).</li>
+<li><strong>Return type</strong>: context object hoặc lambada result.</li>
 </ul>
 </li>
 <li>Bảng phân biệt các scope function:</li>
@@ -422,21 +421,17 @@
 <ul>
 <li><strong>Ví dụ 1</strong>: sử dụng <code>apply</code>, <code>also</code> và <code>let</code></li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// `apply` use `this` as object reference</span></span><br><span class="line">val applyPerson: Person = Person(<span class="string">"Adam"</span>).apply &#123;</span><br><span class="line">    age = <span class="number">32</span>     </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// `also` use `it` as object reference</span></span><br><span class="line">val alsoPerson: Person = Person(<span class="string">"Adam"</span>).also &#123;</span><br><span class="line">    it.age = <span class="number">32</span>     </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// `let` use `it` as object reference</span></span><br><span class="line">val letPerson = Person(<span class="string">"Adam"</span>)</span><br><span class="line">val age: Int = letPerson.let &#123;</span><br><span class="line">    it.age = <span class="number">32</span>      </span><br><span class="line">    it.age <span class="comment">// return value is last expression</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// `apply` use `this` as object reference</span></span><br><span class="line">val applyPerson: Person = Person(<span class="string">"Adam"</span>).apply &#123;</span><br><span class="line">    age = <span class="number">32</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// `also` use `it` as object reference</span></span><br><span class="line">val alsoPerson: Person = Person(<span class="string">"Adam"</span>).also &#123;</span><br><span class="line">    it.age = <span class="number">32</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// `let` use `it` as object reference</span></span><br><span class="line">val letPerson = Person(<span class="string">"Adam"</span>)</span><br><span class="line">val age: Int = letPerson.let &#123;</span><br><span class="line">    it.age = <span class="number">32</span></span><br><span class="line">    it.age <span class="comment">// return value is last expression</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><strong>Ví dụ 2</strong>: sử dụng <code>run</code> (<code>run</code> có 2 version)</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// `run` version 1: use `this` as object reference</span></span><br><span class="line"><span class="keyword">val</span> runPerson = Person(<span class="string">"Adam"</span>, <span class="number">32</span>)</span><br><span class="line"><span class="keyword">val</span> age: <span class="built_in">Int</span> = runPerson.run &#123;     </span><br><span class="line">    age <span class="comment">// return value is last expression</span></span><br><span class="line">&#125;</span><br><span class="line">println(<span class="string">"Age is <span class="variable">$age</span>"</span>) <span class="comment">// result: Age is 32</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// `run` version 2: called without object reference. It doesn't have `this` or `it`</span></span><br><span class="line"><span class="keyword">val</span> text = run &#123;</span><br><span class="line">    <span class="keyword">val</span> str = <span class="string">"It life"</span></span><br><span class="line">    str</span><br><span class="line">&#125;</span><br><span class="line">println(text) <span class="comment">// result: str</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// `run` version 1: use `this` as object reference</span></span><br><span class="line"><span class="keyword">val</span> runPerson = Person(<span class="string">"Adam"</span>, <span class="number">32</span>)</span><br><span class="line"><span class="keyword">val</span> age: <span class="built_in">Int</span> = runPerson.run &#123;</span><br><span class="line">    age <span class="comment">// return value is last expression</span></span><br><span class="line">&#125;</span><br><span class="line">println(<span class="string">"Age is <span class="variable">$age</span>"</span>) <span class="comment">// result: Age is 32</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// `run` version 2: called without object reference. It doesn't have `this` or `it`</span></span><br><span class="line"><span class="keyword">val</span> text = run &#123;</span><br><span class="line">    <span class="keyword">val</span> str = <span class="string">"It life"</span></span><br><span class="line">    str</span><br><span class="line">&#125;</span><br><span class="line">println(text) <span class="comment">// result: str</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><strong>Ví dụ 3:</strong> sử dụng <code>with</code></li>
 </ul>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> numbers = mutableListOf(<span class="string">"one"</span>, <span class="string">"two"</span>, <span class="string">"three"</span>)</span><br><span class="line"><span class="keyword">val</span> firstAndLast = with(numbers) &#123;</span><br><span class="line">    <span class="string">"First: <span class="subst">$&#123;first()&#125;</span>,"</span> + <span class="string">" Last: <span class="subst">$&#123;last()&#125;</span>"</span></span><br><span class="line">&#125;</span><br><span class="line">println(firstAndLast) <span class="comment">// result: First: one, Last: three</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>Chú ý</strong>: Mặc dù, scope function làm cho code ngắn gọn hơn trong hầu hết trường hợp nhưng chúng có thể làm cho code khó đọc và dẫn tới error.<br>Do đó chúng ta nên tránh lồng các scope function vâo với nhau và cần thận khi nối chúng với nhau.</li>
-</ul>
 
       
     </div>
