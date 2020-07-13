@@ -4760,7 +4760,6 @@ a.label:focus {
     height: 64px;
     margin-top: 0;
     margin-bottom: 0;
-    word-break: break-all !important;
     word-wrap: break-word !important;
 }
 
