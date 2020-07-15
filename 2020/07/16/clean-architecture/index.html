@@ -17,16 +17,23 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Archive | IT life</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="IT and life">
-<meta property="og:url" content="https://fs-sournary.github.io/archives/page/3/index.html">
+  <title>Tìm hiểu về clean architecture | IT life</title>
+  <meta name="description" content="I, Mở đầu Để tạo nên ứng dụng hay to hơn là hệ thống, các developer thường sẽ tuân theo 1 architecture. Nếu đã từng tìm hiểu về các loại về architecture, chúng ta có thể đã tìm hiểu qua về MVC, MVP và">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tìm hiểu về clean architecture">
+<meta property="og:url" content="https://fs-sournary.github.io/2020/07/16/clean-architecture/index.html">
 <meta property="og:site_name" content="IT and life">
+<meta property="og:description" content="I, Mở đầu Để tạo nên ứng dụng hay to hơn là hệ thống, các developer thường sẽ tuân theo 1 architecture. Nếu đã từng tìm hiểu về các loại về architecture, chúng ta có thể đã tìm hiểu qua về MVC, MVP và">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://fs-sournary.github.io/2020/07/16/clean-architecture/clean-architecture.png">
+<meta property="article:published_time" content="2020-07-15T19:12:40.000Z">
+<meta property="article:modified_time" content="2020-07-15T21:39:02.683Z">
 <meta property="article:author" content="Sang">
+<meta property="article:tag" content="Architecture">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fs-sournary.github.io/2020/07/16/clean-architecture/clean-architecture.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://fs-sournary.github.io/archives/page/3/index.html">
+  <link rel="canonical" href="https://fs-sournary.github.io/2020/07/16/clean-architecture/index.html">
   
     <link rel="alternate" href="/atom.xml" title="IT and life" type="application/atom+xml">
   
@@ -315,144 +322,170 @@
   
   
 <main class="main" role="main">
-  	<article class="content article article-archives article-type-list" itemscope="">
-	    <header class="article-header">
-	      <h1 itemprop="title">Archive</h1>
-	      <p class="text-muted">Total 8 articles</p>
-	    </header>
-	    <div class="article-body">
-	      
-  
-  
+  <div class="content">
+  <article id="post-clean-architecture" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
-    
+    <div class="article-header">
       
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tìm hiểu về clean architecture
+    </h1>
+  
+
       
-      <section class="panel panel-default b-no">
-        <div class="panel-heading" role="tab">
-          <h3 class="panel-title">
-            <a data-toggle="collapse" href="#collapse2020" aria-expanded="true">
-              <i class="icon icon-calendar-plus text-active"></i><i class="icon icon-calendar-minus text"></i>
-              2020
-            </a>
-            <!-- <a href="/archives/2020" class="archive-year">2020</a> -->
-          </h3>
-        </div>
-        <div id="collapse2020" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2020">
-        <div class="panel-body">
-          <div class="collection">
-    
-    
-<a href="/2020/07/01/equals-and-hashcode/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-07-01T07:54:12.000Z" itemprop="datePublished">2020-07-01</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Tìm hiểu về equals() và hashCode()
-</a>
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/07/16/clean-architecture/" class="article-date">
+	  <time datetime="2020-07-15T19:12:40.000Z" itemprop="datePublished">2020-07-16</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Architecture/" rel="tag">Architecture</a>
+  </span>
 
 
+        
+
+        <!-- <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/16/clean-architecture/#comments" class="article-comment-link">Comments</a></span> -->
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="I-Mo-dau"><a href="#I-Mo-dau" class="headerlink" title="I, Mở đầu"></a>I, Mở đầu</h1><ul>
+<li>Để tạo nên ứng dụng hay to hơn là hệ thống, các developer thường sẽ tuân theo 1 architecture.</li>
+<li>Nếu đã từng tìm hiểu về các loại về architecture, chúng ta có thể đã tìm hiểu qua về MVC, MVP và MVVM.</li>
+<li>Hôm nay, mình sẽ giới thiệu với mọi người 1 architecture khác là clean architecture.</li>
+</ul>
+<h1 id="II-Tac-gia"><a href="#II-Tac-gia" class="headerlink" title="II, Tác giả"></a>II, Tác giả</h1><ul>
+<li>Người tạo ra clean architecture là một kỹ sư phần mềm rất nổi tiếng là <a href="https://en.wikipedia.org/wiki/Robert_C._Martin" target="_blank" rel="noopener">Robert C.Martin</a>.</li>
+<li>Robert C.Martin hay <code>Uncle Bob</code> là một kỹ sư phần mêm người Mỹ. Ông có tầm ảnh hưởng lớn trong việc phát triển và áp dụng các nguyên lý thiết kế phần mềm.</li>
+<li>Không chỉ có clean architecture, Uncle Bob còn là tác giả của <a href="https://en.wikipedia.org/wiki/Agile_software_development#The_Agile_Manifesto" target="_blank" rel="noopener">Agile</a> và <a href="https://en.wikipedia.org/wiki/SOLID" target="_blank" rel="noopener">SOLID</a>.</li>
+</ul>
+<h1 id="III-Clean-architecture"><a href="#III-Clean-architecture" class="headerlink" title="III, Clean architecture"></a>III, Clean architecture</h1><ul>
+<li>Clean architecture là một kiến trúc (architecture) thiết kế phần mềm dựa trên <code>dependency rule</code>.</li>
+<li>Sơ đồ về clean architecture được khái quát như dưới hình:</li>
+</ul>
+<img src="/2020/07/16/clean-architecture/clean-architecture.png" class="">
+
+<ul>
+<li>Dependency rule là gì ? Háy cùng phân tích sơ đồ về clean architecture:<ul>
+<li>Một ứng dụng hay hệ thống chia thành nhiều vòng tròn đồng tâm.</li>
+<li>Vị trí của vòng tròn nói lên cấp của chúng <code>vòng tròn càng xa tâm thì có cấp càng cao</code>.</li>
+<li>Dependency rule là quy tắc quy định source code dependecy chỉ được trỏ vào trong: <ul>
+<li>Vòng tròn bên trong không được chứa source code dependency (những gì khai báo) của vòng trong ngoài <code>(1)</code>.</li>
+<li>Đồng thời, chúng ta cũng mong muốn bất cứ thứ gì ở vòng tròn bên ngoài làm ảnh hưởng tới vòng tròn bên trong <code>(2)</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Mỗi vòng tròn tương ứng với 1 layer của ứng dụng, chúng ta có thể chia thành 4 layer: <code>entities</code>, <code>use cases</code>, <code>interface adapter</code> và <code>Framework and Drivers</code>.</li>
+<li>Chúng ta có thể tham khảo cách implement của clean architecture thông qua <a href="https://github.com/cleancoders/CleanCodeCaseStudy/tree/master/src/cleancoderscom" target="_blank" rel="noopener">repository</a> của Uncle Bob trên Github.</li>
+</ul>
+<h2 id="1-Entities"><a href="#1-Entities" class="headerlink" title="1, Entities"></a>1, Entities</h2><ul>
+<li>Entities chứa <code>Enterprise wide business rules</code>.</li>
+<li>Nó có nghĩa là entities không bị bó buộc trong 1 ứng dụng đơn lẻ mà có thẻ được sử dụng rộng rãi ở nhiều ứng dụng trong hệ thống. Nếu chúng ta viết entities cho một ứng dụng, các entities cũng chính là business object của ứng dụng đó.</li>
+<li>Một entity có thể là 1 class với các property và method, data structure hay interface với các methods.</li>
+<li>Chúng ít có khả năng thay đổi khi các layer cấp cao hơn thay đổi. Ví dụ như chúng ta sẽ không thay đổi các entities khi việc điều hướng, security hay UI bị thay đổi.</li>
+<li>Theo (2), không có sự thay đổi hoạt động của một ứng dụng trong hệ thống làm ảnh hưởng tới layer entities.</li>
+<li>Do đó, entities có thể chạy độc lập mà không sợ bị lỗi.</li>
+</ul>
+<h2 id="2-Use-cases"><a href="#2-Use-cases" class="headerlink" title="2, Use cases"></a>2, Use cases</h2><ul>
+<li>Use cases chứa <code>application specific business rules</code>.</li>
+<li>Nó có nghĩa là nó tóm lược và thực hiện các case sử dụng của ứng dụng.</li>
+<li>Layer use cases sử dụng các entities object để thực hiện các case sử dụng của ứng dụng.</li>
+<li>Theo (1), các thành phần ở layer cao hơn sẽ không được có trong layer use cases.</li>
+<li>Theo (2), thay đổi ở layer use cases sẽ không làm ảnh hưởng đến layer entities.</li>
+<li>Layer use cases thể hiện business logic của ứng dụng. Do đó khi hoạt động và các case sử dụng của ứng dụng thay đổi, code trong layer này cũng sẽ bị thay đổi.</li>
+</ul>
+<h2 id="3-Interface-adapters"><a href="#3-Interface-adapters" class="headerlink" title="3, Interface adapters"></a>3, Interface adapters</h2><ul>
+<li>Interface adapters là layer dùng để chuyển đổi dữ liệu của ở layer entites và use cases thành đối tượng dữ liệu tiện sử dụng cho các tác vụ làm việc với database, networking…, nó cũng có thể chứa các framwork có sẵn để làm việc.</li>
+<li>Ngoài layer use cases và entities, các framework cũng được sử dụng để chuyển đổi dữ liệu.</li>
+<li>Ví dụ như nếu ứng dụng quyết định làm việc với SQL database, layer này sẽ tạo ra các đối tượng như table, SQL queries…để chúng ta có thể thuận tiện hơn trong khi làm việc với yêu cầu của ứng dụng.</li>
+</ul>
+<h2 id="4-Frameworks-and-Drivers"><a href="#4-Frameworks-and-Drivers" class="headerlink" title="4, Frameworks and Drivers"></a>4, Frameworks and Drivers</h2><ul>
+<li>Đây là layer ngoài cùng, nó là nơi chúng ta đi vào chi tiết hoá yêu cầu của ứng dụng như UI, database, web…và cũng bao gồm các Framework được xây dựng để phục vụ việc chi tiết hoá như UI framework…và cũng là</li>
+<li>Chúng ta không phải viết nhiều code trong lớp này bởi vì nó sử dụng code ở trong interface adapter (nơi mà mọi logic đã hoàn thành).</li>
+<li>Ví dụ trong lập trình Android, trong layer này chúng ta sẽ import những UI dependency như material, ConstraintLayout…Nó sử dụng code trong layer interface adapter và các dependency để thực hiện hiển thị UI.</li>
+</ul>
+<h1 id="IV-Co-phai-bat-buoc-la-bon-layer"><a href="#IV-Co-phai-bat-buoc-la-bon-layer" class="headerlink" title="IV, Có phải bắt buộc là bốn layer"></a>IV, Có phải bắt buộc là bốn layer</h1><ul>
+<li>Trong clean architecture, không bắt buộc chỉ có thể là 4 layer. Tuỳ theo trường hợp, chúng ta có thể chia thành nhiều layer hơn.</li>
+<li>Nhưng clean architecture phải tuyệt đối tuân thủ vào dependency rule. </li>
+<li>Khi bạn đi vào trong, mức độ trừu tượng hoá sẽ được tăng lên (mức độ phụ thuộc giảm đi) do đó chúng ta càng dễ tách biệt chúng để dễ dàng kiểm thử, maintain và thay đổi hơn.</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <!-- <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://fs-sournary.github.io/2020/07/16/clean-architecture/" title="Tìm hiểu về clean architecture" target="_blank" rel="external">https://fs-sournary.github.io/2020/07/16/clean-architecture/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/fs-sournary" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/asta-2.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/fs-sournary" target="_blank"><span class="text-dark">Vũ Đức Sang</span><small class="ml-1x">Solo leveling</small></a></h3>
+        <div>Android and self-learning developer</div>
+      </div>
+    </figure>
+  </div>
+</div>
+ -->
+
+    </div>
+  </article>
   
     
-    
-    
-<a href="/2020/07/01/equal-operator-and-equals-method/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-07-01T03:53:16.000Z" itemprop="datePublished">2020-07-01</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Tìm hiểu về == và equals()
-</a>
-
 
   
-    
-    
-    
-<a href="/2020/07/01/transient-keyword/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-07-01T03:21:57.000Z" itemprop="datePublished">2020-07-01</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Tìm hiểu về transient
-</a>
+</div>
 
-
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
   
+  <ul class="pager pull-left">
     
     
-    
-<a href="/2020/07/01/serialization-and-deserialization/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-07-01T01:22:11.000Z" itemprop="datePublished">2020-07-01</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Tìm hiểu về Serializable và Parcelable
-</a>
-
-
-  
+    <li class="next">
+      <a href="/2020/07/13/extension-function-in-kotlin/" title="Tìm hiểu về extension trong kotlin"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
     
     
-    
-<a href="/2020/06/30/exception/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-06-30T09:41:14.000Z" itemprop="datePublished">2020-06-30</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Tìm hiểu về Exception
-</a>
-
-
-  
-    
-    
-    
-<a href="/2020/06/30/synchronized-keyword/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-06-30T08:43:23.000Z" itemprop="datePublished">2020-06-30</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Tìm hiểu về synchronized
-</a>
-
-
-  
-    
-    
-    
-<a href="/2020/06/30/volatile-keyword/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-06-30T03:14:24.000Z" itemprop="datePublished">2020-06-30</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Tìm hiểu về volatile keyword
-</a>
-
-
-  
-    
-    
-    
-<a href="/2020/06/28/android-design-pattern-part-I/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-06-28T02:43:12.000Z" itemprop="datePublished">2020-06-28</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Implement design pattern trong Android với Kotlin phần I
-</a>
-
-
+  </ul>
   
   
-    </div></div></div></section>
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
   
 
-	    </div>
-  	</article>
-  	
-    
-    <nav class="bar bar-footer clearfix" data-stick-bottom>
-        <div class="bar-inner">
-        <ul class="pager pull-left">
-            
-            <li class="prev">
-                <a href="/archives/page/2/">
-                    <i class="icon icon-angle-left"></i>
-                    Prev
-                </a>
-            </li>
-            
-            
-            <li class="next disabled">
-                <a href="javascript:;">
-                    Next
-                    <i class="icon icon-angle-right"></i>                    
-                </a>
-            </li>
-            
-        </ul>
-        <div class="total-article bar-right">Page 3 of 3</div>
-        </div>
-    </nav>
-    
- 	
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -503,6 +536,10 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+
+
+
+   
 
 
 

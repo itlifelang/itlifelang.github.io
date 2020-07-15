@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://fs-sournary.github.io/2020/07/16/clean-architecture/</loc>
+    
+    <lastmod>2020-07-15T21:39:02.683Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://fs-sournary.github.io/2020/07/03/array-vs-collection-in-kotlin/</loc>
     
     <lastmod>2020-07-13T07:35:01.878Z</lastmod>
