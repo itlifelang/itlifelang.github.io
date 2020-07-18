@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://fs-sournary.github.io/2020/07/16/clean-architecture/clean-architecture.png">
 <meta property="article:published_time" content="2020-07-15T19:12:40.000Z">
-<meta property="article:modified_time" content="2020-07-18T21:33:04.221Z">
+<meta property="article:modified_time" content="2020-07-18T21:51:08.562Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Architecture">
 <meta name="twitter:card" content="summary">
@@ -377,9 +377,9 @@
 
 <ul>
 <li>Dependency rule là gì ? Hãy cùng phân tích sơ đồ về clean architecture:<ul>
-<li>Mô hình sẽ chia thành nhiều vòng tròn đồng tâm.</li>
+<li>Mô hình sẽ chia thành nhiều vòng tròn đồng tâm. Mỗi vòng tròn tương ứng với 1 layer.</li>
 <li>Vị trí của vòng tròn nói lên cấp (level) của chúng: <strong>vòng tròn càng xa tâm thì có cấp càng cao</strong>.</li>
-<li>Dependency rule là quy tắc quy định source code chỉ được trỏ vào trong:<ul>
+<li>Dependency rule là quy tắc quy định rằng:<ul>
 <li>Vòng tròn bên trong (level thấp hơn) không được chứa source code của vòng trong ngoài (level cao hơn) <strong>(1)</strong>.</li>
 <li>Đồng thời, bất cứ thay đổi ở vòng tròn bên ngoài không làm ảnh hưởng tới vòng tròn bên trong <strong>(2)</strong>.</li>
 </ul>
