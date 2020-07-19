@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://fs-sournary.github.io/2020/07/16/clean-architecture/clean-architecture.png">
 <meta property="og:image" content="https://fs-sournary.github.io/2020/07/16/clean-architecture/crossing-boundaries.png">
 <meta property="article:published_time" content="2020-07-15T19:12:40.000Z">
-<meta property="article:modified_time" content="2020-07-19T02:11:22.254Z">
+<meta property="article:modified_time" content="2020-07-19T04:44:45.657Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Architecture">
 <meta name="twitter:card" content="summary">
@@ -437,7 +437,7 @@
 <li>Hình ảnh trên minh hoạ cho crossing boundaries, nó chỉ ra việc kết nối giữa use cases và interface adapters. Khi thực hiện use cases, phần lớn sẽ đều liên quan tới interface adapters. Trong suy nghĩ, chúng ta sẽ cần các implement của interface adapters để thực hiện các use case.</li>
 <li>Nhưng theo điều 1, use cases không thể có source code của interface adapters. Vậy chúng ta phải làm như thế nào ?</li>
 <li>Chúng ta giải quyết vấn đề này bằng <a href="https://en.wikipedia.org/wiki/Dependency_inversion_principle" target="_blank" rel="noopener">dependency inversion principle</a>.</li>
-<li><strong>Ví dụ 5:</strong> trong java language, chúng ta sẽ sử dụng interface và quan hệ kế thừa. Các use case sẽ sử dụng các dependency là các interface. Sau đó các component của interface adapters sẽ implement các adapter đó.</li>
+<li><strong>Ví dụ 5:</strong> trong java language, chúng ta sẽ sử dụng interface và quan hệ kế thừa. Các use case sẽ sử dụng interface để trừu tượng hoá việc thực hiện của mình. Sau đó các component của interface adapters sẽ implement các interface đó.</li>
 </ul>
 <h1 id="VI-Data-cross-boundaries"><a href="#VI-Data-cross-boundaries" class="headerlink" title="VI, Data cross boundaries"></a>VI, Data cross boundaries</h1><ul>
 <li>Thông thường, <strong>data</strong> là những cấu trúc dữ liệu đơn giản nhất. Nó có thể là POJO object, basic structs…</li>
