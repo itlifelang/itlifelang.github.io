@@ -18,16 +18,17 @@
   
   
   <title>Tìm hiểu về clean architecture | IT life</title>
-  <meta name="description" content="I, Mở đầu Để tạo nên một ứng dụng, các developer thường sẽ tuân theo 1 architecture. Chúng ta có thể đã làm quen với các architecture như MVC, MVP và MVVM. Hôm nay, mình sẽ giới thiệu với mọi người 1">
+  <meta name="description" content="I, Mở đầu Để tạo nên một ứng dụng hay to hơn là hệ thống, các developer thường sẽ tuân theo 1 architecture. Chúng ta có thể đã làm quen với các architecture áp dụng ở một app riêng lẻ như MVC, MVP và">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tìm hiểu về clean architecture">
 <meta property="og:url" content="https://fs-sournary.github.io/2020/07/16/clean-architecture/index.html">
 <meta property="og:site_name" content="IT and life">
-<meta property="og:description" content="I, Mở đầu Để tạo nên một ứng dụng, các developer thường sẽ tuân theo 1 architecture. Chúng ta có thể đã làm quen với các architecture như MVC, MVP và MVVM. Hôm nay, mình sẽ giới thiệu với mọi người 1">
+<meta property="og:description" content="I, Mở đầu Để tạo nên một ứng dụng hay to hơn là hệ thống, các developer thường sẽ tuân theo 1 architecture. Chúng ta có thể đã làm quen với các architecture áp dụng ở một app riêng lẻ như MVC, MVP và">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://fs-sournary.github.io/2020/07/16/clean-architecture/clean-architecture.png">
+<meta property="og:image" content="https://fs-sournary.github.io/2020/07/16/clean-architecture/crossing-boundaries.png">
 <meta property="article:published_time" content="2020-07-15T19:12:40.000Z">
-<meta property="article:modified_time" content="2020-07-18T21:51:08.562Z">
+<meta property="article:modified_time" content="2020-07-19T02:11:22.254Z">
 <meta property="article:author" content="Sang">
 <meta property="article:tag" content="Architecture">
 <meta name="twitter:card" content="summary">
@@ -359,8 +360,8 @@
     <div class="article-entry marked-body" itemprop="articleBody">
       
         <h1 id="I-Mo-dau"><a href="#I-Mo-dau" class="headerlink" title="I, Mở đầu"></a>I, Mở đầu</h1><ul>
-<li>Để tạo nên một ứng dụng, các developer thường sẽ tuân theo 1 architecture.</li>
-<li>Chúng ta có thể đã làm quen với các architecture như MVC, MVP và MVVM.</li>
+<li>Để tạo nên một ứng dụng hay to hơn là hệ thống, các developer thường sẽ tuân theo 1 architecture.</li>
+<li>Chúng ta có thể đã làm quen với các architecture áp dụng ở một app riêng lẻ như MVC, MVP và MVVM.</li>
 <li>Hôm nay, mình sẽ giới thiệu với mọi người 1 architecture khác là clean architecture.</li>
 </ul>
 <h1 id="II-Tac-gia"><a href="#II-Tac-gia" class="headerlink" title="II, Tác giả"></a>II, Tác giả</h1><ul>
@@ -370,7 +371,7 @@
 </ul>
 <h1 id="III-Clean-architecture"><a href="#III-Clean-architecture" class="headerlink" title="III, Clean architecture"></a>III, Clean architecture</h1><ul>
 <li>Clean architecture là một kiến trúc (architecture) thiết kế phần mềm dựa trên <strong>dependency rule</strong>.</li>
-<li><strong>Chú ý</strong>: clean architecture không bị giới hạn trong một ứng dụng mà nó còn có thể được áp dụng cho cả một hệ thống (tập các ứng dụng).</li>
+<li>Clean architecture không bị giới hạn trong một ứng dụng mà nó còn có thể được áp dụng cho cả một hệ thống (tập các ứng dụng). Đây cũng là một trong những điểm vượt trội so với MVC, MVP hay MVVM.</li>
 <li>Sơ đồ về clean architecture được khái quát như hình sau:</li>
 </ul>
 <img src="/2020/07/16/clean-architecture/clean-architecture.png" class="">
@@ -380,48 +381,74 @@
 <li>Mô hình sẽ chia thành nhiều vòng tròn đồng tâm. Mỗi vòng tròn tương ứng với 1 layer.</li>
 <li>Vị trí của vòng tròn nói lên cấp (level) của chúng: <strong>vòng tròn càng xa tâm thì có cấp càng cao</strong>.</li>
 <li>Dependency rule là quy tắc quy định rằng:<ul>
-<li>Vòng tròn bên trong (level thấp hơn) không được chứa source code của vòng trong ngoài (level cao hơn) <strong>(1)</strong>.</li>
-<li>Đồng thời, bất cứ thay đổi ở vòng tròn bên ngoài không làm ảnh hưởng tới vòng tròn bên trong <strong>(2)</strong>.</li>
+<li><strong>Điều 1:</strong> layer trong (level thấp hơn) không được chứa source code của layer ngoài (có level cao) hơn.</li>
+<li><strong>Điều 2:</strong> bất cứ thay đổi ở layer ngoài không làm ảnh hưởng tới layer trong.</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>Mỗi vòng tròn tương ứng với 1 layer, chúng ta có thể chia thành 4 layer: entities, use cases, interface adapter và Framework and Drivers.</li>
-<li>Chúng ta có thể tham khảo cách implement của clean architecture thông qua <a href="https://github.com/cleancoders/CleanCodeCaseStudy/tree/master/src/cleancoderscom" target="_blank" rel="noopener">repository</a> của Uncle Bob trên Github.</li>
+<li>Clean architecture thông thường chia thành 4 layer: entities, use cases, interface adapters và Frameworks and drivers.</li>
+<li>Chúng ta có thể tham khảo cách implement của clean architecture thông qua <a href="https://github.com/cleancoders/CleanCodeCaseStudy/tree/master/src/cleancoderscom" target="_blank" rel="noopener">CleanCodeCaseStudy</a> của Uncle Bob trên Github.</li>
 </ul>
 <h2 id="1-Entities"><a href="#1-Entities" class="headerlink" title="1, Entities"></a>1, Entities</h2><ul>
 <li>Entities chứa <strong>enterprise wide business rules</strong>.</li>
-<li>Nó có nghĩa là entities không bị bó buộc trong 1 ứng dụng mà có thể được sử dụng rộng rãi ở nhiều ứng dụng trong hệ thống.</li>
-<li>Nếu chúng ta viết các entity cho một ứng dụng, các entity cũng chính là business object của ứng dụng đó.</li>
-<li>Một entity có thể là 1 class với các property và method, data structure hay interface với các methods.</li>
-<li>Theo (2), sự thay đổi hoạt động của hệ thống không làm ảnh hưởng tới layer entities. Ví dụ như chúng ta sẽ không thay đổi các entities khi việc điều hướng, security hay UI bị thay đổi.</li>
+<li>Điều này có nghĩa là entities chứa business logic của cả hệ thống (tập các app) chứ không bị bó buộc trong 1 app nào cả.</li>
+<li>Nếu hệ thống chỉ có một app, các entity cũng chính là business object của ứng dụng đó.</li>
+<li>Do entities có phạm vị hệ thống nên sự thay đổi hoạt động (không phải business logic) của một ứng dụng không làm ảnh hưởng tới entities. Ví dụ như các entity sẽ không bị thay đổi khi việc navigation giữa các màn hình hay UI bị thay đổi.</li>
 <li>Do đó, entities có thể chạy độc lập mà không sợ bị lỗi.</li>
+<li><strong>Ví dụ 1:</strong> chúng ta muốn xây dựng hệ thống bao gồm các app liên quan tới audio. Chúng ta có thể tạo <code>Audio</code> entity object cho hệ thống.</li>
 </ul>
 <h2 id="2-Use-cases"><a href="#2-Use-cases" class="headerlink" title="2, Use cases"></a>2, Use cases</h2><ul>
 <li>Use cases chứa <strong>application specific business rules</strong>.</li>
-<li>Use cases tóm lược và thực hiện các use case của ứng dụng xác định. Nó sử dụng các entity object để thực hiện các use case.</li>
-<li>Theo (1), use cases không chứa source code của các layer có level cao hơn là interface adapters và frameworks and drivers.</li>
-<li>Theo (2), use cases cũng không bị ảnh hưởng bởi sự thay đổi interface adapter và frameworks and drivers.</li>
-<li>Use cases thể hiện business logic của ứng dụng. Do đó khi hoạt động và use case của ứng dụng thay đổi, code trong layer này cũng sẽ bị thay đổi.</li>
+<li>Use thực hiện các use case của 1 ứng dụng dựa trên các entity object của entities.</li>
+<li>Theo điều 1, use cases không chứa source code của interface adapters và frameworks and drivers.</li>
+<li>Theo điều 2, use cases cũng không bị ảnh hưởng bởi sự thay đổi interface adapters và frameworks and drivers.</li>
+<li>Use cases thể hiện business logic của ứng dụng. Do đó khi app requirement của ứng dụng thay đổi, code trong layer này cũng sẽ bị thay đổi.</li>
+<li><strong>Ví dụ 2:</strong> một trong những use case phổ biến là fetch data từ một api.</li>
 </ul>
 <h2 id="3-Interface-adapters"><a href="#3-Interface-adapters" class="headerlink" title="3, Interface adapters"></a>3, Interface adapters</h2><ul>
-<li>Interface adapters là layer dùng để chuyển đổi dữ liệu của ở layer entites và use cases thành định dang thuận tiện nhất để làm việc với các tác vụ như database, networking…Do đó, interface adapters cũng có thể chứa các framwork có sẵn để làm việc.</li>
+<li>Interface adapters là layer dùng để chuyển đổi dữ liệu của ở entites và use cases thành định dang thuận tiện nhất để làm việc với các tác vụ như database, networking…Do đó, interface adapters cũng có thể chứa các framwork có sẵn để làm việc.</li>
 <li>Use cases, entities và các framework được sử dụng để chuyển đổi dữ liệu.</li>
-<li>Ví dụ như nếu ứng dụng quyết định làm việc với SQL database:<ul>
-<li>Interface adapter tạo ra các đối tượng như table, SQL queries…để chúng ta có thể thuận tiện nhất trong khi làm việc với yêu cầu của ứng dụng.</li>
-<li>Ngoài interface adapters, không thành phần nào của ứng dụng làm việc với SQL database.</li>
+<li><strong>Ví dụ 3:</strong> ứng dụng quyết định làm việc với SQL database:<ul>
+<li>Entities và use cases không thể chứa source code về SQLite database.</li>
+<li>Interface adapter tạo ra các đối tượng như table, SQL query…để làm việc thuận tiện nhất với yêu cầu của ứng dụng.</li>
+<li>Ngoài interface adapters, không thành phần nào của clean architecture làm việc với SQL database.</li>
 </ul>
 </li>
 </ul>
-<h2 id="4-Frameworks-and-Drivers"><a href="#4-Frameworks-and-Drivers" class="headerlink" title="4, Frameworks and Drivers"></a>4, Frameworks and Drivers</h2><ul>
-<li>Đây là layer ngoài cùng, nó là nơi chúng ta đi vào chi tiết hoá yêu cầu của ứng dụng như UI, design…và cũng bao gồm các Framework được xây dựng để phục vụ việc chi tiết hoá như UI framework…</li>
+<h2 id="4-Frameworks-and-drivers"><a href="#4-Frameworks-and-drivers" class="headerlink" title="4, Frameworks and drivers"></a>4, Frameworks and drivers</h2><ul>
+<li>Đây là layer ngoài cùng, nó là nơi chúng ta đi vào chi tiết hoá yêu cầu của ứng dụng như UI, application behavior, interaction…và cũng có thể bao gồm các Framework được xây dựng để phục vụ việc chi tiết hoá như UI framework…</li>
 <li>Chúng ta chỉ viết code liên quan đến việc chi tiết hoá như UI design…</li>
-<li>Ví dụ trong lập trình Android, trong layer này chúng ta sẽ import những UI dependency như material, ConstraintLayout…Nó sử dụng code trong interface adapter và các dependency để thực hiện hiển thị UI.</li>
+<li><strong>Ví dụ 4:</strong> đối với Android, trong frameworks and drivers:<ul>
+<li>Chúng ta sẽ import những UI dependency như material, ConstraintLayout… và sử dụng code trong interface adapter để tạo ra UI.</li>
+<li>Ngoài ra, chúng ta cũng sẽ thực hiện các tác vụ như điều hướng giữa các screen, thực hiện tương tác với user, chỉnh setting cho app…</li>
+</ul>
+</li>
 </ul>
 <h1 id="IV-Co-phai-bat-buoc-la-bon-layer"><a href="#IV-Co-phai-bat-buoc-la-bon-layer" class="headerlink" title="IV, Có phải bắt buộc là bốn layer ?"></a>IV, Có phải bắt buộc là bốn layer ?</h1><ul>
-<li>Trong clean architecture, không bắt buộc chỉ có thể là 4 layer. Tuỳ theo trường hợp, chúng ta có thể chia thành nhiều layer hơn.</li>
-<li>Nhưng clean architecture phải tuyệt đối tuân thủ vào dependency rule.</li>
-<li>Khi bạn đi vào trong, mức độ trừu tượng hoá sẽ được tăng lên (mức độ phụ thuộc giảm đi) do đó chúng ta càng dễ tách biệt chúng để dễ dàng kiểm thử, maintain và thay đổi hơn.</li>
+<li>Clean architecture không bắt buộc chỉ có 4 layer. Tuỳ theo hệ thống, chúng ta có thể chia thành nhiều layer hơn.</li>
+<li>Không có rule nào bắt buộc chỉ có 4 layer nhưng clean architecture phải tuyệt đối tuân thủ vào dependency rule.</li>
+<li>Khi chúng ta đi vào trong từ layer level cao xuống các layer thấp hơn, mức độ trừu tượng hoá sẽ được tăng lên (mức độ phụ thuộc giảm đi) do đó chúng ta càng dễ tách biệt chúng để dễ dàng kiểm thử, maintain và thay đổi hơn.</li>
+<li>Do đó, vòng tròn trong cùng là chung nhất. Chúng ta có thể chạy nó độc lập mà không sợ bị lỗi.</li>
+</ul>
+<h1 id="V-Crossing-boundaries"><a href="#V-Crossing-boundaries" class="headerlink" title="V, Crossing boundaries"></a>V, Crossing boundaries</h1><img src="/2020/07/16/clean-architecture/crossing-boundaries.png" class="">
+
+<ul>
+<li>Hình ảnh trên minh hoạ cho crossing boundaries, nó chỉ ra việc kết nối giữa use cases và interface adapters. Khi thực hiện use cases, phần lớn sẽ đều liên quan tới interface adapters. Trong suy nghĩ, chúng ta sẽ cần các implement của interface adapters để thực hiện các use case.</li>
+<li>Nhưng theo điều 1, use cases không thể có source code của interface adapters. Vậy chúng ta phải làm như thế nào ?</li>
+<li>Chúng ta giải quyết vấn đề này bằng <a href="https://en.wikipedia.org/wiki/Dependency_inversion_principle" target="_blank" rel="noopener">dependency inversion principle</a>.</li>
+<li><strong>Ví dụ 5:</strong> trong java language, chúng ta sẽ sử dụng interface và quan hệ kế thừa. Các use case sẽ sử dụng các dependency là các interface. Sau đó các component của interface adapters sẽ implement các adapter đó.</li>
+</ul>
+<h1 id="VI-Data-cross-boundaries"><a href="#VI-Data-cross-boundaries" class="headerlink" title="VI, Data cross boundaries"></a>VI, Data cross boundaries</h1><ul>
+<li>Thông thường, <strong>data</strong> là những cấu trúc dữ liệu đơn giản nhất. Nó có thể là POJO object, basic structs…</li>
+<li>Chúng ta không thể dùng chung data xuyên suốt ứng dụng bởi vì theo điều 2, các layer cấp cao hơn không làm thay đổi layer thấp hơn. Nếu chúng ta chỉ sử dụng chung data thì layer level có thể làm thay đổi data đó.</li>
+<li>Điều quan trọng ở đây là hãy tách biệt và đơn giản hoá data ở các layer.</li>
+<li><strong>Ví dụ 6:</strong> Ở entities, chúng ta có <strong>Movie</strong> là movie data của hệ thống. Ở interface adapters, chúng ta chỉ muốn lưu một số property của movie vào database. Để tách biệt với entities, trong interface adapters, chúng ta phải tạo ra 1 <strong>MovieRow</strong> object để làm việc với database.</li>
+</ul>
+<h1 id="VII-Tong-ket"><a href="#VII-Tong-ket" class="headerlink" title="VII, Tổng kết"></a>VII, Tổng kết</h1><ul>
+<li>Việc tuân thủ theo clean architecture là không khó, nó giúp chúng ta giảm đi nhiều rủi ro có thể gặp phải.</li>
+<li>Với việc tách biệt thành các layer và tuân theo dependecy rule, hệ thống của chúng ta sẽ dễ dàng test, maintain và thay đổi.</li>
+<li>Khi một thành phần như giao diện, database work…bị lỗi thời, chúng ta có thể dễ dàng thay thế nó với effort bỏ ra là ít nhất.</li>
 </ul>
 
       
